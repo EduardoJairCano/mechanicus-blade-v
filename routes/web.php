@@ -13,6 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', static function() {
+    return view('login');
+})->name('login');
+
+Route::get('/home/{username?}', static function ($username = 'usuario') {
+    return view('home', [
+        'username' => $username,
+    ]);
+})->name('home');
+
+Route::view('/clients', 'clients')->name('clients');
+Route::view('/about', 'about')->name('about');
