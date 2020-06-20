@@ -24,4 +24,5 @@ Route::get('/home/{username?}', static function ($username = 'usuario') {
 })->name('home');
 
 Route::view('/clients', 'clients')->name('clients');
-Route::view('/about', 'about')->name('about');
+
+Route::get('/about', 'AboutController')->name('about');
