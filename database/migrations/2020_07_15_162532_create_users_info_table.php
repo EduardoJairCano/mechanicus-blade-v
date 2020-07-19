@@ -19,7 +19,6 @@ class CreateUsersInfoTable extends Migration
             $table->string('last_name',150);
             $table->string('rfc',20);
             $table->string('cell_phone_number',20);
-            $table->string('phone_number',20)->nullable();
             $table->unsignedTinyInteger('role')->default(0);
             $table->foreignId('user_id');
             $table->timestamps();

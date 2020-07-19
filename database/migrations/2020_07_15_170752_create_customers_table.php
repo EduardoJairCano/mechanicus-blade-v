@@ -20,10 +20,9 @@ class CreateCustomersTable extends Migration
             $table->string('rfc',20)->nullable();
             $table->string('email',100)->nullable();
             $table->string('cell_phone_number',20)->nullable();
-            $table->string('phone_number',20)->nullable();
             $table->foreignId('address_id');
             $table->foreignId('user_id');
-            $table->foreignId('company_id');
+            $table->foreignId('company_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
