@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -36,4 +37,25 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get the user info record associated with the user.
+     *
+     * @return HasOne
+     */
+    public function userInfo(): HasOne
+    {
+        return $this->hasOne(UserInfo::class, 'user_id', 'id');
+    }
+
+    /**
+     * Get the address record associated with the user.
+     *
+     * @return HasOne
+     */
+    public function address(): HasOne
+    {
+        return $this->hasOne(Address::class, 'id', 'address_id');
+    }
+
 }
