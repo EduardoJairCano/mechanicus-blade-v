@@ -20,7 +20,7 @@ class CustomerController extends Controller
         // Get all customers from DB
         $customers = Customer::get();
 
-        return view('customers', compact('customers'));
+        return view('customers.index', compact('customers'));
     }
 
     /**
@@ -48,11 +48,14 @@ class CustomerController extends Controller
      * Display the specified client.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function show($id)
     {
         //
+        return \view('customers.show', [
+            'customer' => Customer::findOrFail($id)
+        ]);
     }
 
     /**

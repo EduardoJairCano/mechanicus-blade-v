@@ -23,7 +23,9 @@ Route::get('/home/{username?}', static function ($username = 'usuario') {
     ]);
 })->name('home');
 
-Route::get('/customers', 'CustomerController@index')->name('customers');
+Route::get('/customers', 'CustomerController@index')->name('customers.index');
+Route::get('/customers/{id}', 'CustomerController@show')->name('customers.show');
+
 Route::post('customers', 'MessageController@store');
 
 Route::get('/about', 'AboutController')->name('about');
