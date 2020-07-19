@@ -19,7 +19,7 @@ class CreateAddressesTable extends Migration
             $table->string('outdoor_number',10);
             $table->string('interior_number',10)->nullable();
             $table->string('colony',150);
-            $table->unsignedTinyInteger('postal_code');
+            $table->unsignedMediumInteger('postal_code')->nullable();
             $table->string('city',100);
             $table->string('municipality',100);
             $table->string('state',100);
