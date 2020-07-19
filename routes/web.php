@@ -23,7 +23,7 @@ Route::get('/home/{username?}', static function ($username = 'usuario') {
     ]);
 })->name('home');
 
-Route::get('/clients', 'ClientController@index')->name('clients');
-Route::post('clients', 'MessageController@store');
+Route::get('/customers', 'CustomerController@index')->name('customers');
+Route::post('customers', 'MessageController@store');
 
 Route::get('/about', 'AboutController')->name('about');

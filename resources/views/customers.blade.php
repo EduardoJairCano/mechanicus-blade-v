@@ -6,15 +6,15 @@
     <h1> Clientes </h1>
 
     <ul>
-        @forelse($clients as $client)
-            <li>{{ $client['title'] }}</li>
+        @forelse($customers as $customer)
+            <li>{{ $customer->first_name . ' ' . $customer->last_name }}</li>
         @empty
             <li> No hay clientes registrados aun </li>
         @endforelse
     </ul>
     
     <div>
-        <form method="POST" action="{{ route('clients') }}">
+        <form method="POST" action="{{ route('customers') }}">
             @csrf
             <input type="text"
                    name="name"

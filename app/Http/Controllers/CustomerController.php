@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Customer;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class ClientController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the clients.
@@ -16,15 +17,10 @@ class ClientController extends Controller
      */
     public function index()
     {
-        //
-        $clients = [
-            ['title' => 'Cliente 01'],
-            ['title' => 'Cliente 02'],
-            ['title' => 'Cliente 03'],
-            ['title' => 'Cliente 04'],
-        ];
+        // Get all customers from DB
+        $customers = Customer::get();
 
-        return view('clients', compact('clients'));
+        return view('customers', compact('customers'));
     }
 
     /**
