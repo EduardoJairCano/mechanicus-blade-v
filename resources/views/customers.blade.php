@@ -14,7 +14,7 @@
     </ul>
     
     {{--<div>
-        <form method="POST" action="{{ route('customers') }}">
+        <form method="POST" action="{{ route('messages.store') }}">
             @csrf
             <input type="text"
                    name="name"
