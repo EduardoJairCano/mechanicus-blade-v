@@ -47,14 +47,13 @@ class CustomerController extends Controller
     /**
      * Display the specified client.
      *
-     * @param  int  $id
+     * @param Customer $customer
      * @return Application|Factory|View
      */
-    public function show($id)
+    public function show(Customer $customer)
     {
-        //
         return \view('customers.show', [
-            'customer' => Customer::findOrFail($id)
+            'customer' => $customer
         ]);
     }
 
