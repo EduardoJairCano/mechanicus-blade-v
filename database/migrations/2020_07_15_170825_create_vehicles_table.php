@@ -26,6 +26,7 @@ class CreateVehiclesTable extends Migration
             $table->string('drivetrain',40)->nullable();
             $table->string('fuel',40);
             $table->string('color',40)->nullable();
+            $table->string('slug')->unique();
             $table->foreignId('customer_id');
             $table->timestamps();
             $table->softDeletes();
