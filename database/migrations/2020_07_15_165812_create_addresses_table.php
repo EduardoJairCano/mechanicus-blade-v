@@ -26,6 +26,8 @@ class CreateAddressesTable extends Migration
             $table->string('country',100);
             $table->string('phone_number',20)->nullable();
             $table->string('fax_number',20)->nullable();
+            $table->unsignedBigInteger('addressable_id');
+            $table->string('addressable_type');
             $table->timestamps();
             $table->softDeletes();
         });

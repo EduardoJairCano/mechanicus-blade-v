@@ -6,20 +6,36 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class Customer extends Model
 {
+    /**
+     * The table name that belongs this model.
+     *
+     * @var string
+     */
     protected $table = 'customers';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'first_name', 'last_name', 'rfc', 'email', 'cell_phone_number', 'slug', 'user_id'
+    ];
+
 
     /* ---- Relationships ---------------------------------------------------------------------- */
     /**
      * Get the address record associated with the customer.
      *
-     * @return HasOne
+     * @return MorphOne
      */
-    public function address(): HasOne
+    public function address(): MorphOne
     {
-        return $this->hasOne(Address::class, 'id', 'address_id');
+        return $this->morphOne(Address::class, 'addressable');
     }
 
     /**
@@ -39,7 +55,7 @@ class Customer extends Model
      */
     public function company(): HasOne
     {
-        return $this->hasOne(Company::class, 'id', 'company_id');
+        return $this->hasOne(Company::class, 'customer_id', 'id');
     }
 
     /**
@@ -57,7 +73,7 @@ class Customer extends Model
     /**
      * Get the slug for friendly url.
      * This value is the concat of
-     *      id . address_id . - . name
+     *      user_id . customer_id . - . first_name . - . last_name
      * @return string
      */
     public function getRouteKeyName(): string

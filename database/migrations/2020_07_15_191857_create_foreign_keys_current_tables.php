@@ -13,22 +13,16 @@ class CreateForeignKeysCurrentTables extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->foreign('address_id','user_address_id_fk')->references('id')->on('addresses');
-        });
-
         Schema::table('users_info', function (Blueprint $table) {
             $table->foreign('user_id', 'user_info_id_fk')->references('id')->on('users');
         });
 
         Schema::table('customers', function (Blueprint $table) {
-            $table->foreign('address_id','customer_address_id_fk')->references('id')->on('addresses');
             $table->foreign('user_id', 'customer_user_id_fk')->references('id')->on('users');
-            $table->foreign('company_id', 'customer_company_id_fk')->references('id')->on('companies');
         });
 
         Schema::table('companies', function (Blueprint $table) {
-            $table->foreign('address_id','company_address_id_fk')->references('id')->on('addresses');
+            $table->foreign('customer_id','company_customer_id_fk')->references('id')->on('customers');
         });
 
         Schema::table('vehicles', function (Blueprint $table) {

@@ -3,7 +3,9 @@
 namespace App;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -38,8 +40,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+
+    /* ---- Relationships ---------------------------------------------------------------------- */
     /**
-     * Get the user info record associated with the user.
+     * Get the User Info record associated with the user.
      *
      * @return HasOne
      */
@@ -49,13 +53,23 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the address record associated with the user.
+     * Get the Address record associated with the user.
      *
-     * @return HasOne
+     * @return MorphOne
      */
-    public function address(): HasOne
+    public function address(): MorphOne
     {
-        return $this->hasOne(Address::class, 'id', 'address_id');
+        return $this->morphOne(Address::class, 'addressable');
+    }
+
+    /**
+     * Get the Customer records associated with the user.
+     *
+     * @return HasMany
+     */
+    public function customers(): HasMany
+    {
+        return $this->hasMany(Customer::class, 'user_id', 'id');
     }
 
 }

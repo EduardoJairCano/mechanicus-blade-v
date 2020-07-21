@@ -11,7 +11,7 @@ use Illuminate\View\View;
 class CustomerController extends Controller
 {
     /**
-     * Display a listing of the clients.
+     * Display a listing of the customers.
      *
      * @return Application|Factory|View
      */
@@ -24,28 +24,45 @@ class CustomerController extends Controller
     }
 
     /**
-     * Show the form for creating a new client.
+     * Show the form for creating a new customer.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function create()
     {
         //
+        return view('customers.create');
     }
 
     /**
-     * Store a newly created client in storage.
+     * Store a newly created customer in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        $firstName = \request('first_name');
+        $lastName = \request('last_name');
+        $rfc = \request('rfc');
+        $email = \request('email');
+        $cellPhoneNumber = \request('cell_phone_number');
+        $slug = '134' . trim($firstName) . '-' . trim($lastName);
+
+        Customer::create([
+            'first_name' => $firstName,
+            'last_name' => $lastName,
+            'rfc' => $rfc,
+            'email' => $email,
+            'cell_phone_number' => $cellPhoneNumber,
+            'slug' => $slug,
+        ]);
+
+        return view('customers.index');
+
     }
 
     /**
-     * Display the specified client.
+     * Display the specified customer.
      *
      * @param Customer $customer
      * @return Application|Factory|View
@@ -58,7 +75,7 @@ class CustomerController extends Controller
     }
 
     /**
-     * Show the form for editing the specified client.
+     * Show the form for editing the specified customer.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -69,7 +86,7 @@ class CustomerController extends Controller
     }
 
     /**
-     * Update the specified client in storage.
+     * Update the specified customer in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -81,7 +98,7 @@ class CustomerController extends Controller
     }
 
     /**
-     * Remove the specified client from storage.
+     * Remove the specified customer from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

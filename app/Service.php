@@ -8,8 +8,24 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Service extends Model
 {
+    /**
+     * The table name that belongs this model.
+     *
+     * @var string
+     */
     protected $table = 'services';
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'date', 'serial', 'invoice_number', 'millage', 'comment', 'vehicle_id'
+    ];
+
+
+    /* ---- Relationships ---------------------------------------------------------------------- */
     /**
      * Get the vehicle that owns the service.
      *

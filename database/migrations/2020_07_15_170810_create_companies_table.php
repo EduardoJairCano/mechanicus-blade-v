@@ -18,7 +18,7 @@ class CreateCompaniesTable extends Migration
             $table->string('name',150);
             $table->boolean('active')->default(1);
             $table->string('slug')->unique();
-            $table->foreignId('address_id');
+            $table->foreignId('customer_id');
             $table->timestamps();
             $table->softDeletes();
 
