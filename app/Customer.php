@@ -11,6 +11,7 @@ class Customer extends Model
 {
     protected $table = 'customers';
 
+    /* ---- Relationships ---------------------------------------------------------------------- */
     /**
      * Get the address record associated with the customer.
      *
@@ -49,6 +50,19 @@ class Customer extends Model
     public function vehicles(): HasMany
     {
         return $this->hasMany(Vehicle::class, 'customer_id', 'id');
+    }
+
+
+    /* ---- Auxiliary functions ---------------------------------------------------------------- */
+    /**
+     * Get the slug for friendly url.
+     * This value is the concat of
+     *      id . address_id . - . name
+     * @return string
+     */
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
     }
 
 }

@@ -10,6 +10,7 @@ class Company extends Model
 {
     protected $table = 'companies';
 
+    /* ---- Relationships ---------------------------------------------------------------------- */
     /**
      * Get the address record associated with the company.
      *
@@ -30,4 +31,15 @@ class Company extends Model
         return $this->belongsTo(Customer::class, 'id', 'company_id');
     }
 
+    /* ---- Auxiliary functions ---------------------------------------------------------------- */
+    /**
+     * Get the slug for friendly url.
+     * This value is the concat of
+     *      user_id . customer_id . address_id . - . first_name . - . last_name
+     * @return string
+     */
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
 }
