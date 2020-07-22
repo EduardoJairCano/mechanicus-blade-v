@@ -46,7 +46,8 @@ class CustomerController extends Controller
         $rfc = \request('rfc');
         $email = \request('email');
         $cellPhoneNumber = \request('cell_phone_number');
-        $slug = '134' . trim($firstName) . '-' . trim($lastName);
+        $slug = '123-' . trim($firstName) . '-' . trim($lastName);
+        $slug = str_replace(' ', '-', $slug);
 
         Customer::create([
             'first_name' => $firstName,
@@ -55,10 +56,10 @@ class CustomerController extends Controller
             'email' => $email,
             'cell_phone_number' => $cellPhoneNumber,
             'slug' => $slug,
+            'user_id' => 1
         ]);
 
         return view('customers.index');
-
     }
 
     /**
