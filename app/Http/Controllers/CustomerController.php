@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Customer;
-use App\Http\Requests\CreateCustomerRequest;
+use App\Http\Requests\SaveCustomerRequest;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
-use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class CustomerController extends Controller
@@ -38,10 +38,10 @@ class CustomerController extends Controller
     /**
      * Store a newly created customer in storage.
      *
-     * @param CreateCustomerRequest $request
+     * @param SaveCustomerRequest $request
      * @return Application|Factory|View
      */
-    public function store(CreateCustomerRequest $request)
+    public function store(SaveCustomerRequest $request)
     {
         // Fields validations
         $fields = $request->validated();
@@ -80,24 +80,44 @@ class CustomerController extends Controller
     /**
      * Show the form for editing the specified customer.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Customer $customer
+     * @return Application|Factory|View
      */
-    public function edit($id)
+    public function edit(Customer $customer)
     {
         //
+        return \view('customers.edit',[
+            'customer' => $customer
+        ]);
     }
 
     /**
      * Update the specified customer in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Customer $customer
+     * @param SaveCustomerRequest $request
+     * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(Customer $customer, SaveCustomerRequest $request): RedirectResponse
     {
-        //
+        // Fields validations
+        $fields = $request->validated();
+
+        // Slug creation
+        // ToDo : improve the feature to do the slug with the ID's
+        $slug = '123-' . trim($fields['first_name']) . '-' . trim($fields['last_name']);
+        $slug = str_replace(' ', '-', $slug);
+
+        $customer->update([
+            'first_name' => $fields['first_name'],
+            'last_name' => $fields['last_name'],
+            'rfc' => $fields['rfc'],
+            'email' => $fields['email'],
+            'cell_phone_number' => $fields['cell_phone_number'],
+            'slug' => $slug,
+        ]);
+
+        return redirect()->route('customers.show', $customer);
     }
 
     /**

@@ -7,5 +7,5 @@
     <p>{{ $customer->email }}</p>
     <p>{{ $customer->rfc }}</p>
     <p>{{ $customer->cell_phone_number }}</p>
-
+    <a href="{{ route('customers.edit', $customer) }}"> Editar </a>
 @endsection
