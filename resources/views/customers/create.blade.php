@@ -8,28 +8,8 @@
     @include('partials.validation-errors')
 
     <form method="POST" action="{{ route('customers.store') }}">
-        @csrf
-        <h3> Información Principal </h3>
-        <label for="first_name"> Nombres <br>
-            <input type="text" name="first_name" value="{{ old('first_name') }}">
-        </label>
-        <br>
-        <label for="last_name"> Apellidos <br>
-            <input type="text" name="last_name" value="{{ old('last_name') }}">
-        </label>
-        <br>
-        <label for="rfc"> RFC <br>
-            <input type="text" name="rfc" value="{{ old('rfc') }}">
-        </label>
-        <br>
-        <label for="email"> Corrreo Electrónico <br>
-            <input type="text" name="email" value="{{ old('email') }}">
-        </label>
-        <br>
-        <label for="cell_phone_number"> Número de Teléfono Movil <br>
-            <input type="text" name="cell_phone_number" value="{{ old('cell_phone_number') }}">
-        </label>
-        <br>
+
+        @include('customers._form', ['btnText' => 'Guardar'])
 
         {{--<h3> Domicilio </h3>
         <label for="street_address"> Calle <br>
@@ -77,8 +57,6 @@
         </label>
         <br>
         <input hidden name="addressable_type" value="App\Customer">--}}
-
-        <button>Guardar</button>
     </form>
 
 @endsection

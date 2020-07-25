@@ -8,28 +8,10 @@
     @include('partials.validation-errors')
 
     <form method="POST" action="{{ route('customers.update', $customer) }}">
-        @csrf @method('PATCH')
-        <h3> Información Principal </h3>
-        <label for="first_name"> Nombres <br>
-            <input type="text" name="first_name" value="{{ old('first_name', $customer->first_name) }}">
-        </label>
-        <br>
-        <label for="last_name"> Apellidos <br>
-            <input type="text" name="last_name" value="{{ old('last_name', $customer->last_name) }}">
-        </label>
-        <br>
-        <label for="rfc"> RFC <br>
-            <input type="text" name="rfc" value="{{ old('rfc', $customer->rfc) }}">
-        </label>
-        <br>
-        <label for="email"> Corrreo Electrónico <br>
-            <input type="text" name="email" value="{{ old('email', $customer->email) }}">
-        </label>
-        <br>
-        <label for="cell_phone_number"> Número de Teléfono Movil <br>
-            <input type="text" name="cell_phone_number" value="{{ old('cell_phone_number', $customer->cell_phone_number) }}">
-        </label>
-        <br>
+
+        @method('PATCH')
+
+        @include('customers._form', ['btnText' => 'Actualizar'])
 
         {{--<h3> Domicilio </h3>
         <label for="street_address"> Calle <br>
@@ -78,7 +60,6 @@
         <br>
         <input hidden name="addressable_type" value="App\Customer">--}}
 
-        <button>Actualizar</button>
     </form>
 
 @endsection
