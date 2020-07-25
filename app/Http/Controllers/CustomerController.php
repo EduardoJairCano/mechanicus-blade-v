@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Customer;
 use App\Http\Requests\SaveCustomerRequest;
+use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
@@ -125,11 +126,15 @@ class CustomerController extends Controller
     /**
      * Remove the specified customer from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Customer $customer
+     * @return RedirectResponse
+     * @throws Exception
      */
-    public function destroy($id)
+    public function destroy(Customer $customer)
     {
-        //
+        $customer->delete();
+
+        return redirect()->route('customers.index');
     }
+
 }
