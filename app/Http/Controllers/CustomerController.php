@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Customer;
+use App\Http\Requests\CreateCustomerRequest;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
@@ -37,26 +38,27 @@ class CustomerController extends Controller
     /**
      * Store a newly created customer in storage.
      *
+     * @param CreateCustomerRequest $request
      * @return Application|Factory|View
      */
-    public function store()
+    public function store(CreateCustomerRequest $request)
     {
-        $firstName = \request('first_name');
-        $lastName = \request('last_name');
-        $rfc = \request('rfc');
-        $email = \request('email');
-        $cellPhoneNumber = \request('cell_phone_number');
-        $slug = '123-' . trim($firstName) . '-' . trim($lastName);
+        // Fields validations
+        $fields = $request->validated();
+
+        // Slug creation
+        // ToDo : improve the feature to do the slug with the ID's
+        $slug = '123-' . trim($fields['first_name']) . '-' . trim($fields['last_name']);
         $slug = str_replace(' ', '-', $slug);
 
         Customer::create([
-            'first_name' => $firstName,
-            'last_name' => $lastName,
-            'rfc' => $rfc,
-            'email' => $email,
-            'cell_phone_number' => $cellPhoneNumber,
+            'first_name' => $fields['first_name'],
+            'last_name' => $fields['last_name'],
+            'rfc' => $fields['rfc'],
+            'email' => $fields['email'],
+            'cell_phone_number' => $fields['cell_phone_number'],
             'slug' => $slug,
-            'user_id' => 1
+            'user_id' => 1 // ToDo : Change for user_id in session
         ]);
 
         return view('customers.index');

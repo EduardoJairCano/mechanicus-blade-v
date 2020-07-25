@@ -5,15 +5,23 @@
 @section('content')
     <h1> Agregar nuevo cliente </h1>
 
+    @if($errors->any())
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    @endif
+
     <form method="POST" action="{{ route('customers.store') }}">
         @csrf
         <h3> Información Principal </h3>
         <label for="first_name"> Nombres <br>
-            <input type="text" name="first_name" required>
+            <input type="text" name="first_name">
         </label>
         <br>
         <label for="last_name"> Apellidos <br>
-            <input type="text" name="last_name" required>
+            <input type="text" name="last_name">
         </label>
         <br>
         <label for="rfc"> RFC <br>
