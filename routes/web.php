@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,15 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', static function() {
-    return view('login');
-})->name('login');
+Auth::routes();
 
-Route::get('/home/{username?}', static function ($username = 'usuario') {
-    return view('home', [
-        'username' => $username,
-    ]);
-})->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::resource('clientes', 'CustomerController')
     ->parameters(['clientes' => 'customer'])
