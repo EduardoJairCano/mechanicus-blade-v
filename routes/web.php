@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::view('/', 'home')->name('home');
 
 Route::resource('clientes', 'CustomerController')
     ->parameters(['clientes' => 'customer'])
