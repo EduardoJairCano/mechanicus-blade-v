@@ -7,7 +7,7 @@
         {{-- Left Navigation --}}
         <div class="col-md-3">
             <div class="card">
-                {{ view('partials.left-navigation') }}
+                @include('partials.left-navigation')
             </div>
         </div>
 

@@ -22,7 +22,7 @@
 <body>
     <div id="app">
         {{-- Top Navigation --}}
-        {{ view('partials.top-navigation') }}
+        @include('partials.top-navigation')
 
         {{-- Main Content --}}
         <main class="py-4">
