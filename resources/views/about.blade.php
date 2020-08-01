@@ -1,8 +1,11 @@
-@extends('layout')
+@extends('home')
+
+@section('title', 'Acerca de Mechanicus')
+
+@section('card-title', 'Acerca de Mechanicus')
 
 @section('content')
-    <h1> Acerca de Mechanicus </h1>
     <div>
-        <h3>{{ $text }}</h3>
+        <p>{{ $text }}</p>
     </div>
 @endsection

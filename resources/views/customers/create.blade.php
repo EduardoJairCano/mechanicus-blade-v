@@ -1,9 +1,10 @@
-@extends('layout')
+@extends('home')
 
 @section('title', 'Agregar cliente')
 
+@section('card-title', 'Agregar cliente')
+
 @section('content')
-    <h1> Agregar nuevo cliente </h1>
 
     @include('partials.validation-errors')
 
