@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -57,6 +57,7 @@ class Vehicle extends Model
     {
         return $this->hasMany(Service::class, 'vehicle_id', 'id');
     }
+
 
     /* ---- Auxiliary functions ---------------------------------------------------------------- */
     /**

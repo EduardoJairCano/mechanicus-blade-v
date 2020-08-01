@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -26,7 +26,13 @@ class Customer extends Model
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'rfc', 'email', 'cell_phone_number', 'slug', 'user_id'
+        'first_name',
+        'last_name',
+        'rfc',
+        'email',
+        'cell_phone_number',
+        'slug',
+        'user_id'
     ];
 
 

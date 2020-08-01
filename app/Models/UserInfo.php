@@ -1,18 +1,18 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class ServiceItem extends Model
+class UserInfo extends Model
 {
     /**
      * The table name that belongs this model.
      *
      * @var string
      */
-    protected $table = 'services_items';
+    protected $table = 'users_info';
 
     /**
      * The attributes that are mass assignable.
@@ -20,19 +20,22 @@ class ServiceItem extends Model
      * @var array
      */
     protected $fillable = [
-        'quantity', 'description', 'unit_price', 'price', 'tax', 'final_price', 'service_id'
+        'first_name',
+        'last_name',
+        'rfc',
+        'cell_phone_number',
+        'role',
+        'user_id'
     ];
 
 
     /* ---- Relationships ---------------------------------------------------------------------- */
     /**
-     * Get the vehicle that owns the service.
-     *
-     * @return BelongsTo
+     * Get the user that owns the user info.
      */
-    public function service(): BelongsTo
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(Service::class, 'service_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -21,7 +21,12 @@ class Service extends Model
      * @var array
      */
     protected $fillable = [
-        'date', 'serial', 'invoice_number', 'millage', 'comment', 'vehicle_id'
+        'date',
+        'serial',
+        'invoice_number',
+        'millage',
+        'comment',
+        'vehicle_id'
     ];
 
 
