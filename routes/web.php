@@ -20,7 +20,8 @@ Route::view('/', 'home')->name('home');
 
 Route::resource('clientes', 'CustomerController')
     ->parameters(['clientes' => 'customer'])
-    ->names('customers');
+    ->names('customers')
+    ->middleware('auth');
 
 Route::post('customers', 'MessageController@store')->name('messages.store');
 
