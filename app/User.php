@@ -1,7 +1,10 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
+use App\Models\Address;
+use App\Models\Customer;
+use App\Models\UserInfo;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;

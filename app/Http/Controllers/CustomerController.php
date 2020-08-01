@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Customer;
+use App\Models\Customer;
 use App\Http\Requests\SaveCustomerRequest;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
@@ -130,7 +130,7 @@ class CustomerController extends Controller
      * @return RedirectResponse
      * @throws Exception
      */
-    public function destroy(Customer $customer)
+    public function destroy(Customer $customer): RedirectResponse
     {
         $customer->delete();
 
