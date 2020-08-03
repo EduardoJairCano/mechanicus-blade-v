@@ -22,12 +22,19 @@
 <body>
     <div id="app">
         {{-- Top Navigation --}}
-        @include('partials.top-navigation')
+        <header>
+            @include('partials.top-navigation')
+        </header>
 
         {{-- Main Content --}}
         <main class="py-4">
             @yield('main-content')
         </main>
+
+        {{-- Footer Sestion--}}
+        <footer>
+
+        </footer>
     </div>
 </body>
 </html>
