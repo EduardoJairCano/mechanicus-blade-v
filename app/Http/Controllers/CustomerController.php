@@ -54,7 +54,7 @@ class CustomerController extends Controller
         $slug = '123-' . trim($fields['first_name']) . '-' . trim($fields['last_name']);
         $slug = str_replace(' ', '-', $slug);
 
-        Customer::create([
+        $customer = Customer::create([
             'first_name' => $fields['first_name'],
             'last_name' => $fields['last_name'],
             'rfc' => $fields['rfc'],
@@ -64,7 +64,7 @@ class CustomerController extends Controller
             'user_id' => 1 // ToDo : Change for user_id in session
         ]);
 
-        return view('customers.index');
+        return view('customers.show', ['customer' => $customer]);
     }
 
     /**

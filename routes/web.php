@@ -18,8 +18,8 @@ Auth::routes();
 
 Route::view('/', 'home')->name('home');
 
-Route::resource('clientes', 'CustomerController')
-    ->parameters(['clientes' => 'customer'])
+Route::resource('cliente', 'CustomerController')
+    ->parameters(['cliente' => 'customer'])
     ->names('customers')
     ->middleware('auth');
 
