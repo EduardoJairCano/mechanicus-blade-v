@@ -12,7 +12,12 @@
 
         @method('PATCH')
 
-        @include('customers._form', ['btnText' => 'Actualizar'])
+        @include('customers._form',
+            [
+                'routeToReturn' => 'customers.show',
+                'btnText' => 'Actualizar'
+            ]
+        )
 
     </form>
 

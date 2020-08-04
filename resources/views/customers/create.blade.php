@@ -10,7 +10,12 @@
 
     <form method="POST" action="{{ route('customers.store') }}">
 
-        @include('customers._form', ['btnText' => 'Guardar'])
+        @include('customers._form',
+            [
+                'routeToReturn' => 'customers.index',
+                'btnText' => 'Guardar'
+            ]
+        )
 
     </form>
 

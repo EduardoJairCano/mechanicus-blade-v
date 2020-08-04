@@ -1,7 +1,18 @@
 @csrf
-<h3 class="display-6"> Información Principal </h3>
+<div class="form-group row align-items-center">
+    <h3 class="col-md-4">
+        <span class="font-weight-bold">
+            Información Principal
+        </span>
+    </h3>
+    <a href="{{ route($routeToReturn, $customer) }}" class="col-md-7 d-flex justify-content-end">
+        <span>
+            Regresar
+        </span>
+    </a>
+</div>
 
-<br>
+<hr>
 
 <div class="form-group row">
     <label for="first_name" class="col-md-4 col-form-label text-md-right"> Nombres </label>
