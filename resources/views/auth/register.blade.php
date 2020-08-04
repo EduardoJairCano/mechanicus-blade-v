@@ -4,10 +4,12 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header"> Registrar </div>
+            <div class="card shadow border-0">
+                <div class="card-header border-0 text-black-50 font-weight-bold">
+                    Registrar
+                </div>
 
-                <div class="card-body">
+                <div class="card-body text-black-50">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
@@ -17,7 +19,7 @@
                                 <input type="email"
                                        id="email"
                                        name="email"
-                                       class="form-control @error('email') is-invalid @enderror"
+                                       class="form-control bg-light shadow-sm @error('email') is-invalid @else border-0 @enderror"
                                        value="{{ old('email') }}"
                                        required
                                        autocomplete="email">
@@ -35,10 +37,9 @@
                                 <input type="password"
                                        id="password"
                                        name="password"
-                                       class="form-control @error('password') is-invalid @enderror"
+                                       class="form-control bg-light shadow-sm @error('password') is-invalid @else border-0 @enderror"
                                        required
                                        autocomplete="new-password">
-
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -53,7 +54,7 @@
                                 <input type="password"
                                        id="password-confirm"
                                        name="password_confirmation"
-                                       class="form-control"
+                                       class="form-control bg-light shadow-sm border-0"
                                        required
                                        autocomplete="new-password">
                             </div>
