@@ -1,11 +1,43 @@
-<div class="card-header border-0"> Navegación </div>
+<div class="card-header border-0 font-weight-bold"> Navegación </div>
 
 <div class="card-body">
-    <a href="{{ route('home') }}">Panel de Usuario</a><br>
-    @auth
-        <a href="{{ route('customers.index') }}">Clientes</a><br>
-        <a href="">Compañias</a><br>
-        <a href="">Vehiculos</a><br>
-    @endauth
-    <a href="{{ route('about') }}">Acerca de</a>
+    <ul class="list-group">
+        <li class="list-group-item border-0 mb-2 shadow-sm">
+            <a href="{{ route('home') }}" class="text-secondary">
+                <span class="font-weight-bold">
+                    Panel de Usuario
+                </span>
+            </a>
+        </li>
+        @auth
+            <li class="list-group-item border-0 mb-2 shadow-sm">
+                <a href="{{ route('customers.index') }}" class="text-secondary">
+                    <span class="font-weight-bold">
+                        Clientes
+                    </span>
+                </a>
+            </li>
+            <li class="list-group-item border-0 mb-2 shadow-sm">
+                <a href="" class="text-secondary">
+                    <span class="font-weight-bold">
+                        Compañias
+                    </span>
+                </a>
+            </li>
+            <li class="list-group-item border-0 mb-2 shadow-sm">
+                <a href="" class="text-secondary">
+                    <span class="font-weight-bold">
+                        Vehiculos
+                    </span>
+                </a>
+            </li>
+        @endauth
+        <li class="list-group-item border-0 mb-2 shadow-sm">
+            <a href="{{ route('about') }}" class="text-secondary">
+                <span class="font-weight-bold">
+                    Acerca de
+                </span>
+            </a>
+        </li>
+    </ul>
 </div>

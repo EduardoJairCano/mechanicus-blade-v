@@ -14,7 +14,9 @@
         {{-- Content --}}
         <div class="col-md-9">
             <div class="card shadow border-0">
-                <div class="card-header border-0"> @yield('card-title') </div>
+                <div class="card-header border-0 font-weight-bold">
+                    @yield('card-title')
+                </div>
 
                 <div class="card-body text-black-50">
                     @yield('content')
