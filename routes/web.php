@@ -23,6 +23,10 @@ Route::resource('cliente', 'CustomerController')
     ->names('customers')
     ->middleware('auth');
 
+Route::get('/userInfo', 'UserInfoController@index')->name('userInfo.index');
+Route::get('/userInfo/create', 'UserInfoController@create')->name('userInfo.create');
+Route::post('/userInfo', 'UserInfoController@store')->name('userInfo.store');
+
 Route::post('customers', 'MessageController@store')->name('messages.store');
 
 Route::get('/quienes-somos', 'AboutController')->name('about');
