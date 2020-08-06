@@ -21,8 +21,7 @@
                id="first_name"
                name="first_name"
                class="form-control bg-light shadow-sm @error('first_name') is-invalid @else border-0 @enderror"
-               value="{{ old('first_name', $customer->first_name) }}"
-               required>
+               value="{{ old('first_name', $customer->first_name) }}">
         @error('first_name')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -38,8 +37,7 @@
                id="last_name"
                name="last_name"
                class="form-control bg-light shadow-sm @error('last_name') is-invalid @else border-0 @enderror"
-               value="{{ old('last_name', $customer->last_name) }}"
-               required>
+               value="{{ old('last_name', $customer->last_name) }}">
         @error('last_name')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -55,8 +53,7 @@
                id="rfc"
                name="rfc"
                class="form-control bg-light shadow-sm @error('rfc') is-invalid @else border-0 @enderror"
-               value="{{ old('rfc', $customer->rfc) }}"
-               required>
+               value="{{ old('rfc', $customer->rfc) }}">
         @error('rfc')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -72,8 +69,7 @@
                id="email"
                name="email"
                class="form-control bg-light shadow-sm @error('email') is-invalid @else border-0 @enderror"
-               value="{{ old('email', $customer->email) }}"
-               required>
+               value="{{ old('email', $customer->email) }}">
         @error('email')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -89,8 +85,7 @@
                id="cell_phone_number"
                name="cell_phone_number"
                class="form-control bg-light shadow-sm @error('cell_phone_number') is-invalid @else border-0 @enderror"
-               value="{{ old('cell_phone_number', $customer->cell_phone_number) }}"
-               required>
+               value="{{ old('cell_phone_number', $customer->cell_phone_number) }}">
         @error('cell_phone_number')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>

@@ -24,10 +24,10 @@ class SaveCustomerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'rfc' => '',
-            'email' => '',
+            'first_name'        => 'required',
+            'last_name'         => 'required',
+            'rfc'               => '',
+            'email'             => 'required|string|email|max:255|unique:users',
             'cell_phone_number' => '',
         ];
     }
@@ -39,9 +39,6 @@ class SaveCustomerRequest extends FormRequest
      */
     public function messages(): array
     {
-        return [
-          'first_name.required' => 'Ingrese Nombre(s) del cliente',
-          'last_name.required' => 'Ingrese Apellido(s) del cliente',
-        ];
+        return [];
     }
 }
