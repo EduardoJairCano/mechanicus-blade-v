@@ -6,7 +6,6 @@
 
 @section('content')
     {{-- Actions --}}
-
     <div class="d-flex justify-content-end align-content-center">
         <a href="{{ route('customers.create') }}" class="btn btn-primary">
             <span class="">
