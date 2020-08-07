@@ -18,10 +18,10 @@
                 </span>
             </div>
         </div>
-        <div class="col-md-2 d-flex justify-content-end">
-            {{--<a href="{{ route('userInfo.edit', $user) }}" class="btn btn-primary">
+        <div class="col-md-4 d-flex justify-content-end">
+            <a href="{{ route('userInfo.edit', $user) }}" class="btn btn-primary">
                 Editar
-            </a>--}}
+            </a>
         </div>
     </div>
 

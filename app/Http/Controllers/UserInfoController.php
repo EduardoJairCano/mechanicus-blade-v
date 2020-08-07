@@ -35,8 +35,10 @@ class UserInfoController extends Controller
      */
     public function create()
     {
+        $user = Auth::user();
         //
         return view('userInfo.create', [
+            'user' => $user,
             'userInfo' => new UserInfo(),
         ]);
     }
@@ -101,14 +103,17 @@ class UserInfoController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified user info.
      *
-     * @param  int  $id
-     * @return Response
+     * @param  User  $user
+     * @return Application|Factory|View
      */
-    public function edit($id)
+    public function edit(User $user)
     {
         //
+        return view('userInfo.edit', [
+            'user' => $user
+        ]);
     }
 
     /**
