@@ -8,7 +8,7 @@ use App\Models\UserInfo;
 use App\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
-use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
@@ -117,15 +117,41 @@ class UserInfoController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified user info in storage.
      *
-     * @param Request $request
-     * @param  int  $id
-     * @return Response
+     * @param User $user
+     * @param SaveUserInfoRequest $request
+     * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(User $user, SaveUserInfoRequest $request): RedirectResponse
     {
-        //
+        // Fields validations
+        $fields = $request->validated();
+
+        // Update new user_info
+        $user->userInfo->update([
+            'first_name'        => $fields['first_name'],
+            'last_name'         => $fields['last_name'],
+            'rfc'               => $fields['rfc'],
+            'cell_phone_number' => $fields['cell_phone_number'],
+        ]);
+
+        // Update new address info
+        $user->address->update([
+            'street_address'    => $fields['street_address'],
+            'outdoor_number'    => $fields['outdoor_number'],
+            'interior_number'   => $fields['interior_number'],
+            'colony'            => $fields['colony'],
+            'postal_code'       => $fields['postal_code'],
+            'city'              => $fields['municipality'],
+            'municipality'      => $fields['municipality'],
+            'state'             => $fields['state'],
+            'country'           => $fields['country'],
+            'phone_number'      => $fields['phone_number'],
+            'fax_number'        => $fields['fax_number'],
+        ]);
+
+        return redirect()->route('userInfo.index');
     }
 
     /**

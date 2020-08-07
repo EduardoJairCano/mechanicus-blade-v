@@ -27,7 +27,7 @@ Route::get('/userInfo', 'UserInfoController@index')->name('userInfo.index');
 Route::get('/userInfo/create', 'UserInfoController@create')->name('userInfo.create');
 Route::post('/userInfo', 'UserInfoController@store')->name('userInfo.store');
 Route::get('/userInfo/{user}/edit', 'UserInfoController@edit')->name('userInfo.edit');
-
+Route::patch('/userInfo/{user}', 'UserInfoController@update')->name('userInfo.update');
 
 Route::post('customers', 'MessageController@store')->name('messages.store');
 

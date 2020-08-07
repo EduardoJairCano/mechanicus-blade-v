@@ -6,7 +6,7 @@
 
 @section('content')
 
-    <form method="POST" {{--action="{{ route('customers.update', $customer) }}"--}}>
+    <form method="POST" action="{{ route('userInfo.update', $user) }}">
 
         @method('PATCH')
 
