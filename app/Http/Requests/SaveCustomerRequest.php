@@ -24,11 +24,23 @@ class SaveCustomerRequest extends FormRequest
     public function rules(): array
     {
         return [
+            // Customer
             'first_name'        => 'required',
             'last_name'         => 'required',
             'rfc'               => '',
             'email'             => 'required|string|email|max:255|unique:users',
             'cell_phone_number' => '',
+            // Address
+            'street_address'    => 'required',
+            'outdoor_number'    => 'required|numeric',
+            'interior_number'   => '',
+            'colony'            => 'required',
+            'postal_code'       => 'required|numeric',
+            'municipality'      => 'required',
+            'state'             => 'required',
+            'country'           => 'required',
+            'phone_number'      => '',
+            'fax_number'        => '',
         ];
     }
 
