@@ -8,6 +8,7 @@ use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class CustomerController extends Controller
@@ -20,7 +21,8 @@ class CustomerController extends Controller
     public function index()
     {
         // Get all customers from DB
-        $customers = Customer::get();
+        $user = Auth::user();
+        $customers = $user->customers ?? null;
 
         return view('customers.index', compact('customers'));
     }
@@ -42,29 +44,34 @@ class CustomerController extends Controller
      * Store a newly created customer in storage.
      *
      * @param SaveCustomerRequest $request
-     * @return Application|Factory|View
+     * @return Application|Factory|RedirectResponse|View
      */
     public function store(SaveCustomerRequest $request)
     {
         // Fields validations
         $fields = $request->validated();
 
-        // Slug creation
-        // ToDo : improve the feature to do the slug with the ID's
-        $slug = '123-' . trim($fields['first_name']) . '-' . trim($fields['last_name']);
-        $slug = str_replace(' ', '-', $slug);
+        // Validation for existing user
+        $user = Auth::user();
 
-        $customer = Customer::create([
-            'first_name' => $fields['first_name'],
-            'last_name' => $fields['last_name'],
-            'rfc' => $fields['rfc'],
-            'email' => $fields['email'],
-            'cell_phone_number' => $fields['cell_phone_number'],
-            'slug' => $slug,
-            'user_id' => 1 // ToDo : Change for user_id in session
-        ]);
+        if ($user) {
+            $customer = Customer::create([
+                'first_name'        => $fields['first_name'],
+                'last_name'         => $fields['last_name'],
+                'rfc'               => $fields['rfc'],
+                'email'             => $fields['email'],
+                'cell_phone_number' => $fields['cell_phone_number'],
+                'slug'              => '',
+                'user_id'           => $user->id,
+            ]);
 
-        return view('customers.show', ['customer' => $customer]);
+            // Slug creation
+            $customer->createSlug();
+
+            return view('customers.show', ['customer' => $customer]);
+        }
+
+        return redirect()->route('customers.index');
     }
 
     /**
@@ -106,19 +113,18 @@ class CustomerController extends Controller
         // Fields validations
         $fields = $request->validated();
 
-        // Slug creation
-        // ToDo : improve the feature to do the slug with the ID's
-        $slug = '123-' . trim($fields['first_name']) . '-' . trim($fields['last_name']);
-        $slug = str_replace(' ', '-', $slug);
-
+        // Update customer info
         $customer->update([
-            'first_name' => $fields['first_name'],
-            'last_name' => $fields['last_name'],
-            'rfc' => $fields['rfc'],
-            'email' => $fields['email'],
+            'first_name'        => $fields['first_name'],
+            'last_name'         => $fields['last_name'],
+            'rfc'               => $fields['rfc'],
+            'email'             => $fields['email'],
             'cell_phone_number' => $fields['cell_phone_number'],
-            'slug' => $slug,
+            'slug'              => '',
         ]);
+
+        // Update Slug
+        $customer->createSlug();
 
         return redirect()->route('customers.show', $customer);
     }
