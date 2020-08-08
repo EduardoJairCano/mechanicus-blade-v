@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Address;
 use App\Models\Customer;
 use App\Http\Requests\SaveCustomerRequest;
 use Exception;
@@ -55,6 +56,7 @@ class CustomerController extends Controller
         $user = Auth::user();
 
         if ($user) {
+            // Create new customer row
             $customer = Customer::create([
                 'first_name'        => $fields['first_name'],
                 'last_name'         => $fields['last_name'],
@@ -67,6 +69,23 @@ class CustomerController extends Controller
 
             // Slug creation
             $customer->createSlug();
+
+            // Create new address row
+            Address::create([
+                'street_address'    => $fields['street_address'],
+                'outdoor_number'    => $fields['outdoor_number'],
+                'interior_number'   => $fields['interior_number'],
+                'colony'            => $fields['colony'],
+                'postal_code'       => $fields['postal_code'],
+                'city'              => $fields['municipality'],
+                'municipality'      => $fields['municipality'],
+                'state'             => $fields['state'],
+                'country'           => $fields['country'],
+                'phone_number'      => $fields['phone_number'],
+                'fax_number'        => $fields['fax_number'],
+                'addressable_id'    => $customer->id,
+                'addressable_type'  => Customer::class,
+            ]);
 
             return view('customers.show', ['customer' => $customer]);
         }
@@ -125,6 +144,21 @@ class CustomerController extends Controller
 
         // Update Slug
         $customer->createSlug();
+
+        // Update new address info
+        $customer->address->update([
+            'street_address'    => $fields['street_address'],
+            'outdoor_number'    => $fields['outdoor_number'],
+            'interior_number'   => $fields['interior_number'],
+            'colony'            => $fields['colony'],
+            'postal_code'       => $fields['postal_code'],
+            'city'              => $fields['municipality'],
+            'municipality'      => $fields['municipality'],
+            'state'             => $fields['state'],
+            'country'           => $fields['country'],
+            'phone_number'      => $fields['phone_number'],
+            'fax_number'        => $fields['fax_number'],
+        ]);
 
         return redirect()->route('customers.show', $customer);
     }
