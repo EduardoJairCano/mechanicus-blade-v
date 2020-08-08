@@ -82,13 +82,29 @@ class Customer extends Model
     /* ---- Auxiliary functions ---------------------------------------------------------------- */
     /**
      * Get the slug for friendly url.
-     * This value is the concat of
-     *      user_id . customer_id . - . first_name . - . last_name
+     *
      * @return string
      */
     public function getRouteKeyName(): string
     {
         return 'slug';
+    }
+
+
+    /**
+     * Creating the slug for friendly url.
+     * This value is the concat of
+     *      user_id . customer_id . - . first_name . - . last_name
+     *
+     * @return bool
+     */
+    public function createSlug(): bool
+    {
+        $this->slug = $this->user->id . $this->id . '-' . trim($this->first_name) . '-' . trim($this->last_name);
+        $this->slug = str_replace(' ', '-', $this->slug);
+        $this->save();
+
+        return $this->slug !== '';
     }
 
 }
