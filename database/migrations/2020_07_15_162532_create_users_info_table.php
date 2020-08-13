@@ -11,15 +11,14 @@ class CreateUsersInfoTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('users_info', function (Blueprint $table) {
+        Schema::create('users_info', static function (Blueprint $table) {
             $table->id();
             $table->string('first_name',150);
             $table->string('last_name',150);
             $table->string('rfc',20);
             $table->string('cell_phone_number',20);
-            $table->unsignedTinyInteger('role')->default(0);
             $table->foreignId('user_id');
             $table->timestamps();
             $table->softDeletes();
@@ -31,7 +30,7 @@ class CreateUsersInfoTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('users_info');
     }
