@@ -25,7 +25,6 @@ class UserInfo extends Model
         'last_name',
         'rfc',
         'cell_phone_number',
-        'role',
         'user_id'
     ];
 
