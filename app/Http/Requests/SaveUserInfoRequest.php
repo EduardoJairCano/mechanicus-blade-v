@@ -35,7 +35,7 @@ class SaveUserInfoRequest extends FormRequest
             'interior_number'   => '',
             'colony'            => 'required',
             'postal_code'       => 'required|numeric',
-            'municipality'      => 'required',
+            'city'              => 'required',
             'state'             => 'required',
             'country'           => 'required',
             'phone_number'      => '',
@@ -64,7 +64,7 @@ class SaveUserInfoRequest extends FormRequest
             'colony.required'               => 'Ingrese nombre de la Colonia',
             'postal_code.required'          => 'Ingrese Código Postal',
             'postal_code.numeric'           => 'El valor debe ser numérico',
-            'municipality.required'         => 'Ingrese nombre del Municipio o Ciudad',
+            'city.required'                 => 'Ingrese nombre del Municipio o Ciudad',
             'state.required'                => 'Ingrese nombre del Estado',
             'country.required'              => 'Ingrese nombre del País',
             */

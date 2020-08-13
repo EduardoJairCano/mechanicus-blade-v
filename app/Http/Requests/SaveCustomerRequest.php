@@ -36,7 +36,7 @@ class SaveCustomerRequest extends FormRequest
             'interior_number'   => '',
             'colony'            => 'required',
             'postal_code'       => 'required|numeric',
-            'municipality'      => 'required',
+            'city'              => 'required',
             'state'             => 'required',
             'country'           => 'required',
             'phone_number'      => '',

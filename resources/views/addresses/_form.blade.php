@@ -1,9 +1,9 @@
 {{-- Header --}}
 <div class="row">
     <h3 class="col-md-6">
-            <span class="font-weight-bold">
-                Domicilio
-            </span>
+        <span class="font-weight-bold">
+            Domicilio
+        </span>
     </h3>
 </div>
 
@@ -19,7 +19,7 @@
                class="form-control bg-light shadow-sm @error('street_address') is-invalid @else border-0 @enderror"
                value="{{ old('street_address', $address->street_address ?? '') }}">
         @error('street_address')
-        <span class="invalid-feedback" role="alert">
+            <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
         @enderror
@@ -36,7 +36,7 @@
                class="form-control bg-light shadow-sm @error('outdoor_number') is-invalid @else border-0 @enderror"
                value="{{ old('outdoor_number', $address->outdoor_number ?? '') }}">
         @error('outdoor_number')
-        <span class="invalid-feedback" role="alert">
+            <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
         @enderror
@@ -62,7 +62,7 @@
                class="form-control bg-light shadow-sm @error('colony') is-invalid @else border-0 @enderror"
                value="{{ old('colony', $address->colony ?? '') }}">
         @error('colony')
-        <span class="invalid-feedback" role="alert">
+            <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
         @enderror
@@ -76,24 +76,24 @@
                class="form-control bg-light shadow-sm @error('postal_code') is-invalid @else border-0 @enderror"
                value="{{ old('postal_code', $address->postal_code ?? '') }}">
         @error('postal_code')
-        <span class="invalid-feedback" role="alert">
+            <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
         @enderror
     </div>
 </div>
 
-{{-- Municipality --}}
+{{-- City --}}
 <div class="form-group row">
-    <label for="municipality" class="col-md-3 col-form-label text-md-right"> Municipio </label>
+    <label for="city" class="col-md-3 col-form-label text-md-right"> Ciudad </label>
     <div class="col-md-8">
         <input type="text"
-               id="municipality"
-               name="municipality"
-               class="form-control bg-light shadow-sm @error('municipality') is-invalid @else border-0 @enderror"
-               value="{{ old('municipality', $address->municipality ?? '') }}">
-        @error('municipality')
-        <span class="invalid-feedback" role="alert">
+               id="city"
+               name="city"
+               class="form-control bg-light shadow-sm @error('city') is-invalid @else border-0 @enderror"
+               value="{{ old('city', $address->city ?? '') }}">
+        @error('city')
+            <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
         @enderror
@@ -110,7 +110,7 @@
                class="form-control bg-light shadow-sm @error('state') is-invalid @else border-0 @enderror"
                value="{{ old('state', $address->state ?? '') }}">
         @error('state')
-        <span class="invalid-feedback" role="alert">
+            <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
         @enderror
@@ -124,7 +124,7 @@
                class="form-control bg-light shadow-sm @error('country') is-invalid @else border-0 @enderror"
                value="{{ old('country', $address->country ?? '') }}">
         @error('country')
-        <span class="invalid-feedback" role="alert">
+            <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
         @enderror

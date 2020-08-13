@@ -27,7 +27,6 @@ class Address extends Model
         'colony',
         'postal_code',
         'city',
-        'municipality',
         'state',
         'country',
         'phone_number',

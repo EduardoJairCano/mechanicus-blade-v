@@ -63,7 +63,6 @@ class UserInfoController extends Controller
                 'last_name'         => $fields['last_name'],
                 'rfc'               => $fields['rfc'],
                 'cell_phone_number' => $fields['cell_phone_number'],
-                'role'              => 1,
                 'user_id'           => $user->id,
             ]);
 
@@ -74,8 +73,7 @@ class UserInfoController extends Controller
                 'interior_number'   => $fields['interior_number'],
                 'colony'            => $fields['colony'],
                 'postal_code'       => $fields['postal_code'],
-                'city'              => $fields['municipality'],
-                'municipality'      => $fields['municipality'],
+                'city'              => $fields['city'],
                 'state'             => $fields['state'],
                 'country'           => $fields['country'],
                 'phone_number'      => $fields['phone_number'],
@@ -143,8 +141,7 @@ class UserInfoController extends Controller
             'interior_number'   => $fields['interior_number'],
             'colony'            => $fields['colony'],
             'postal_code'       => $fields['postal_code'],
-            'city'              => $fields['municipality'],
-            'municipality'      => $fields['municipality'],
+            'city'              => $fields['city'],
             'state'             => $fields['state'],
             'country'           => $fields['country'],
             'phone_number'      => $fields['phone_number'],
