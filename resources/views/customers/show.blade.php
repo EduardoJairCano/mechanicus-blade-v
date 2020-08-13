@@ -107,7 +107,7 @@
     <div class="row">
         <div class="col-md-4">
             <span class="d-flex justify-content-end font-weight-bold">
-                Municipio
+                Ciudad
             </span>
         </div>
         <div class="col-md-7">
