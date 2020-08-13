@@ -41,7 +41,10 @@
                            aria-haspopup="true"
                            aria-expanded="false"
                            v-pre>
-                            {{ Auth::user()->email }} <span class="caret"></span>
+                            {!! Auth::user()->userInfo ?
+                                Auth::user()->userInfo->first_name . ' ' . Auth::user()->userInfo->last_name :
+                                Auth::user()->email
+                            !!}<span class="caret"></span>
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
