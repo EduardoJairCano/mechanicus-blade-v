@@ -4,6 +4,7 @@ namespace App;
 
 use App\Models\Address;
 use App\Models\Customer;
+use App\Models\Role;
 use App\Models\UserInfo;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -25,7 +26,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role'
     ];
 
     /**
@@ -76,6 +76,16 @@ class User extends Authenticatable
     public function customers(): HasMany
     {
         return $this->hasMany(Customer::class, 'user_id', 'id');
+    }
+
+    /**
+     * Get the Role Type of the user.
+     *
+     * @return string
+     */
+    public function roleType(): string
+    {
+        return Role::find($this->role)->name;
     }
 
 }
