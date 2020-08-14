@@ -12,12 +12,12 @@ class CheckUserRoles
      *
      * @param  Request  $request
      * @param  \Closure  $next
-     * @param $role
+     * @param string $role
      * @return mixed
      */
-    public function handle($request, Closure $next, $role)
+    public function handle($request, Closure $next, string $role)
     {
-        if (auth()->user()->role === $role) {
+        if (auth()->user()->roleType() === $role) {
             return $next($request);
         }
 
