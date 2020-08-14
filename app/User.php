@@ -59,6 +59,16 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the Role record associated with the user.
+     *
+     * @return HasOne
+     */
+    public function role(): hasOne
+    {
+        return $this->hasOne(Role::class, 'id', 'role_id');
+    }
+
+    /**
      * Get the Address record associated with the user.
      *
      * @return MorphOne
@@ -89,7 +99,7 @@ class User extends Authenticatable
     public function hasRole(array $roles): bool
     {
         foreach ($roles as $role) {
-            if (Role::find($this->role)->name === $role) {
+            if ($this->role->name === $role) {
                 return true;
             }
         }
