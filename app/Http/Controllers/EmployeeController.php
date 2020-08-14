@@ -20,7 +20,7 @@ class EmployeeController extends Controller
     {
         $this->middleware([
             'auth',
-            'roles:developer,administrator'
+            'roles:developer,admin'
         ]);
     }
 

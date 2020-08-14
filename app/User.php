@@ -78,14 +78,23 @@ class User extends Authenticatable
         return $this->hasMany(Customer::class, 'user_id', 'id');
     }
 
+
+    /** ---- Auxiliary functions --------------------------------------------------------------- */
     /**
-     * Get the Role Type of the user.
+     * Check if the User has a certain Role.
      *
-     * @return string
+     * @param array $roles
+     * @return bool
      */
-    public function roleType(): string
+    public function hasRole(array $roles): bool
     {
-        return Role::find($this->role)->name;
+        foreach ($roles as $role) {
+            if (Role::find($this->role)->name === $role) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 }
