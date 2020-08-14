@@ -126,13 +126,6 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-1 offset-10">
-            <a href="{{ route('customers.index') }}" class="d-flex justify-content-end">
-                <span>
-                    Regresar
-                </span>
-            </a>
-        </div>
-    </div>
+    {{ view('administrators.list') }}
+
 @endsection

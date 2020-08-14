@@ -3,13 +3,20 @@
 <div class="card-body">
     <ul class="list-group">
         <li class="list-group-item border-0 mb-2 shadow-sm">
-            <a href="{{ route('userInfo.index') }}" class="text-secondary">
+            <a href="{{ route('home') }}" class="text-secondary">
                 <span class="font-weight-bold">
-                    Panel de Usuario
+                    Mechanicus
                 </span>
             </a>
         </li>
         @auth
+            <li class="list-group-item border-0 mb-2 shadow-sm">
+                <a href="{{ route('userInfo.index') }}" class="text-secondary">
+                <span class="font-weight-bold">
+                    Panel de Usuario
+                </span>
+                </a>
+            </li>
             <li class="list-group-item border-0 mb-2 shadow-sm">
                 <a href="{{ route('customers.index') }}" class="text-secondary">
                     <span class="font-weight-bold">
