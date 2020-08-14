@@ -69,6 +69,26 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the Boss record associated with the user.
+     *
+     * @return HasOne
+     */
+    public function boss(): hasOne
+    {
+        return $this->hasOne(__CLASS__, 'id', 'boss_id');
+    }
+
+    /**
+     * Get the sub users associated with the user.
+     *
+     * @return HasMany
+     */
+    public function subUsers(): hasMany
+    {
+        return $this->hasMany(__CLASS__, 'boss_id', 'id');
+    }
+
+    /**
      * Get the Address record associated with the user.
      *
      * @return MorphOne
