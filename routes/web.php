@@ -31,4 +31,6 @@ Route::patch('/userInfo/{user}', 'UserInfoController@update')->name('userInfo.up
 
 Route::post('customers', 'MessageController@store')->name('messages.store');
 
+Route::get('/employee', 'EmployeeController@index')->name('employee.index');
+
 Route::get('/quienes-somos', 'AboutController')->name('about');
