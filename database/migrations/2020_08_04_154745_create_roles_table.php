@@ -20,6 +20,34 @@ class CreateRolesTable extends Migration
             $table->text('description')->nullable();
             $table->timestamps();
         });
+
+        $date = date_format(date_create('2020-01-01 12:00:00'),'Y-m-d H:i:s');
+
+        // Default roles
+        $roles = [
+            [
+                'name'          => 'dev',
+                'display_name'  => 'Desarrollador',
+                'created_at'    => $date,
+                'updated_at'    => $date,
+            ],
+            [
+                'name'          => 'staff',
+                'display_name'  => 'Soporte',
+                'created_at'    => $date,
+                'updated_at'    => $date,
+            ],
+            [
+                'name'          => 'admin',
+                'display_name'  => 'Administrador',
+                'created_at'    => $date,
+                'updated_at'    => $date,
+            ],
+        ];
+
+        foreach ($roles as $rol) {
+            \Illuminate\Support\Facades\DB::table('roles')->insert($rol);
+        }
     }
 
     /**
