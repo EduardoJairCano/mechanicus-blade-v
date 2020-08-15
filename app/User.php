@@ -7,6 +7,7 @@ use App\Models\Customer;
 use App\Models\Role;
 use App\Models\UserInfo;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
@@ -69,23 +70,39 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the Boss record associated with the user.
+     * Get the Owner record associated with the user.
      *
-     * @return HasOne
+     * @return BelongsToMany
      */
-    public function boss(): hasOne
+    public function owner(): BelongsToMany
     {
-        return $this->hasOne(__CLASS__, 'id', 'boss_id');
+        return $this->belongsToMany(
+            __CLASS__,
+            'assigned_owners',
+            'user_id',
+            'owner_id',
+            'id',
+            'id',
+            'owner'
+        );
     }
 
     /**
-     * Get the sub users associated with the user.
+     * Get the Sub Users associated with the user.
      *
-     * @return HasMany
+     * @return BelongsToMany
      */
-    public function subUsers(): hasMany
+    public function subUsers(): BelongsToMany
     {
-        return $this->hasMany(__CLASS__, 'boss_id', 'id');
+        return $this->belongsToMany(
+            __CLASS__,
+            'assigned_owners',
+            'owner_id',
+            'user_id',
+            'id',
+            'id',
+            'subUser'
+        );
     }
 
     /**

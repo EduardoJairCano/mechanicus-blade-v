@@ -126,6 +126,8 @@
         </div>
     </div>
 
-    {{ view('administrators.list') }}
+    @if (!empty($subUsers))
+        {{ view('administrators.list', ['subUsers' => $subUsers]) }}
+    @endif
 
 @endsection

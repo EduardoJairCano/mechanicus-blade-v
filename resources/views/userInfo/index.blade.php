@@ -14,7 +14,12 @@
 
     <div class="col-md-12">
         @if (isset($user->userInfo))
-            @include('userInfo.show', ['user' => $user])
+            @include('userInfo.show',
+                [
+                    'user'      => $user,
+                    'subUsers'  => $subUsers,
+                ]
+            )
         @else
             <div class="row pb-3 justify-content-center">
                 <span class="text-danger font-weight-bold">

@@ -24,8 +24,21 @@ class UserInfoController extends Controller
     public function index()
     {
         $user = Auth::user();
+        $subUsers = [];
 
-        return view('userInfo.index', compact('user'));
+        // Get the sub-users, only if the current user is owner
+        if ($user->hasRole(['owner'])) {
+            $subUsers = $user->subUsers;
+        }
+
+        return view('userInfo.index',
+            compact(
+                [
+                    'user',
+                    'subUsers'
+                ]
+            )
+        );
     }
 
     /**
