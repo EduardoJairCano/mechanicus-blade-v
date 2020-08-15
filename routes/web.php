@@ -29,6 +29,10 @@ Route::post('/userInfo', 'UserInfoController@store')->name('userInfo.store');
 Route::get('/userInfo/{user}/edit', 'UserInfoController@edit')->name('userInfo.edit');
 Route::patch('/userInfo/{user}', 'UserInfoController@update')->name('userInfo.update');
 
+//Route::get('/administrator/{user}', 'AdministratorController@show')->name('administrator.show');
+Route::get('/administrator/create', 'AdministratorController@create')->name('administrator.create');
+Route::post('/administrator', 'AdministratorController@store')->name('administrator.store');
+
 Route::post('customers', 'MessageController@store')->name('messages.store');
 
 Route::get('/employee', 'EmployeeController@index')->name('employee.index');
