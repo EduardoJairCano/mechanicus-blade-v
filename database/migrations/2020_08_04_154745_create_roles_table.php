@@ -38,6 +38,12 @@ class CreateRolesTable extends Migration
                 'updated_at'    => $date,
             ],
             [
+                'name'          => 'owner',
+                'display_name'  => 'Dueño',
+                'created_at'    => $date,
+                'updated_at'    => $date,
+            ],
+            [
                 'name'          => 'admin',
                 'display_name'  => 'Administrador',
                 'created_at'    => $date,
