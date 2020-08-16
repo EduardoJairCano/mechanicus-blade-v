@@ -14,8 +14,8 @@
 </div>
 
 <div class="row align-items-center pb-2">
-    <div class="col-md-10 offset-1">
-        <table class="table text-black-50">
+    <div class="col-md-12">
+        <table class="table text-black-50 text-center">
             <thead>
                 <tr>
                     <th>Nombre</th>
@@ -28,7 +28,11 @@
             <tbody>
                 <tr>
                     @foreach($subUsers as $subUser)
-                        <td>{!! $subUser->userInfo->first_name . ' ' . $subUser->userInfo->last_name !!}</td>
+                        <td>
+                            <a href="{{ route('administrator.show', $subUser) }}">
+                                {!! $subUser->userInfo->first_name . ' ' . $subUser->userInfo->last_name !!}
+                            </a>
+                        </td>
                         <td>{{ $subUser->userInfo->cell_phone_number }}</td>
                         <td>{{ $subUser->email }}</td>
                         <td>{{ $subUser->role->display_name }}</td>
@@ -37,15 +41,5 @@
                 </tr>
             </tbody>
         </table>
-    </div>
-</div>
-
-<div class="row pb-2">
-    <div class="col-md-1 offset-10">
-        <a href="{{ route('home') }}" class="d-flex justify-content-end">
-            <span>
-                Regresar
-            </span>
-        </a>
     </div>
 </div>

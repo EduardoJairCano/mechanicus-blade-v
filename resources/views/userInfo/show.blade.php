@@ -130,4 +130,14 @@
         {{ view('administrators.list', ['subUsers' => $subUsers]) }}
     @endif
 
+    <div class="row pb-2">
+        <div class="col-md-1 offset-10">
+            <a href="{{ route('home') }}" class="d-flex justify-content-end">
+            <span>
+                Regresar
+            </span>
+            </a>
+        </div>
+    </div>
+
 @endsection
