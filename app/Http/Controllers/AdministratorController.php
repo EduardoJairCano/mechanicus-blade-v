@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SaveAdministratorRequest;
+use App\Http\Requests\UpdateAdministratorRequest;
 use App\Models\Address;
 use App\Models\Pivots\AssignedOwner;
 use App\Models\UserInfo;
 use App\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
-use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
@@ -34,7 +36,7 @@ class AdministratorController extends Controller
     public function create()
     {
         return view('administrators.create', [
-            'admin' => new User,
+            'administrator' => new User,
         ]);
     }
 
@@ -108,26 +110,57 @@ class AdministratorController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified administrator.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param User $user
+     * @return Application|Factory|View
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        return view('administrators.edit', [
+            'administrator' => $user
+        ]);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified administrator in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param User $administrator
+     * @param UpdateAdministratorRequest $request
+     * @return Application|RedirectResponse|Redirector
      */
-    public function update(Request $request, $id)
+    public function update(User $administrator, UpdateAdministratorRequest $request)
     {
-        //
+        // Fields validations
+        $fields = $request->validated();
+
+        $user = Auth::user();
+
+        if ($user) {
+            // Update new user_info
+            $administrator->userInfo->update([
+                'first_name'        => $fields['first_name'],
+                'last_name'         => $fields['last_name'],
+                'rfc'               => $fields['rfc'],
+                'cell_phone_number' => $fields['cell_phone_number'],
+            ]);
+
+            // Update new address info
+            $administrator->address->update([
+                'street_address'    => $fields['street_address'],
+                'outdoor_number'    => $fields['outdoor_number'],
+                'interior_number'   => $fields['interior_number'],
+                'colony'            => $fields['colony'],
+                'postal_code'       => $fields['postal_code'],
+                'city'              => $fields['city'],
+                'state'             => $fields['state'],
+                'country'           => $fields['country'],
+                'phone_number'      => $fields['phone_number'],
+                'fax_number'        => $fields['fax_number'],
+            ]);
+        }
+
+        return redirect(route('administrator.show', $administrator));
     }
 
     /**

@@ -19,7 +19,7 @@
             </div>
         </div>
         <div class="col-md-4 d-flex justify-content-end">
-            <a href="" class="btn btn-primary">
+            <a href="{{ route('administrator.edit', $administrator) }}" class="btn btn-primary">
                 Editar
             </a>
         </div>

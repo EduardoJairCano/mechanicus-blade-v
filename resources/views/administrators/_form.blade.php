@@ -9,8 +9,8 @@
             </span>
         </h3>
 
-        @if (isset($admin->userInfo))
-            <a href="{{ route('home') }}" class="col-md-5 d-flex justify-content-end">
+        @if (isset($administrator->userInfo))
+            <a href="{{ route('administrator.show', $administrator) }}" class="col-md-5 d-flex justify-content-end">
                 <span>
                     Regresar
                 </span>
@@ -21,21 +21,23 @@
     <hr>
 
     {{-- Email --}}
-    <div class="form-group row">
-        <label for="email" class="col-md-3 col-form-label text-md-right"> Correo electrónico </label>
-        <div class="col-md-8">
-            <input type="email"
-                   id="email"
-                   name="email"
-                   class="form-control bg-light shadow-sm @error('email') is-invalid @else border-0 @enderror"
-                   value="{{ old('email', $admin->email ?? '') }}">
-            @error('email')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-            @enderror
+    @if (!isset($administrator->email))
+        <div class="form-group row">
+            <label for="email" class="col-md-3 col-form-label text-md-right"> Correo electrónico </label>
+            <div class="col-md-8">
+                <input type="email"
+                       id="email"
+                       name="email"
+                       class="form-control bg-light shadow-sm @error('email') is-invalid @else border-0 @enderror"
+                       value="{{ old('email', $administrator->email ?? '') }}">
+                @error('email')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
         </div>
-    </div>
+    @endif
 
     {{-- First Name --}}
     <div class="form-group row">
@@ -45,7 +47,7 @@
                    id="first_name"
                    name="first_name"
                    class="form-control bg-light shadow-sm @error('first_name') is-invalid @else border-0 @enderror"
-                   value="{{ old('first_name', $admin->userInfo->first_name ?? '') }}">
+                   value="{{ old('first_name', $administrator->userInfo->first_name ?? '') }}">
             @error('first_name')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -62,7 +64,7 @@
                    id="last_name"
                    name="last_name"
                    class="form-control bg-light shadow-sm @error('last_name') is-invalid @else border-0 @enderror"
-                   value="{{ old('last_name', $admin->userInfo->last_name ?? '') }}">
+                   value="{{ old('last_name', $administrator->userInfo->last_name ?? '') }}">
             @error('last_name')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -79,7 +81,7 @@
                    id="rfc"
                    name="rfc"
                    class="form-control bg-light shadow-sm @error('rfc') is-invalid @else border-0 @enderror"
-                   value="{{ old('rfc', $admin->userInfo->rfc ?? '') }}">
+                   value="{{ old('rfc', $administrator->userInfo->rfc ?? '') }}">
             @error('rfc')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -96,7 +98,7 @@
                    id="cell_phone_number"
                    name="cell_phone_number"
                    class="form-control bg-light shadow-sm @error('cell_phone_number') is-invalid @else border-0 @enderror"
-                   value="{{ old('cell_phone_number', $admin->userInfo->cell_phone_number ?? '') }}">
+                   value="{{ old('cell_phone_number', $administrator->userInfo->cell_phone_number ?? '') }}">
             @error('cell_phone_number')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -108,7 +110,7 @@
 
 {{-- Address info --}}
 <div class="pb-3">
-    @include('addresses._form', ['address' => $admin->address])
+    @include('addresses._form', ['address' => $administrator->address])
 </div>
 
 {{-- Save button --}}
