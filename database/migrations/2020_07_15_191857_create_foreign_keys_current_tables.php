@@ -14,7 +14,7 @@ class CreateForeignKeysCurrentTables extends Migration
     public function up()
     {
         Schema::table('users_info', function (Blueprint $table) {
-            $table->foreign('user_id', 'user_info_id_fk')->references('id')->on('users');
+            $table->foreign('user_id', 'user_info_id_fk')->references('id')->on('users')->onDelete('cascade');
         });
 
         Schema::table('customers', function (Blueprint $table) {

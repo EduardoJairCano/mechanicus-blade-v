@@ -17,7 +17,7 @@ class CreateUsersInfoTable extends Migration
             $table->id();
             $table->string('first_name',150);
             $table->string('last_name',150);
-            $table->string('rfc',20);
+            $table->string('rfc',20)->nullable();
             $table->string('cell_phone_number',20);
             $table->foreignId('user_id');
             $table->timestamps();
