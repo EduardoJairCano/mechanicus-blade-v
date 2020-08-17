@@ -29,11 +29,12 @@ Route::post('/userInfo', 'UserInfoController@store')->name('userInfo.store');
 Route::get('/userInfo/{user}/edit', 'UserInfoController@edit')->name('userInfo.edit');
 Route::patch('/userInfo/{user}', 'UserInfoController@update')->name('userInfo.update');
 
-Route::get('/administrator/{user}/show', 'AdministratorController@show')->name('administrator.show');
+Route::get('/administrator/{administrator}/show', 'AdministratorController@show')->name('administrator.show');
 Route::get('/administrator/create', 'AdministratorController@create')->name('administrator.create');
 Route::post('/administrator', 'AdministratorController@store')->name('administrator.store');
-Route::get('/administrator/{user}/edit', 'AdministratorController@edit')->name('administrator.edit');
+Route::get('/administrator/{administrator}/edit', 'AdministratorController@edit')->name('administrator.edit');
 Route::patch('/administrator/{administrator}', 'AdministratorController@update')->name('administrator.update');
+Route::delete('/administrator/{administrator}', 'AdministratorController@destroy')->name('administrator.destroy');
 
 Route::post('customers', 'MessageController@store')->name('messages.store');
 

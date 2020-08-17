@@ -55,16 +55,16 @@ class AdministratorController extends Controller
             $fields = $request->validated();
 
             // Create new user row
-            $admin = new User;
-            $admin->email       = $fields['email'];
-            $admin->password    = Hash::make('admin1234');
-            $admin->role_id     = 4;
-            $admin->save();
+            $administrator = new User;
+            $administrator->email       = $fields['email'];
+            $administrator->password    = Hash::make('admin1234');
+            $administrator->role_id     = 4;
+            $administrator->save();
 
             // Create new owner-user row
             AssignedOwner::create([
                'owner_id'           => $user->id,
-               'user_id'            => $admin->id,
+               'user_id'            => $administrator->id,
             ]);
 
             // Create new user_info row
@@ -73,7 +73,7 @@ class AdministratorController extends Controller
                 'last_name'         => $fields['last_name'],
                 'rfc'               => $fields['rfc'],
                 'cell_phone_number' => $fields['cell_phone_number'],
-                'user_id'           => $admin->id,
+                'user_id'           => $administrator->id,
             ]);
 
             // Create new address row
@@ -88,9 +88,11 @@ class AdministratorController extends Controller
                 'country'           => $fields['country'],
                 'phone_number'      => $fields['phone_number'],
                 'fax_number'        => $fields['fax_number'],
-                'addressable_id'    => $admin->id,
+                'addressable_id'    => $administrator->id,
                 'addressable_type'  => User::class,
             ]);
+
+            return redirect(route('administrator.show', compact('administrator')));
         }
 
         return view('userInfo.index');
@@ -99,26 +101,26 @@ class AdministratorController extends Controller
     /**
      * Display the specified administrator.
      *
-     * @param User $user
+     * @param User $administrator
      * @return Application|Factory|View
      */
-    public function show(User $user)
+    public function show(User $administrator)
     {
         return view('administrators.show', [
-            'administrator' => $user
+            'administrator' => $administrator
         ]);
     }
 
     /**
      * Show the form for editing the specified administrator.
      *
-     * @param User $user
+     * @param User $administrator
      * @return Application|Factory|View
      */
-    public function edit(User $user)
+    public function edit(User $administrator)
     {
         return view('administrators.edit', [
-            'administrator' => $user
+            'administrator' => $administrator
         ]);
     }
 
@@ -164,13 +166,16 @@ class AdministratorController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified administrator from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param User $administrator
+     * @return RedirectResponse
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(User $administrator): RedirectResponse
     {
-        //
+        $administrator->delete();
+
+        return redirect()->route('userInfo.index');
     }
 }

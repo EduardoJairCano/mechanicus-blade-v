@@ -29,7 +29,7 @@ class SaveAdministratorRequest extends FormRequest
             /* User info */
             'first_name'        => 'required',
             'last_name'         => 'required',
-            'rfc'               => '',
+            'rfc'               => 'required',
             'cell_phone_number' => 'required|numeric',
             /* Address */
             'street_address'    => 'required',

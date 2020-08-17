@@ -18,10 +18,21 @@
                 </span>
             </div>
         </div>
-        <div class="col-md-4 d-flex justify-content-end">
+        <div class="col-md-2 d-flex justify-content-end">
             <a href="{{ route('administrator.edit', $administrator) }}" class="btn btn-primary">
                 Editar
             </a>
+        </div>
+        <div class="col-md-2">
+            <a href="#" onclick="document.getElementById('delete-administrator').submit()" class="btn btn-danger">
+                Eliminar
+            </a>
+            <form id="delete-administrator"
+                  method="POST"
+                  action="{{ route('administrator.destroy', $administrator) }}"
+                  class="d-none">
+                @csrf @method('DELETE')
+            </form>
         </div>
     </div>
 
