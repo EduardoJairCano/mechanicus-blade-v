@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="row align-items-center">
-        <div class="col-md-6 offset-1">
+        <div class="col-md-7 offset-1">
             <div class="row col-md-12">
                 <h3 class="font-weight-bold text-primary">
                     {{ $user->userInfo->first_name . ' ' . $user->userInfo->last_name }}
@@ -18,7 +18,7 @@
                 </span>
             </div>
         </div>
-        <div class="col-md-4 d-flex justify-content-end">
+        <div class="col-md-3 d-flex justify-content-end">
             <a href="{{ route('userInfo.edit', $user) }}" class="btn btn-primary">
                 Editar
             </a>
@@ -28,7 +28,7 @@
     <hr>
 
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-5">
             <span class="d-flex justify-content-end font-weight-bold">
                 RFC
             </span>
@@ -39,7 +39,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-5">
             <span class="d-flex justify-content-end font-weight-bold">
                 Número de Móvil
             </span>
@@ -50,7 +50,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-5">
             <span class="d-flex justify-content-end font-weight-bold">
                 Número de Casa
             </span>
@@ -61,7 +61,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-5">
             <span class="d-flex justify-content-end font-weight-bold">
                 Domicilio
             </span>
@@ -72,7 +72,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-5">
             <span class="d-flex justify-content-end font-weight-bold">
                 Colonia
             </span>
@@ -83,7 +83,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-5">
             <span class="d-flex justify-content-end font-weight-bold">
                 Código Postal
             </span>
@@ -94,7 +94,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-5">
             <span class="d-flex justify-content-end font-weight-bold">
                 Ciudad
             </span>
@@ -105,7 +105,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-5">
             <span class="d-flex justify-content-end font-weight-bold">
                 Estado
             </span>
@@ -116,7 +116,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-5">
             <span class="d-flex justify-content-end font-weight-bold">
                 País
             </span>
@@ -126,7 +126,8 @@
         </div>
     </div>
 
-    @if (!empty($subUsers))
+    {{-- Administrators section --}}
+    @if (auth()->user()->hasRole(['dev','staff','owner']))
         {{ view('administrators.list', ['subUsers' => $subUsers]) }}
     @endif
 

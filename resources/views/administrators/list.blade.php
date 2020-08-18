@@ -2,9 +2,16 @@
 
 <div class="row align-items-center pb-4">
     <div class="col-md-6 offset-1">
-        <h4 class="font-weight-bold text-primary">
-            Sub Usuarios
-        </h4>
+        <div class="row col-md-12">
+            <h4 class="font-weight-bold text-primary">
+                Administradores
+            </h4>
+        </div>
+        <div class="row col-md-6">
+            <span>
+                Sub Usuarios
+            </span>
+        </div>
     </div>
     <div class="col-md-4 d-flex justify-content-end">
         <a href="{{ route('administrator.create') }}" class="btn btn-primary">
