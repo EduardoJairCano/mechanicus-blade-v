@@ -19,6 +19,19 @@ use Illuminate\View\View;
 class AdministratorController extends Controller
 {
     /**
+     * Create a new administrator controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware([
+            'auth',
+            'roles:dev,staff,owner'
+        ]);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -35,16 +48,16 @@ class AdministratorController extends Controller
      */
     public function create()
     {
-        return view('administrators.create', [
-            'administrator' => new User,
-        ]);
+        $administrator = new User();
+
+        return view('administrators.create', compact('administrator'));
     }
 
     /**
      * Store a newly created administrator in storage.
      *
      * @param SaveAdministratorRequest $request
-     * @return Application|Factory|View
+     * @return Application|Factory|RedirectResponse|View
      */
     public function store(SaveAdministratorRequest $request)
     {
@@ -55,7 +68,7 @@ class AdministratorController extends Controller
             $fields = $request->validated();
 
             // Create new user row
-            $administrator = new User;
+            $administrator = new User();
             $administrator->email       = $fields['email'];
             $administrator->password    = Hash::make('admin1234');
             $administrator->role_id     = 4;
@@ -92,7 +105,7 @@ class AdministratorController extends Controller
                 'addressable_type'  => User::class,
             ]);
 
-            return redirect(route('administrator.show', compact('administrator')));
+            return redirect()->route('administrator.show', compact('administrator'));
         }
 
         return view('userInfo.index');
@@ -106,9 +119,7 @@ class AdministratorController extends Controller
      */
     public function show(User $administrator)
     {
-        return view('administrators.show', [
-            'administrator' => $administrator
-        ]);
+        return view('administrators.show', compact('administrator'));
     }
 
     /**
@@ -119,9 +130,7 @@ class AdministratorController extends Controller
      */
     public function edit(User $administrator)
     {
-        return view('administrators.edit', [
-            'administrator' => $administrator
-        ]);
+        return view('administrators.edit', compact('administrator'));
     }
 
     /**
@@ -162,7 +171,7 @@ class AdministratorController extends Controller
             ]);
         }
 
-        return redirect(route('administrator.show', $administrator));
+        return redirect()->route('administrator.show', [$administrator]);
     }
 
     /**
