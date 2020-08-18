@@ -1,8 +1,8 @@
 @extends('home')
 
-@section('title', 'Editar usuario')
+@section('title', 'Editar Usuario')
 
-@section('card-title', 'Editar usuario')
+@section('card-title', 'Editar Usuario')
 
 @section('content')
 
