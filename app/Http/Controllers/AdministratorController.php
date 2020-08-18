@@ -126,11 +126,15 @@ class AdministratorController extends Controller
      * Show the form for editing the specified administrator.
      *
      * @param User $administrator
-     * @return Application|Factory|View
+     * @return Application|Factory|RedirectResponse|View
      */
     public function edit(User $administrator)
     {
-        return view('administrators.edit', compact('administrator'));
+        if (auth()->user()->id === $administrator->owner[0]->id) {
+            return view('administrators.edit', compact('administrator'));
+        }
+
+        return redirect()->route('userInfo.index');
     }
 
     /**
