@@ -15,9 +15,21 @@ use Illuminate\View\View;
 
 class UserInfoController extends Controller
 {
+    /**
+     * Create a new userInfo controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware([
+            'auth',
+            'roles:dev,staff,owner,admin'
+        ]);
+    }
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of the userInfo.
      *
      * @return Application|Factory|Response|View
      */
@@ -26,43 +38,38 @@ class UserInfoController extends Controller
         $user = Auth::user();
         $subUsers = [];
 
-        // Get the sub-users, only if the current user is owner
+        // Get the administrators(sub-users), only if the current user is owner
         if ($user->hasRole(['owner'])) {
             $subUsers = $user->subUsers;
         }
 
-        return view('userInfo.index',
-            compact(
-                [
-                    'user',
-                    'subUsers'
-                ]
-            )
-        );
+        return view('userInfo.index', compact(['user', 'subUsers']));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new userInfo.
      *
-     * @return Application|Factory|Response|View
+     * @return Application|Factory|RedirectResponse|View
      */
     public function create()
     {
         $user = Auth::user();
-        //
-        return view('userInfo.create', [
-            'user' => $user,
-            'userInfo' => new UserInfo(),
-        ]);
+        $userInfo = new UserInfo();
+
+        if (is_null($user->userInfo)) {
+            return view('userInfo.create', compact(['user', 'userInfo']));
+        }
+
+        return redirect()->route('userInfo.index');
     }
 
     /**
-     * Store a newly created user_info in storage.
+     * Store a newly created userInfo in storage.
      *
      * @param SaveUserInfoRequest $request
-     * @return Application|Factory|View
+     * @return RedirectResponse
      */
-    public function store(SaveUserInfoRequest $request)
+    public function store(SaveUserInfoRequest $request): RedirectResponse
     {
         $user = Auth::user();
 
@@ -98,7 +105,7 @@ class UserInfoController extends Controller
 
         // ToDo: Successfully message
 
-        return view('home');
+        return redirect()->route('userInfo.index');
 
     }
 
@@ -114,17 +121,18 @@ class UserInfoController extends Controller
     }
 
     /**
-     * Show the form for editing the specified user info.
+     * Show the form for editing the specified userInfo.
      *
      * @param  User  $user
-     * @return Application|Factory|View
+     * @return Application|Factory|RedirectResponse|View
      */
     public function edit(User $user)
     {
-        //
-        return view('userInfo.edit', [
-            'user' => $user
-        ]);
+        if (auth()->user()->id === $user->id) {
+            return view('userInfo.edit', compact('user'));
+        }
+
+        return redirect()->route('userInfo.index');
     }
 
     /**
