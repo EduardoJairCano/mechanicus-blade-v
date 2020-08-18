@@ -33,7 +33,7 @@
 
     {{-- Administrators list section --}}
     @if (auth()->user()->hasRole(['dev','staff','owner']))
-        {{ view('administrators.list', ['subUsers' => $subUsers]) }}
+        @include('administrators.list', ['subUsers' => $subUsers])
     @endif
 
     <div class="row pb-2">
