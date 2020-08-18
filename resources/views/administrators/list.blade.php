@@ -26,7 +26,7 @@
             <thead>
                 <tr>
                     <th>Nombre</th>
-                    <th>Teléfono Movil</th>
+                    <th>Teléfono Móvil</th>
                     <th>Correo Electrónico</th>
                     <th>Rol</th>
                     <th>Acciones</th>
