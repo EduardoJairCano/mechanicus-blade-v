@@ -15,15 +15,33 @@ use Illuminate\View\View;
 class CustomerController extends Controller
 {
     /**
+     * Create a new customer controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware([
+            'auth',
+            'roles:dev,staff,owner,admin'
+        ]);
+    }
+
+    /**
      * Display a listing of the customers.
      *
      * @return Application|Factory|View
      */
     public function index()
     {
-        // Get all customers from DB
-        $user = Auth::user();
-        $customers = $user->customers ?? null;
+        $user = auth()->user();
+
+        // Get all customers for owner user
+        if ($user->hasRole(['owner'])) {
+            $customers = $user->customers ?? null;
+        } elseif ($user->hasRole(['admin'])) {
+            $customers = $user->owner[0]->customers ?? null;
+        }
 
         return view('customers.index', compact('customers'));
     }
@@ -35,10 +53,9 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
-        return view('customers.create', [
-            'customer' => new Customer
-        ]);
+        $customer = new Customer();
+
+        return view('customers.create', compact('customer'));
     }
 
     /**
@@ -52,10 +69,15 @@ class CustomerController extends Controller
         // Fields validations
         $fields = $request->validated();
 
-        // Validation for existing user
+        // Validation for existing user and role type to get the owner id
         $user = Auth::user();
+        if ($user->hasRole(['owner'])) {
+            $ownerId = $user->id;
+        } elseif ($user->hasRole(['admin'])) {
+            $ownerId = $user->owner[0]->id;
+        }
 
-        if ($user) {
+        if (isset($ownerId)) {
             // Create new customer row
             $customer = Customer::create([
                 'first_name'        => $fields['first_name'],
@@ -64,7 +86,7 @@ class CustomerController extends Controller
                 'email'             => $fields['email'],
                 'cell_phone_number' => $fields['cell_phone_number'],
                 'slug'              => '',
-                'user_id'           => $user->id,
+                'user_id'           => $ownerId,
             ]);
 
             // Slug creation
@@ -100,23 +122,30 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        return \view('customers.show', [
-            'customer' => $customer
-        ]);
+        return view('customers.show', compact('customer'));
     }
 
     /**
      * Show the form for editing the specified customer.
      *
      * @param Customer $customer
-     * @return Application|Factory|View
+     * @return Application|Factory|RedirectResponse|View
      */
     public function edit(Customer $customer)
     {
-        //
-        return \view('customers.edit',[
-            'customer' => $customer
-        ]);
+        // Validation for existing user and role type to get the owner id
+        $user = Auth::user();
+        if ($user->hasRole(['owner'])) {
+            $ownerId = $user->id;
+        } elseif ($user->hasRole(['admin'])) {
+            $ownerId = $user->owner[0]->id;
+        }
+
+        if (isset($ownerId) && $ownerId === $customer->user->id) {
+            return view('customers.edit',compact('customer'));
+        }
+
+        return redirect()->route('customers.index');
     }
 
     /**
@@ -174,5 +203,4 @@ class CustomerController extends Controller
 
         return redirect()->route('customers.index');
     }
-
 }
