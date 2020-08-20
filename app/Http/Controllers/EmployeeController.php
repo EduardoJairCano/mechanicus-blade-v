@@ -20,18 +20,26 @@ class EmployeeController extends Controller
     {
         $this->middleware([
             'auth',
-            'roles:developer,admin'
+            'roles:dev,staff,owner,admin'
         ]);
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of the employees.
      *
      * @return Application|Factory|Response|View
      */
     public function index()
     {
-        //
+        $user = auth()->user();
+
+        // Get all customers for owner user
+        /*if ($user->hasRole(['owner'])) {
+            $employees = $user->employees ?? null;
+        } elseif ($user->hasRole(['admin'])) {
+            $employees = $user->owner[0]->employees ?? null;
+        }*/
+
         return view('employees.index');
     }
 

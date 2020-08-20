@@ -21,9 +21,9 @@
         </div>
         <div class="col-md-4 d-flex justify-content-end align-content-center">
             <a href="{{ route('customer.create') }}" class="btn btn-primary">
-            <span class="">
-                Agregar nuevo cliente
-            </span>
+                <span class="">
+                    Agregar nuevo cliente
+                </span>
             </a>
         </div>
     </div>
