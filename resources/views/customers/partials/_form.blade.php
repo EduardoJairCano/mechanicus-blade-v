@@ -4,14 +4,14 @@
 <div>
     <div class="form-group row align-items-center">
         <h3 class="col-md-4">
-    <span class="font-weight-bold">
-        Información Principal
-    </span>
+            <span class="font-weight-bold">
+                Información Principal
+            </span>
         </h3>
         <a href="{{ route($routeToReturn, $customer) }}" class="col-md-7 d-flex justify-content-end">
-    <span>
-        Regresar
-    </span>
+            <span>
+                Regresar
+            </span>
         </a>
     </div>
 
@@ -27,8 +27,8 @@
                    value="{{ old('first_name', $customer->first_name) }}">
             @error('first_name')
             <span class="invalid-feedback" role="alert">
-        <strong>{{ $message }}</strong>
-    </span>
+                <strong>{{ $message }}</strong>
+            </span>
             @enderror
         </div>
     </div>
@@ -43,8 +43,8 @@
                    value="{{ old('last_name', $customer->last_name) }}">
             @error('last_name')
             <span class="invalid-feedback" role="alert">
-        <strong>{{ $message }}</strong>
-    </span>
+                <strong>{{ $message }}</strong>
+            </span>
             @enderror
         </div>
     </div>
@@ -59,8 +59,8 @@
                    value="{{ old('rfc', $customer->rfc) }}">
             @error('rfc')
             <span class="invalid-feedback" role="alert">
-        <strong>{{ $message }}</strong>
-    </span>
+                <strong>{{ $message }}</strong>
+            </span>
             @enderror
         </div>
     </div>
@@ -75,8 +75,8 @@
                    value="{{ old('email', $customer->email) }}">
             @error('email')
             <span class="invalid-feedback" role="alert">
-        <strong>{{ $message }}</strong>
-    </span>
+                <strong>{{ $message }}</strong>
+            </span>
             @enderror
         </div>
     </div>
@@ -91,8 +91,8 @@
                    value="{{ old('cell_phone_number', $customer->cell_phone_number) }}">
             @error('cell_phone_number')
             <span class="invalid-feedback" role="alert">
-        <strong>{{ $message }}</strong>
-    </span>
+                <strong>{{ $message }}</strong>
+            </span>
             @enderror
         </div>
     </div>

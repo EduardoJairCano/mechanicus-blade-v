@@ -8,7 +8,8 @@
 
     <form method="POST" action="{{ route('customers.store') }}">
 
-        @include('customers._form',
+        {{-- Create/Edit customer form --}}
+        @include('customers.partials._form',
             [
                 'routeToReturn' => 'customers.index',
                 'btnText' => 'Guardar'

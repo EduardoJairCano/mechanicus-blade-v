@@ -12,7 +12,8 @@
 
         @method('PATCH')
 
-        @include('customers._form',
+        {{-- Create/Edit customer form --}}
+        @include('customers.partials._form',
             [
                 'routeToReturn' => 'customers.show',
                 'btnText' => 'Actualizar'

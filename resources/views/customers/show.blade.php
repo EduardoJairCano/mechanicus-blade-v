@@ -44,6 +44,7 @@
     {{-- Customer info section --}}
     @include('customers.partials.show_customer_info', $customer)
 
+    {{-- Return button --}}
     <div class="row">
         <div class="col-md-1 offset-10">
             <a href="{{ route('customers.index') }}" class="d-flex justify-content-end">
@@ -53,4 +54,5 @@
             </a>
         </div>
     </div>
+
 @endsection
