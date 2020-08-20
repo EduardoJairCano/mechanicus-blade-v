@@ -33,7 +33,7 @@
 
     {{-- Administrators list section --}}
     @if (auth()->user()->hasRole(['dev','staff','owner']))
-        @include('administrators.list', ['subUsers' => $subUsers])
+        @include('administrators.partials.enlist', ['subUsers' => $subUsers])
     @endif
 
     {{-- Return button --}}

@@ -40,8 +40,9 @@
     <hr>
 
     {{-- User Info section --}}
-    @include('userInfo.partials.show_user_info', [ 'user' => $administrator])
+    @include('userInfo.partials.show_user_info', ['user' => $administrator])
 
+    {{-- Return button --}}
     <div class="row pb-2">
         <div class="col-md-1 offset-10">
             <a href="{{ route('userInfo.index') }}" class="d-flex justify-content-end">
