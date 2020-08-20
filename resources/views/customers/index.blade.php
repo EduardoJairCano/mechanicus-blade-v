@@ -32,7 +32,7 @@
     @if (count($customers) > 0)
         <div class="row align-items-center pb-2">
             <div class="col-md-12">
-                <table class="table text-black-50 text-center">
+                <table class="table text-black-50 text-center" style="font-size: small">
                     <thead>
                         <tr>
                             <th>Nombre</th>

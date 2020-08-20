@@ -23,17 +23,19 @@
                 Editar
             </a>
         </div>
-        <div class="col-md-2">
-            <a href="#" onclick="document.getElementById('delete-customer').submit()" class="btn btn-danger">
-                Eliminar
-            </a>
-            <form id="delete-customer"
-                  method="POST"
-                  action="{{ route('customers.destroy', $customer) }}"
-                  class="d-none">
-                @csrf @method('DELETE')
-            </form>
-        </div>
+        @if (auth()->user()->hasRole(['owner']))
+            <div class="col-md-2">
+                <a href="#" onclick="document.getElementById('delete-customer').submit()" class="btn btn-danger">
+                    Eliminar
+                </a>
+                <form id="delete-customer"
+                      method="POST"
+                      action="{{ route('customers.destroy', $customer) }}"
+                      class="d-none">
+                    @csrf @method('DELETE')
+                </form>
+            </div>
+        @endif
     </div>
 
     <hr>
