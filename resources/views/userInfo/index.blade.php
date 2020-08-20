@@ -5,15 +5,17 @@
 @section('card-title', 'Panel del Usuario')
 
 @section('content')
-    {{-- Actions --}}
+    {{-- Header & Action section --}}
     <div class="d-flex justify-content-end align-content-center">
 
     </div>
 
     <hr>
 
+    {{-- User info section --}}
     <div class="col-md-12">
         @if (isset($user->userInfo))
+            {{-- Show userInfo section --}}
             @include('userInfo.show',
                 [
                     'user'      => $user,
@@ -21,6 +23,7 @@
                 ]
             )
         @else
+            {{-- Complete userInfo section --}}
             <div class="row pb-3 justify-content-center">
                 <span class="text-danger font-weight-bold">
                     Es necesario completar la información general del usuario

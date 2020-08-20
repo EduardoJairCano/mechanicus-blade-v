@@ -15,7 +15,8 @@
                     <div class="card-body text-black-50">
                         <form method="POST" action="{{ route('userInfo.store') }}">
 
-                            @include('userInfo._form',
+                            {{-- Create/Edit userInfo form --}}
+                            @include('userInfo.partials._form',
                                 [
                                     'btnText' => 'Guardar'
                                 ]

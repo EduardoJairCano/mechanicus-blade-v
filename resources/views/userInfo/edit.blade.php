@@ -10,7 +10,8 @@
 
         @method('PATCH')
 
-        @include('userInfo._form',
+        {{-- Create/Edit userInfo form --}}
+        @include('userInfo.partials._form',
             [
                 'routeToReturn' => 'userInfo.index',
                 'btnText' => 'Actualizar'
