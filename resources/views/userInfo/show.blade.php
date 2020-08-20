@@ -29,7 +29,7 @@
     <hr>
 
     {{-- User Info section --}}
-    @include('userInfo.partials.show-user-info', [ 'user' => $user])
+    @include('userInfo.partials.show_user_info', [ 'user' => $user])
 
     {{-- Administrators list section --}}
     @if (auth()->user()->hasRole(['dev','staff','owner']))

@@ -40,7 +40,7 @@
     <hr>
 
     {{-- User Info section --}}
-    @include('userInfo.partials.show-user-info', [ 'user' => $administrator])
+    @include('userInfo.partials.show_user_info', [ 'user' => $administrator])
 
     <div class="row pb-2">
         <div class="col-md-1 offset-10">
