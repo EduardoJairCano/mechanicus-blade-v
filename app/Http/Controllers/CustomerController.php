@@ -118,11 +118,24 @@ class CustomerController extends Controller
      * Display the specified customer.
      *
      * @param Customer $customer
-     * @return Application|Factory|View
+     * @return Application|Factory|RedirectResponse|View
      */
     public function show(Customer $customer)
     {
-        return view('customers.show', compact('customer'));
+        // Validation for existing user and role type to get the owner id
+        $user = Auth::user();
+        if ($user->hasRole(['owner'])) {
+            $ownerId = $user->id;
+        } elseif ($user->hasRole(['admin'])) {
+            $ownerId = $user->owner[0]->id;
+        }
+
+        // Validation to know if the customer belongs to the user logged
+        if (isset($ownerId) && $ownerId === $customer->user_id) {
+            return view('customers.show', compact('customer'));
+        }
+
+        return redirect()->route('customers.index');
     }
 
     /**

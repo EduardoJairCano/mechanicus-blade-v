@@ -115,11 +115,15 @@ class AdministratorController extends Controller
      * Display the specified administrator.
      *
      * @param User $administrator
-     * @return Application|Factory|View
+     * @return Application|Factory|RedirectResponse|View
      */
     public function show(User $administrator)
     {
-        return view('administrators.show', compact('administrator'));
+        if (auth()->user()->id === $administrator->owner[0]->id) {
+            return view('administrators.show', compact('administrator'));
+        }
+
+        return redirect()->route('userInfo.index');
     }
 
     /**
