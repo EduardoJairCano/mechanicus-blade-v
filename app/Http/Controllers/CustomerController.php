@@ -111,7 +111,7 @@ class CustomerController extends Controller
             return view('customers.show', ['customer' => $customer]);
         }
 
-        return redirect()->route('customers.index');
+        return redirect()->route('customer.index');
     }
 
     /**
@@ -135,7 +135,7 @@ class CustomerController extends Controller
             return view('customers.show', compact('customer'));
         }
 
-        return redirect()->route('customers.index');
+        return redirect()->route('customer.index');
     }
 
     /**
@@ -158,7 +158,7 @@ class CustomerController extends Controller
             return view('customers.edit',compact('customer'));
         }
 
-        return redirect()->route('customers.index');
+        return redirect()->route('customer.index');
     }
 
     /**
@@ -200,7 +200,7 @@ class CustomerController extends Controller
             'fax_number'        => $fields['fax_number'],
         ]);
 
-        return redirect()->route('customers.show', $customer);
+        return redirect()->route('customer.show', $customer);
     }
 
     /**
@@ -214,6 +214,6 @@ class CustomerController extends Controller
     {
         $customer->delete();
 
-        return redirect()->route('customers.index');
+        return redirect()->route('customer.index');
     }
 }

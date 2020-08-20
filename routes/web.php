@@ -18,17 +18,15 @@ Auth::routes();
 
 Route::view('/', 'home')->name('home');
 
-Route::resource('cliente', 'CustomerController')
-    ->parameters(['cliente' => 'customer'])
-    ->names('customers')
-    ->middleware('auth');
-
+/* ---- User info -------------------------------------------------------------------------------------------------- */
 Route::get('/userInfo', 'UserInfoController@index')->name('userInfo.index');
 Route::get('/userInfo/create', 'UserInfoController@create')->name('userInfo.create');
 Route::post('/userInfo', 'UserInfoController@store')->name('userInfo.store');
 Route::get('/userInfo/{user}/edit', 'UserInfoController@edit')->name('userInfo.edit');
 Route::patch('/userInfo/{user}', 'UserInfoController@update')->name('userInfo.update');
 
+
+/* ---- Administrator ---------------------------------------------------------------------------------------------- */
 Route::get('/administrator/{administrator}/show', 'AdministratorController@show')->name('administrator.show');
 Route::get('/administrator/create', 'AdministratorController@create')->name('administrator.create');
 Route::post('/administrator', 'AdministratorController@store')->name('administrator.store');
@@ -36,8 +34,21 @@ Route::get('/administrator/{administrator}/edit', 'AdministratorController@edit'
 Route::patch('/administrator/{administrator}', 'AdministratorController@update')->name('administrator.update');
 Route::delete('/administrator/{administrator}', 'AdministratorController@destroy')->name('administrator.destroy');
 
-Route::post('customers', 'MessageController@store')->name('messages.store');
 
+/* ---- Customer --------------------------------------------------------------------------------------------------- */
+Route::get('/customer','CustomerController@index')->name('customer.index');
+Route::get('/customer/{customer}/show','CustomerController@show')->name('customer.show');
+Route::get('/customer/create', 'CustomerController@create')->name('customer.create');
+Route::post('/customer', 'CustomerController@store')->name('customer.store');
+Route::get('/customer/{customer}/edit', 'CustomerController@edit')->name('customer.edit');
+Route::patch('/customer/{customer}', 'CustomerController@update')->name('customer.update');
+Route::delete('/customer/{customer}', 'CustomerController@destroy')->name('customer.destroy');
+
+
+/* ---- Employee --------------------------------------------------------------------------------------------------- */
 Route::get('/employee', 'EmployeeController@index')->name('employee.index');
 
+
+/* ---- Mechanicus ------------------------------------------------------------------------------------------------- */
+Route::post('customers', 'MessageController@store')->name('messages.store');
 Route::get('/quienes-somos', 'AboutController')->name('about');

@@ -18,7 +18,7 @@
                 </a>
             </li>
             <li class="list-group-item border-0 mb-2 shadow-sm">
-                <a href="{{ route('customers.index') }}" class="text-secondary">
+                <a href="{{ route('customer.index') }}" class="text-secondary">
                     <span class="font-weight-bold">
                         Clientes
                     </span>

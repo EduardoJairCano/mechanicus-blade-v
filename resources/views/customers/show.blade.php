@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="col-md-2 d-flex justify-content-end">
-            <a href="{{ route('customers.edit', $customer) }}" class="btn btn-primary">
+            <a href="{{ route('customer.edit', $customer) }}" class="btn btn-primary">
                 Editar
             </a>
         </div>
@@ -31,7 +31,7 @@
                 </a>
                 <form id="delete-customer"
                       method="POST"
-                      action="{{ route('customers.destroy', $customer) }}"
+                      action="{{ route('customer.destroy', $customer) }}"
                       class="d-none">
                     @csrf @method('DELETE')
                 </form>
@@ -47,7 +47,7 @@
     {{-- Return button --}}
     <div class="row">
         <div class="col-md-1 offset-10">
-            <a href="{{ route('customers.index') }}" class="d-flex justify-content-end">
+            <a href="{{ route('customer.index') }}" class="d-flex justify-content-end">
                 <span>
                     Regresar
                 </span>

@@ -6,12 +6,12 @@
 
 @section('content')
 
-    <form method="POST" action="{{ route('customers.store') }}">
+    <form method="POST" action="{{ route('customer.store') }}">
 
         {{-- Create/Edit customer form --}}
         @include('customers.partials._form',
             [
-                'routeToReturn' => 'customers.index',
+                'routeToReturn' => 'customer.index',
                 'btnText' => 'Guardar'
             ]
         )

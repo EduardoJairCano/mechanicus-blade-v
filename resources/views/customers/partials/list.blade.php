@@ -12,7 +12,7 @@
     @foreach($customers as $customer)
         <tr>
             <td>
-                <a href="{{ route('customers.show', $customer) }}">
+                <a href="{{ route('customer.show', $customer) }}">
                     {{ $customer->first_name . ' ' . $customer->last_name }}
                 </a>
             </td>
@@ -21,7 +21,7 @@
             <td>{{ $customer->email }}</td>
             <td>
                 <div class="btn-group-sm" role="group">
-                    <a href="{{ route('customers.edit', $customer) }}" class="btn btn-primary">
+                    <a href="{{ route('customer.edit', $customer) }}" class="btn btn-primary">
                         <i class="fas fa-user-edit"></i>
                     </a>
                     @if (auth()->user()->hasRole(['owner']))
@@ -30,7 +30,7 @@
                         </a>
                         <form id="delete-customer"
                               method="POST"
-                              action="{{ route('customers.destroy', $customer) }}"
+                              action="{{ route('customer.destroy', $customer) }}"
                               class="d-none">
                             @csrf @method('DELETE')
                         </form>

@@ -8,14 +8,14 @@
 
     @include('partials.validation-errors')
 
-    <form method="POST" action="{{ route('customers.update', $customer) }}">
+    <form method="POST" action="{{ route('customer.update', $customer) }}">
 
         @method('PATCH')
 
         {{-- Create/Edit customer form --}}
         @include('customers.partials._form',
             [
-                'routeToReturn' => 'customers.show',
+                'routeToReturn' => 'customer.show',
                 'btnText' => 'Actualizar'
             ]
         )
