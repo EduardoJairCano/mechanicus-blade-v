@@ -40,7 +40,7 @@
     @endif
 
     {{-- UserInfo create/edit sectiion --}}
-    @include('userInfo.partials.create-and-edit-user-info', ['userInfo' => $administrator->userInfo])
+    @include('userInfo.partials.create_and_edit_user_info', ['userInfo' => $administrator->userInfo])
 
 </div>
 
