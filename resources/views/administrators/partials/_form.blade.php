@@ -46,7 +46,7 @@
 
 {{-- Address info --}}
 <div class="pb-3">
-    @include('addresses._form', ['address' => $administrator->address])
+    @include('addresses.partials._form', ['address' => $administrator->address])
 </div>
 
 {{-- Save button --}}

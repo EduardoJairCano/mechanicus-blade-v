@@ -100,7 +100,7 @@
 
 {{-- Address info --}}
 <div class="py-3">
-    @include('addresses._form', ['address' => $customer->address])
+    @include('addresses.partials._form', ['address' => $customer->address])
 </div>
 
 {{-- Button section --}}
