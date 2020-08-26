@@ -24,7 +24,7 @@
                 Editar
             </a>
         </div>
-        @if (auth()->user()->hasRole(['owner']))
+        @can('deleteCustomer', $customer)
             <div class="col-md-2">
                 <a href="#" onclick="document.getElementById('delete-customer').submit()" class="btn btn-danger">
                     Eliminar
@@ -36,7 +36,7 @@
                     @csrf @method('DELETE')
                 </form>
             </div>
-        @endif
+        @endcan
     </div>
 
     <hr>

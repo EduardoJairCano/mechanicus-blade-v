@@ -24,7 +24,7 @@
                     <a href="{{ route('customer.edit', $customer) }}" class="btn btn-primary">
                         <i class="fas fa-user-edit"></i>
                     </a>
-                    @if (auth()->user()->hasRole(['owner']))
+                    @can('deleteCustomer', $customer)
                         <a href="#" onclick="document.getElementById('delete-customer').submit()" class="btn btn-danger">
                             <i class="fa fa-close"></i>
                         </a>
@@ -34,7 +34,7 @@
                               class="d-none">
                             @csrf @method('DELETE')
                         </form>
-                    @endif
+                    @endcan
                 </div>
             </td>
         </tr>
