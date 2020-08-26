@@ -8,6 +8,7 @@ use App\Models\Address;
 use App\Models\Pivots\AssignedOwner;
 use App\Models\UserInfo;
 use App\User;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
@@ -44,13 +45,22 @@ class AdministratorController extends Controller
     /**
      * Show the form for creating a new administrator.
      *
-     * @return Application|Factory|View
+     * @return Application|Factory|RedirectResponse|View|null
      */
     public function create()
     {
-        $administrator = new User();
+        try {
+            $administrator = new User();
 
-        return view('administrators.create', compact('administrator'));
+            // Owner user validation
+            $this->authorize('createAdministrator', $administrator);
+
+            return view('administrators.create', compact('administrator'));
+
+        } catch (AuthorizationException $e) {
+
+            return redirect()->route('userInfo.index');
+        }
     }
 
     /**
@@ -61,14 +71,17 @@ class AdministratorController extends Controller
      */
     public function store(SaveAdministratorRequest $request)
     {
-        $user = Auth::user();
+        try {
+            $user = Auth::user();
+            $administrator = new User();
 
-        if ($user) {
+            // Owner user validation
+            $this->authorize('createAdministrator', $administrator);
+
             // Fields validations
             $fields = $request->validated();
 
             // Create new user row
-            $administrator = new User();
             $administrator->email       = $fields['email'];
             $administrator->password    = Hash::make('admin1234');
             $administrator->role_id     = 4;
@@ -76,8 +89,8 @@ class AdministratorController extends Controller
 
             // Create new owner-user row
             AssignedOwner::create([
-               'owner_id'           => $user->id,
-               'user_id'            => $administrator->id,
+                'owner_id'           => $user->id,
+                'user_id'            => $administrator->id,
             ]);
 
             // Create new user_info row
@@ -106,9 +119,11 @@ class AdministratorController extends Controller
             ]);
 
             return redirect()->route('administrator.show', compact('administrator'));
-        }
 
-        return view('userInfo.index');
+        } catch (AuthorizationException $e) {
+
+            return redirect()->route('userInfo.index');
+        }
     }
 
     /**
@@ -119,11 +134,16 @@ class AdministratorController extends Controller
      */
     public function show(User $administrator)
     {
-        if (auth()->user()->id === $administrator->owner[0]->id) {
-            return view('administrators.show', compact('administrator'));
-        }
+        try {
+            // Owner user validation
+            $this->authorize('showAdministrator', $administrator);
 
-        return redirect()->route('userInfo.index');
+            return view('administrators.show', compact('administrator'));
+
+        } catch (AuthorizationException $e) {
+
+            return redirect()->route('userInfo.index');
+        }
     }
 
     /**
@@ -134,11 +154,16 @@ class AdministratorController extends Controller
      */
     public function edit(User $administrator)
     {
-        if (auth()->user()->id === $administrator->owner[0]->id) {
-            return view('administrators.edit', compact('administrator'));
-        }
+        try {
+            // Owner user validation
+            $this->authorize('editAndUpdateAdministrator', $administrator);
 
-        return redirect()->route('userInfo.index');
+            return view('administrators.edit', compact('administrator'));
+
+        } catch (AuthorizationException $e) {
+
+            return redirect()->route('userInfo.index');
+        }
     }
 
     /**
@@ -150,12 +175,13 @@ class AdministratorController extends Controller
      */
     public function update(User $administrator, UpdateAdministratorRequest $request)
     {
-        // Fields validations
-        $fields = $request->validated();
+        try {
+            // Owner user validation
+            $this->authorize('editAndUpdateAdministrator', $administrator);
 
-        $user = Auth::user();
+            // Fields validations
+            $fields = $request->validated();
 
-        if ($user) {
             // Update new user_info
             $administrator->userInfo->update([
                 'first_name'        => $fields['first_name'],
@@ -177,9 +203,13 @@ class AdministratorController extends Controller
                 'phone_number'      => $fields['phone_number'],
                 'fax_number'        => $fields['fax_number'],
             ]);
-        }
 
-        return redirect()->route('administrator.show', [$administrator]);
+            return redirect()->route('administrator.show', [$administrator]);
+
+        } catch (AuthorizationException $e) {
+
+            return redirect()->route('userInfo.index');
+        }
     }
 
     /**
@@ -191,8 +221,17 @@ class AdministratorController extends Controller
      */
     public function destroy(User $administrator): RedirectResponse
     {
-        $administrator->delete();
+        try {
+            // Owner user validation
+            $this->authorize('deleteAdministrator', $administrator);
 
-        return redirect()->route('userInfo.index');
+            $administrator->delete();
+
+            return redirect()->route('userInfo.index');
+
+        } catch (AuthorizationException $e) {
+
+            return redirect()->route('userInfo.index');
+        }
     }
 }
