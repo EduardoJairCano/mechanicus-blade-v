@@ -146,4 +146,13 @@ class User extends Authenticatable
         return false;
     }
 
+    /**
+     * Determines if the user is an owner role type.
+     *
+     * @return bool
+     */
+    public function isOwner(): bool
+    {
+        return $this->hasRole(['owner']);
+    }
 }
