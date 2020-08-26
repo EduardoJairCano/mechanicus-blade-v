@@ -6,6 +6,7 @@ use App\Http\Requests\SaveUserInfoRequest;
 use App\Models\Address;
 use App\Models\UserInfo;
 use App\User;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
@@ -36,12 +37,10 @@ class UserInfoController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $subUsers = [];
 
         // Get the administrators(sub-users), only if the current user is owner
-        if ($user->hasRole(['owner'])) {
-            $subUsers = $user->subUsers;
-        }
+        $subUsers = (isset($user, $user->subUsers) && $user->hasRole(['owner'])) ?
+            $user->subUsers : [];
 
         return view('userInfo.index', compact(['user', 'subUsers']));
     }
@@ -54,9 +53,10 @@ class UserInfoController extends Controller
     public function create()
     {
         $user = Auth::user();
-        $userInfo = new UserInfo();
 
         if (is_null($user->userInfo)) {
+            $userInfo = new UserInfo();
+
             return view('userInfo.create', compact(['user', 'userInfo']));
         }
 
@@ -106,7 +106,6 @@ class UserInfoController extends Controller
         // ToDo: Successfully message
 
         return redirect()->route('userInfo.index');
-
     }
 
     /**
@@ -123,16 +122,21 @@ class UserInfoController extends Controller
     /**
      * Show the form for editing the specified userInfo.
      *
-     * @param  User  $user
+     * @param User $user
      * @return Application|Factory|RedirectResponse|View
      */
     public function edit(User $user)
     {
-        if (auth()->user()->id === $user->id) {
-            return view('userInfo.edit', compact('user'));
-        }
+        try {
+            // Review user authorization
+            $this->authorize('editAndUpdateOwnUserInfo', $user);
 
-        return redirect()->route('userInfo.index');
+            return view('userInfo.edit', compact('user'));
+
+        } catch (AuthorizationException $e) {
+
+            return redirect()->route('userInfo.index');
+        }
     }
 
     /**
@@ -144,32 +148,41 @@ class UserInfoController extends Controller
      */
     public function update(User $user, SaveUserInfoRequest $request): RedirectResponse
     {
-        // Fields validations
-        $fields = $request->validated();
+        try {
+            // Review user authorization
+            $this->authorize('editAndUpdateOwnUserInfo', $user);
 
-        // Update new user_info
-        $user->userInfo->update([
-            'first_name'        => $fields['first_name'],
-            'last_name'         => $fields['last_name'],
-            'rfc'               => $fields['rfc'],
-            'cell_phone_number' => $fields['cell_phone_number'],
-        ]);
+            // Fields validations
+            $fields = $request->validated();
 
-        // Update new address info
-        $user->address->update([
-            'street_address'    => $fields['street_address'],
-            'outdoor_number'    => $fields['outdoor_number'],
-            'interior_number'   => $fields['interior_number'],
-            'colony'            => $fields['colony'],
-            'postal_code'       => $fields['postal_code'],
-            'city'              => $fields['city'],
-            'state'             => $fields['state'],
-            'country'           => $fields['country'],
-            'phone_number'      => $fields['phone_number'],
-            'fax_number'        => $fields['fax_number'],
-        ]);
+            // Update new user_info
+            $user->userInfo->update([
+                'first_name'        => $fields['first_name'],
+                'last_name'         => $fields['last_name'],
+                'rfc'               => $fields['rfc'],
+                'cell_phone_number' => $fields['cell_phone_number'],
+            ]);
 
-        return redirect()->route('userInfo.index');
+            // Update new address info
+            $user->address->update([
+                'street_address'    => $fields['street_address'],
+                'outdoor_number'    => $fields['outdoor_number'],
+                'interior_number'   => $fields['interior_number'],
+                'colony'            => $fields['colony'],
+                'postal_code'       => $fields['postal_code'],
+                'city'              => $fields['city'],
+                'state'             => $fields['state'],
+                'country'           => $fields['country'],
+                'phone_number'      => $fields['phone_number'],
+                'fax_number'        => $fields['fax_number'],
+            ]);
+
+            return redirect()->route('userInfo.index');
+
+        } catch (AuthorizationException $e) {
+
+            return redirect()->route('userInfo.index');
+        }
     }
 
     /**
