@@ -155,4 +155,28 @@ class User extends Authenticatable
     {
         return $this->hasRole(['owner']);
     }
+
+    /**
+     * Auxiliary function to get the user full name.
+     *
+     * @return string
+     */
+    public function getFullName(): string
+    {
+        return $this->userInfo ? $this->userInfo->first_name . ' ' . $this->userInfo->last_name : '-';
+    }
+
+    /**
+     * Auxiliary function to get the user cell phone.
+     *
+     * @return string
+     */
+    public function getCellPhoneNumber(): string
+    {
+         return $this->userInfo ?
+             sprintf("%s %s %s",
+                 substr($this->userInfo->cell_phone_number, 0, 2),
+                 substr($this->userInfo->cell_phone_number, 3, 4),
+                 substr($this->userInfo->cell_phone_number, 6)) : '-';
+    }
 }
