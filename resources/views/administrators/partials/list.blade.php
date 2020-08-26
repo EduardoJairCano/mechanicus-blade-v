@@ -13,10 +13,10 @@
         <tr>
             <td>
                 <a href="{{ route('administrator.show', $administrator) }}">
-                    {!! $administrator->userInfo->first_name . ' ' . $administrator->userInfo->last_name !!}
+                    {!! $administrator->getFullName() !!}
                 </a>
             </td>
-            <td>{{ $administrator->userInfo->cell_phone_number }}</td>
+            <td>{!! $administrator->getCellPhoneNumber() !!}</td>
             <td>{{ $administrator->email }}</td>
             <td>{{ $administrator->role->display_name }}</td>
             <td>
