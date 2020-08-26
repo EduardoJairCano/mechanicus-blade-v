@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Models\Customer;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -75,7 +76,7 @@ class UserPolicy
     }
 
     /**
-     * Validation for users to edit and update their own administrators.
+     * Validation for owner users to delete their own administrators.
      *
      * @param User $authUser
      * @param User $administrator
@@ -84,5 +85,58 @@ class UserPolicy
     public function deleteAdministrator(User $authUser, User $administrator): bool
     {
         return $authUser->id === $administrator->owner[0]->id && $authUser->isOwner();
+    }
+
+    /* ---- Customer actions ------------------------------------------------------------------- */
+    /**
+     * Validation to know if the customer belongs to the user logged.
+     *
+     * @param User $authUser
+     * @param Customer $customer
+     * @return bool
+     */
+    public function showCustomer(User $authUser, Customer $customer): bool
+    {
+        if ($authUser->hasRole(['owner'])) {
+            return $authUser->id === $customer->user_id;
+        }
+
+        if ($authUser->hasRole(['admin'])) {
+            return $authUser->owner[0]->id === $customer->user_id;
+        }
+
+        return false;
+    }
+
+    /**
+     * Validation for users to edit and update their own customers.
+     *
+     * @param User $authUser
+     * @param Customer $customer
+     * @return bool
+     */
+    public function editAndUpdateCustomer(User $authUser, Customer $customer): bool
+    {
+        if ($authUser->hasRole(['owner'])) {
+            return $authUser->id === $customer->user_id;
+        }
+
+        if ($authUser->hasRole(['admin'])) {
+            return $authUser->owner[0]->id === $customer->user_id;
+        }
+
+        return false;
+    }
+
+    /**
+     * Validation for owner users to delete their own customers.
+     *
+     * @param User $authUser
+     * @param Customer $customer
+     * @return bool
+     */
+    public function deleteCustomer(User $authUser, Customer $customer): bool
+    {
+        return $authUser->id === $customer->user_id && $authUser->isOwner();
     }
 }

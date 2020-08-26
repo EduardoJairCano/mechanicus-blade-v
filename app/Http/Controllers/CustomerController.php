@@ -6,6 +6,7 @@ use App\Models\Address;
 use App\Models\Customer;
 use App\Http\Requests\SaveCustomerRequest;
 use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
@@ -122,20 +123,16 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        // Validation for existing user and role type to get the owner id
-        $user = Auth::user();
-        if ($user->hasRole(['owner'])) {
-            $ownerId = $user->id;
-        } elseif ($user->hasRole(['admin'])) {
-            $ownerId = $user->owner[0]->id;
-        }
+        try {
+            // Validation for user logged and role type
+            $this->authorize('showCustomer', $customer);
 
-        // Validation to know if the customer belongs to the user logged
-        if (isset($ownerId) && $ownerId === $customer->user_id) {
             return view('customers.show', compact('customer'));
-        }
 
-        return redirect()->route('customer.index');
+        } catch (AuthorizationException $e) {
+
+            return redirect()->route('customer.index');
+        }
     }
 
     /**
@@ -146,19 +143,16 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        // Validation for existing user and role type to get the owner id
-        $user = Auth::user();
-        if ($user->hasRole(['owner'])) {
-            $ownerId = $user->id;
-        } elseif ($user->hasRole(['admin'])) {
-            $ownerId = $user->owner[0]->id;
-        }
+        try {
+            // Validation for user logged and role type
+            $this->authorize('editAndUpdateCustomer', $customer);
 
-        if (isset($ownerId) && $ownerId === $customer->user->id) {
-            return view('customers.edit',compact('customer'));
-        }
+            return view('customers.edit', compact('customer'));
 
-        return redirect()->route('customer.index');
+        } catch (AuthorizationException $e) {
+
+            return redirect()->route('customer.index');
+        }
     }
 
     /**
@@ -170,37 +164,46 @@ class CustomerController extends Controller
      */
     public function update(Customer $customer, SaveCustomerRequest $request): RedirectResponse
     {
-        // Fields validations
-        $fields = $request->validated();
+        try {
+            // Validation for user logged and role type
+            $this->authorize('editAndUpdateCustomer', $customer);
 
-        // Update customer info
-        $customer->update([
-            'first_name'        => $fields['first_name'],
-            'last_name'         => $fields['last_name'],
-            'rfc'               => $fields['rfc'],
-            'email'             => $fields['email'],
-            'cell_phone_number' => $fields['cell_phone_number'],
-            'slug'              => '',
-        ]);
+            // Fields validations
+            $fields = $request->validated();
 
-        // Update Slug
-        $customer->createSlug();
+            // Update customer info
+            $customer->update([
+                'first_name'        => $fields['first_name'],
+                'last_name'         => $fields['last_name'],
+                'rfc'               => $fields['rfc'],
+                'email'             => $fields['email'],
+                'cell_phone_number' => $fields['cell_phone_number'],
+                'slug'              => '',
+            ]);
 
-        // Update new address info
-        $customer->address->update([
-            'street_address'    => $fields['street_address'],
-            'outdoor_number'    => $fields['outdoor_number'],
-            'interior_number'   => $fields['interior_number'],
-            'colony'            => $fields['colony'],
-            'postal_code'       => $fields['postal_code'],
-            'city'              => $fields['city'],
-            'state'             => $fields['state'],
-            'country'           => $fields['country'],
-            'phone_number'      => $fields['phone_number'],
-            'fax_number'        => $fields['fax_number'],
-        ]);
+            // Update Slug
+            $customer->createSlug();
 
-        return redirect()->route('customer.show', $customer);
+            // Update new address info
+            $customer->address->update([
+                'street_address'    => $fields['street_address'],
+                'outdoor_number'    => $fields['outdoor_number'],
+                'interior_number'   => $fields['interior_number'],
+                'colony'            => $fields['colony'],
+                'postal_code'       => $fields['postal_code'],
+                'city'              => $fields['city'],
+                'state'             => $fields['state'],
+                'country'           => $fields['country'],
+                'phone_number'      => $fields['phone_number'],
+                'fax_number'        => $fields['fax_number'],
+            ]);
+
+            return redirect()->route('customer.show', $customer);
+
+        } catch (AuthorizationException $e) {
+
+            return redirect()->route('customer.index');
+        }
     }
 
     /**
@@ -212,8 +215,17 @@ class CustomerController extends Controller
      */
     public function destroy(Customer $customer): RedirectResponse
     {
-        $customer->delete();
+        try {
+            // Owner user validation
+            $this->authorize('deleteCustomer', $customer);
 
-        return redirect()->route('customer.index');
+            $customer->delete();
+
+            return redirect()->route('customer.index');
+
+        } catch (AuthorizationException $e) {
+
+            return redirect()->route('customer.index');
+        }
     }
 }
