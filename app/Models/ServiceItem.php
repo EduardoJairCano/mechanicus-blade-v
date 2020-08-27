@@ -30,7 +30,7 @@ class ServiceItem extends Model
     ];
 
 
-    /* ---- Relationships ---------------------------------------------------------------------- */
+    /* * * * RELATIONSHIPS * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
     /**
      * Get the vehicle that owns the service.
      *
@@ -40,5 +40,4 @@ class ServiceItem extends Model
     {
         return $this->belongsTo(Service::class, 'service_id', 'id');
     }
-
 }

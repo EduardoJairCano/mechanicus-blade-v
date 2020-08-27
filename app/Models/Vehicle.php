@@ -5,9 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Vehicle extends Model
 {
+    use SoftDeletes;
+
     /**
      * The table name that belongs this model.
      *
@@ -37,7 +40,7 @@ class Vehicle extends Model
     ];
 
 
-    /* ---- Relationships ---------------------------------------------------------------------- */
+    /* * * * RELATIONSHIPS * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
     /**
      * Get the customer that owns the vehicle.
      *
@@ -59,11 +62,11 @@ class Vehicle extends Model
     }
 
 
-    /* ---- Auxiliary functions ---------------------------------------------------------------- */
+    /* * * * AUXILIARY FUNCTIONS * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+    /* ----- Vehicle functions ----------------------------------------------------------------- */
     /**
      * Get the slug for friendly url.
-     * This value is the concat of
-     *      user_id . customer_id . id . - . make . - . model . - . year
+     *
      * @return string
      */
     public function getRouteKeyName(): string
@@ -71,4 +74,24 @@ class Vehicle extends Model
         return 'slug';
     }
 
+    /**
+     * Creating the slug for friendly url.
+     * This value is the concat of
+     *      user_id . customer_id . vehicle_id . - . make . - . model . - . year
+     *
+     * @return bool
+     */
+    public function createSlug(): bool
+    {
+        $this->slug = $this->owner->user->id .
+            $this->owner->id .
+            $this->id . '-' .
+            trim($this->make) . '-' .
+            trim($this->model) . '-' .
+            trim($this->year);
+        $this->slug = str_replace(' ', '-', $this->slug);
+        $this->save();
+
+        return $this->slug !== '';
+    }
 }

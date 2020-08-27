@@ -25,7 +25,7 @@ class Company extends Model
     ];
 
 
-    /* ---- Relationships ---------------------------------------------------------------------- */
+    /* * * * RELATIONSHIPS * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
     /**
      * Get the address record associated with the company.
      *
@@ -47,7 +47,8 @@ class Company extends Model
     }
 
 
-    /* ---- Auxiliary functions ---------------------------------------------------------------- */
+    /* * * * AUXILIARY FUNCTIONS * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+    /* ----- Company functions ----------------------------------------------------------------- */
     /**
      * Get the slug for friendly url.
      * This value is the concat of

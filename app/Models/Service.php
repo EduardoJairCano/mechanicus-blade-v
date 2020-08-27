@@ -30,7 +30,7 @@ class Service extends Model
     ];
 
 
-    /* ---- Relationships ---------------------------------------------------------------------- */
+    /* * * * RELATIONSHIPS * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
     /**
      * Get the vehicle that owns the service.
      *
@@ -50,5 +50,4 @@ class Service extends Model
     {
         return $this->hasMany(ServiceItem::class, 'service_id', 'id');
     }
-
 }

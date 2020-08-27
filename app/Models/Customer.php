@@ -37,7 +37,7 @@ class Customer extends Model
     ];
 
 
-    /* ---- Relationships ---------------------------------------------------------------------- */
+    /* * * * RELATIONSHIPS * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
     /**
      * Get the address record associated with the customer.
      *
@@ -79,7 +79,8 @@ class Customer extends Model
     }
 
 
-    /* ---- Auxiliary functions ---------------------------------------------------------------- */
+    /* * * * AUXILIARY FUNCTIONS * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+    /* ----- Customer functions ---------------------------------------------------------------- */
     /**
      * Get the slug for friendly url.
      *
@@ -89,7 +90,6 @@ class Customer extends Model
     {
         return 'slug';
     }
-
 
     /**
      * Creating the slug for friendly url.
@@ -106,5 +106,4 @@ class Customer extends Model
 
         return $this->slug !== '';
     }
-
 }

@@ -46,7 +46,7 @@ class Address extends Model
     }
 
 
-    /* ---- Relationships ---------------------------------------------------------------------- */
+    /* * * * RELATIONSHIPS * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
     /**
      * Get the user, customer or company that owns the address.
      *
@@ -56,5 +56,4 @@ class Address extends Model
     {
         return $this->belongsTo($this->addressable_type, 'addressable_id', 'id');
     }
-
 }

@@ -29,7 +29,7 @@ class UserInfo extends Model
     ];
 
 
-    /* ---- Relationships ---------------------------------------------------------------------- */
+    /* * * * RELATIONSHIPS * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
     /**
      * Get the user that owns the user info.
      */
@@ -37,5 +37,4 @@ class UserInfo extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
-
 }
