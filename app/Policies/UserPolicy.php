@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Models\Customer;
+use App\Models\Vehicle;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -138,5 +139,18 @@ class UserPolicy
     public function deleteCustomer(User $authUser, Customer $customer): bool
     {
         return $authUser->id === $customer->user_id && $authUser->isOwner();
+    }
+
+    /* ---- Customer actions ------------------------------------------------------------------- */
+    /**
+     * Validation to know if the vehicle belongs to some customer of the user logged.
+     *
+     * @param User $authUser
+     * @param Vehicle $vehicle
+     * @return bool
+     */
+    public function showVehicle(User $authUser, Vehicle $vehicle): bool
+    {
+        return $authUser->getOwnerId() === $vehicle->owner->user_id;
     }
 }

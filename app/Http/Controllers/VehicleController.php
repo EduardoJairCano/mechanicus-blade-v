@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Vehicle;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -26,7 +28,7 @@ class VehicleController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of the vehicle.
      *
      * @return Application|Factory|Response|View
      */
@@ -62,14 +64,23 @@ class VehicleController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified vehicle.
      *
-     * @param  int  $id
-     * @return Response
+     * @param Vehicle $vehicle
+     * @return Application|Factory|RedirectResponse|View
      */
-    public function show($id)
+    public function show(Vehicle $vehicle)
     {
-        //
+        try {
+            // Validation for user logged and role type
+            $this->authorize('showVehicle', $vehicle);
+
+            return view('vehicles.show', compact('vehicle'));
+
+        } catch (AuthorizationException $e) {
+
+            return redirect()->route('vehicle.index');
+        }
     }
 
     /**

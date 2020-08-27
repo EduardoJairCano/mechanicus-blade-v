@@ -13,7 +13,7 @@
     @foreach($vehicles as $vehicle)
         <tr>
             <td>
-                <a href="{{--{{ route('customer.show', $customer) }}--}}">
+                <a href="{{ route('vehicle.show', $vehicle) }}">
                     {{ $vehicle->plate }}
                 </a>
             </td>

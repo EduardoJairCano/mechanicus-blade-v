@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Customer;
+use App\Models\Vehicle;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 use App\Policies\UserPolicy;
@@ -16,8 +17,9 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        User::class => UserPolicy::class,
+        User::class     => UserPolicy::class,
         Customer::class => UserPolicy::class,
+        Vehicle::class  => UserPolicy::class,
     ];
 
     /**
