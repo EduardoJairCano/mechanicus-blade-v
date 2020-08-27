@@ -43,24 +43,27 @@ class VehicleController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new vehicle.
      *
-     * @return Response
+     * @return Application|Factory|Response|View
      */
     public function create()
     {
-        //
+        $vehicle = new Vehicle();
+        $customers = \auth()->user()->getUserCustomers();
+
+        return view('vehicles.create', compact(['vehicle', 'customers']));
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created vehicle in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return Response
      */
     public function store(Request $request)
     {
-        //
+        //todo: create createVehicleRequest and validate possible customers to associated the vehicle
     }
 
     /**
