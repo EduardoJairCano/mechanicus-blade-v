@@ -72,11 +72,7 @@ class CustomerController extends Controller
 
         // Validation for existing user and role type to get the owner id
         $user = Auth::user();
-        if ($user->hasRole(['owner'])) {
-            $ownerId = $user->id;
-        } elseif ($user->hasRole(['admin'])) {
-            $ownerId = $user->owner[0]->id;
-        }
+        $ownerId = $user->getOwnerId();
 
         if (isset($ownerId)) {
             // Create new customer row
