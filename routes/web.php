@@ -45,6 +45,10 @@ Route::patch('/customer/{customer}', 'CustomerController@update')->name('custome
 Route::delete('/customer/{customer}', 'CustomerController@destroy')->name('customer.destroy');
 
 
+/* ---- Vehicle ---------------------------------------------------------------------------------------------------- */
+Route::get('/vehicle','VehicleController@index')->name('vehicle.index');
+
+
 /* ---- Employee --------------------------------------------------------------------------------------------------- */
 Route::get('/employee', 'EmployeeController@index')->name('employee.index');
 
