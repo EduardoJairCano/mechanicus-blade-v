@@ -197,6 +197,17 @@ class User extends Authenticatable
 
     /* ----- Vehicles functions ---------------------------------------------------------------- */
     /**
+     * Get the Customers records associated with the owner user.
+     *
+     * @return mixed
+     */
+    public function getUserCustomers()
+    {
+        return $this->isOwner() ? $this->customers : $this->owner[0]->customers;
+    }
+
+    /* ----- Vehicles functions ---------------------------------------------------------------- */
+    /**
      * Get the Vehicles records associated with the owner user.
      *
      * @return Builder[]|Collection

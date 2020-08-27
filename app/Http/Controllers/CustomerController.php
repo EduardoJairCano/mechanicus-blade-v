@@ -35,14 +35,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $user = auth()->user();
-
         // Get all customers for owner user
-        if ($user->hasRole(['owner'])) {
-            $customers = $user->customers ?? null;
-        } elseif ($user->hasRole(['admin'])) {
-            $customers = $user->owner[0]->customers ?? null;
-        }
+        $customers = auth()->user()->getUserCustomers();
 
         return view('customers.index', compact('customers'));
     }
