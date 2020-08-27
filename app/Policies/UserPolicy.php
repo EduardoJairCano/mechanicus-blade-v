@@ -39,6 +39,7 @@ class UserPolicy
         return $authUser->id === $user->id;
     }
 
+
     /* ---- Administrator actions -------------------------------------------------------------- */
     /**
      * Validation for users to create a new administrator.
@@ -88,6 +89,7 @@ class UserPolicy
         return $authUser->id === $administrator->owner[0]->id && $authUser->isOwner();
     }
 
+
     /* ---- Customer actions ------------------------------------------------------------------- */
     /**
      * Validation to know if the customer belongs to the user logged.
@@ -98,15 +100,7 @@ class UserPolicy
      */
     public function showCustomer(User $authUser, Customer $customer): bool
     {
-        if ($authUser->hasRole(['owner'])) {
-            return $authUser->id === $customer->user_id;
-        }
-
-        if ($authUser->hasRole(['admin'])) {
-            return $authUser->owner[0]->id === $customer->user_id;
-        }
-
-        return false;
+        return $authUser->getOwnerId() === $customer->user_id;
     }
 
     /**
@@ -118,15 +112,7 @@ class UserPolicy
      */
     public function editAndUpdateCustomer(User $authUser, Customer $customer): bool
     {
-        if ($authUser->hasRole(['owner'])) {
-            return $authUser->id === $customer->user_id;
-        }
-
-        if ($authUser->hasRole(['admin'])) {
-            return $authUser->owner[0]->id === $customer->user_id;
-        }
-
-        return false;
+        return $authUser->getOwnerId() === $customer->user_id;
     }
 
     /**
@@ -140,6 +126,7 @@ class UserPolicy
     {
         return $authUser->id === $customer->user_id && $authUser->isOwner();
     }
+
 
     /* ---- Customer actions ------------------------------------------------------------------- */
     /**
