@@ -6,7 +6,10 @@ use App\Models\Address;
 use App\Models\Customer;
 use App\Models\Role;
 use App\Models\UserInfo;
+use App\Models\Vehicle;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -127,8 +130,33 @@ class User extends Authenticatable
         return $this->hasMany(Customer::class, 'user_id', 'id');
     }
 
+    /**
+     * Get the Vehicles records associated with the owner user.
+     *
+     * @return Builder[]|Collection
+     */
+    public function vehicles()
+    {
+        $user_id = $this->getOwnerId();
+
+        return Vehicle::with('owner')
+            ->whereHas('owner', static function ($query) use ($user_id) {
+                $query->where('user_id', $user_id);
+            })->get();
+    }
+
 
     /** ---- Auxiliary functions --------------------------------------------------------------- */
+    /**
+     * Auxiliary function to get the owner id.
+     *
+     * @return mixed
+     */
+    public function getOwnerId()
+    {
+        return $this->isOwner() ? $this->id : $this->owner[0]->id;
+    }
+
     /**
      * Check if the User has a certain Role.
      *
