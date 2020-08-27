@@ -53,7 +53,7 @@ class User extends Authenticatable
     ];
 
 
-    /* ---- Relationships ---------------------------------------------------------------------- */
+    /* * * * RELATIONSHIPS * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
     /**
      * Get the User Info record associated with the user.
      *
@@ -130,33 +130,34 @@ class User extends Authenticatable
         return $this->hasMany(Customer::class, 'user_id', 'id');
     }
 
-    /**
-     * Get the Vehicles records associated with the owner user.
-     *
-     * @return Builder[]|Collection
-     */
-    public function vehicles()
-    {
-        $user_id = $this->getOwnerId();
 
-        return Vehicle::with('owner')
-            ->whereHas('owner', static function ($query) use ($user_id) {
-                $query->where('user_id', $user_id);
-            })->get();
+    /* * * * AUXILIARY FUNCTIONS * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+    /* ----- UserInfo functions ---------------------------------------------------------------- */
+    /**
+     * Auxiliary function to get the user full name.
+     *
+     * @return string
+     */
+    public function getFullName(): string
+    {
+        return $this->userInfo ? $this->userInfo->first_name . ' ' . $this->userInfo->last_name : '-';
     }
 
-
-    /** ---- Auxiliary functions --------------------------------------------------------------- */
     /**
-     * Auxiliary function to get the owner id.
+     * Auxiliary function to get the user cell phone.
      *
-     * @return mixed
+     * @return string
      */
-    public function getOwnerId()
+    public function getCellPhoneNumber(): string
     {
-        return $this->isOwner() ? $this->id : $this->owner[0]->id;
+        return $this->userInfo ?
+            sprintf("%s %s %s",
+                substr($this->userInfo->cell_phone_number, 0, 2),
+                substr($this->userInfo->cell_phone_number, 3, 4),
+                substr($this->userInfo->cell_phone_number, 6)) : '-';
     }
 
+    /* ----- Roles functions ------------------------------------------------------------------- */
     /**
      * Check if the User has a certain Role.
      *
@@ -185,26 +186,28 @@ class User extends Authenticatable
     }
 
     /**
-     * Auxiliary function to get the user full name.
+     * Auxiliary function to get the owner id.
      *
-     * @return string
+     * @return mixed
      */
-    public function getFullName(): string
+    public function getOwnerId()
     {
-        return $this->userInfo ? $this->userInfo->first_name . ' ' . $this->userInfo->last_name : '-';
+        return $this->isOwner() ? $this->id : $this->owner[0]->id;
     }
 
+    /* ----- Vehicles functions ---------------------------------------------------------------- */
     /**
-     * Auxiliary function to get the user cell phone.
+     * Get the Vehicles records associated with the owner user.
      *
-     * @return string
+     * @return Builder[]|Collection
      */
-    public function getCellPhoneNumber(): string
+    public function getUserVehicles()
     {
-         return $this->userInfo ?
-             sprintf("%s %s %s",
-                 substr($this->userInfo->cell_phone_number, 0, 2),
-                 substr($this->userInfo->cell_phone_number, 3, 4),
-                 substr($this->userInfo->cell_phone_number, 6)) : '-';
+        $user_id = $this->getOwnerId();
+
+        return Vehicle::with('owner')
+            ->whereHas('owner', static function ($query) use ($user_id) {
+                $query->where('user_id', $user_id);
+            })->get();
     }
 }
