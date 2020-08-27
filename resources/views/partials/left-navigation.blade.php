@@ -32,7 +32,7 @@
                 </a>
             </li>
             <li class="list-group-item border-0 mb-2 shadow-sm">
-                <a href="" class="text-secondary">
+                <a href="{{ route('vehicle.index') }}" class="text-secondary">
                     <span class="font-weight-bold">
                         Vehiculos
                     </span>
