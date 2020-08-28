@@ -22,13 +22,13 @@
     <div class="col-md-6">
         <select id="customer_id"
                 name="customer_id"
-                class="form-control bg-light shadow-sm @error('customer') is-invalid @else border-0 @enderror">
-            <option value="0">Seleccione un cliente</option>
+                class="form-control bg-light shadow-sm @error('customer_id') is-invalid @else border-0 @enderror">
+            <option value="">Seleccione un cliente</option>
             @foreach($customers as $customer)
                 <option value="{{ $customer->id }}">{{ $customer->first_name . ' ' . $customer->last_name }}</option>
             @endforeach
         </select>
-        @error('customer')
+        @error('customer_id')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
         </span>

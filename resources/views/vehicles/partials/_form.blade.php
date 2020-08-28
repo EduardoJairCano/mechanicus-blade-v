@@ -101,11 +101,13 @@
             <select id="transmission"
                     name="transmission"
                     class="form-control bg-light shadow-sm @error('transmission') is-invalid @else border-0 @enderror">
-                <option value="0">Seleccione una opción</option>
-                <option value="1">Manual</option>
-                <option value="2">Automática</option>
-                <option value="3">Automatizada o Secuencial</option>
-                <option value="4">CVT</option>
+                <option value="{{ old('transmission', $vehicle->transmission) ?? '' }}">
+                    {{ old('transmission', $vehicle->transmission) ?? 'Seleccione una opción' }}
+                </option>
+                <option value="manual">Manual</option>
+                <option value="automatic">Automática</option>
+                <option value="automated">Automatizada o Secuencial</option>
+                <option value="cvt">CVT</option>
             </select>
             @error('transmission')
             <span class="invalid-feedback" role="alert">
@@ -136,7 +138,9 @@
             <select id="cylinder_count"
                     name="cylinder_count"
                     class="form-control bg-light shadow-sm @error('cylinder_count') is-invalid @else border-0 @enderror">
-                <option value="0">Seleccione una opción</option>
+                <option value="{{ old('cylinder_count', $vehicle->cylinder_count) ?? '' }}">
+                    {{ old('cylinder_count', $vehicle->cylinder_count) ?? 'Seleccione una opción' }}
+                </option>
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
@@ -171,7 +175,9 @@
             <select id="drivetrain"
                     name="drivetrain"
                     class="form-control bg-light shadow-sm border-0">
-                <option value="0">Seleccione una opción</option>
+                <option value="{{ old('drivetrain', $vehicle->drivetrain) ?? '' }}">
+                    {{ old('drivetrain', $vehicle->drivetrain) ?? 'Seleccione una opción' }}
+                </option>
                 <option value="FWD">(FWD) Delantera</option>
                 <option value="RWD">(RWD) Trasera</option>
                 <option value="AWD">(AWD) Total Permanente</option>
@@ -188,7 +194,9 @@
             <select id="fuel"
                     name="fuel"
                     class="form-control bg-light shadow-sm @error('fuel') is-invalid @else border-0 @enderror">
-                <option value="0"> Seleccione una opción </option>
+                <option value="{{ old('fuel', $vehicle->fuel) ?? '' }}">
+                    {{ old('fuel', $vehicle->fuel) ?? 'Seleccione una opción' }}
+                </option>
                 <option value="gasoline"> Gasolina </option>
                 <option value="diesel"> Diesel </option>
                 <option value="gas"> Gas natural </option>

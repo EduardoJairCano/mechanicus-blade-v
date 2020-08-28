@@ -6,7 +6,7 @@
 
 @section('content')
 
-    <form method="POST" action="{{--{{ route('vehicle.store') }}--}}">
+    <form method="POST" action="{{ route('vehicle.store') }}">
 
         {{-- Create/Edit vehicle form --}}
         @include('vehicles.partials._form',

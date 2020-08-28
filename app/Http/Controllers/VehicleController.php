@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SaveVehicleRequest;
+use App\Models\Customer;
 use App\Models\Vehicle;
+use App\User;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -58,12 +61,46 @@ class VehicleController extends Controller
     /**
      * Store a newly created vehicle in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return Response
+     * @param SaveVehicleRequest $request
+     * @return Application|Factory|RedirectResponse|View
      */
-    public function store(Request $request)
+    public function store(SaveVehicleRequest $request)
     {
-        //todo: create createVehicleRequest and validate possible customers to associated the vehicle
+        // Fields validations
+        $fields = $request->validated();
+
+        // Validation for existing user and role type to get the owner id
+        $user = Auth::user();
+        $ownerId = $user->getOwnerId();
+
+        // Validate if the customer belongs to the owner
+        $customer = Customer::find((int) $fields['customer_id']);
+
+        if (isset($ownerId, $customer) && $ownerId === $customer->user_id) {
+            // Create new vehicle row
+            $vehicle = Vehicle::create([
+                'plate'             => $fields['plate'],
+                'serial_number'     => $fields['serial_number'],
+                'make'              => $fields['make'],
+                'model'             => $fields['model'],
+                'year'              => $fields['year'],
+                'engine'            => $fields['engine'],
+                'cylinder_count'    => $fields['cylinder_count'],
+                'transmission'      => $fields['transmission'],
+                'drivetrain'        => $fields['drivetrain'],
+                'fuel'              => $fields['fuel'],
+                'color'             => $fields['color'],
+                'slug'              => 'slug-space',
+                'customer_id'       => $fields['customer_id'],
+            ]);
+
+            // Slug creation
+            $vehicle->createSlug();
+
+            return view('vehicles.show', ['vehicle' => $vehicle]);
+        }
+
+        return redirect()->route('vehicle.index');
     }
 
     /**

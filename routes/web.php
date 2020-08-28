@@ -49,6 +49,7 @@ Route::delete('/customer/{customer}', 'CustomerController@destroy')->name('custo
 Route::get('/vehicle','VehicleController@index')->name('vehicle.index');
 Route::get('/vehicle/{vehicle}/show','VehicleController@show')->name('vehicle.show');
 Route::get('/vehicle/create', 'VehicleController@create')->name('vehicle.create');
+Route::post('/vehicle', 'VehicleController@store')->name('vehicle.store');
 
 
 /* ---- Employee --------------------------------------------------------------------------------------------------- */
