@@ -15,7 +15,9 @@
     </div>
 </div>
 
-<div class="form-group row pb-2">
+<hr class="pb-2">
+
+<div class="form-group row pb-4">
     <label for="customer_id" class="col-md-2 col-form-label text-md-right "> Cliente </label>
     <div class="col-md-6">
         <select id="customer_id"
@@ -40,5 +42,3 @@
         </a>
     </div>
 </div>
-
-<hr class="pb-2">
