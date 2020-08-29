@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="col-md-2 d-flex justify-content-end">
-            <a href="{{--{{ route('customer.edit', $customer) }}--}}" class="btn btn-primary">
+            <a href="{{ route('vehicle.edit', $vehicle) }}" class="btn btn-primary">
                 Editar
             </a>
         </div>

@@ -1,14 +1,16 @@
 @csrf
 
 {{-- Select or Create Customer section --}}
-<div>
-    @include('vehicles.partials.select_or_create_customer',
-        [
-            'customers' => $customers,
-            'routeToReturn' => 'vehicle.index',
-        ]
-    )
-</div>
+@if (isset($customers))
+    <div>
+        @include('vehicles.partials.select_or_create_customer',
+            [
+                'customers' => $customers,
+                'routeToReturn' => 'vehicle.index',
+            ]
+        )
+    </div>
+@endif
 
 {{-- New vehicle info inputs --}}
 <div>
@@ -19,6 +21,13 @@
                 Información del Vehículo
             </span>
         </h4>
+        @if (isset($vehicle->id))
+            <a href="{{ route('vehicle.show', $vehicle) }}" class="col-md-4 d-flex justify-content-end">
+                <span>
+                    Regresar
+                </span>
+            </a>
+        @endif
     </div>
 
     <hr class="pb-2">
@@ -45,7 +54,7 @@
                    id="serial_number"
                    name="serial_number"
                    class="form-control bg-light shadow-sm border-0 "
-                   value="{{ old('serial_number', $vehicle->plate) }}">
+                   value="{{ old('serial_number', $vehicle->serial_number) }}">
         </div>
     </div>
 

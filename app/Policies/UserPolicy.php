@@ -140,4 +140,18 @@ class UserPolicy
     {
         return $authUser->getOwnerId() === $vehicle->owner->user_id;
     }
+
+
+    /* ---- Vehicle actions -------------------------------------------------------------------- */
+    /**
+     * Validation for users to edit and update their own vehicles.
+     *
+     * @param User $authUser
+     * @param Vehicle $vehicle
+     * @return bool
+     */
+    public function editAndUpdateVehicle(User $authUser, Vehicle $vehicle): bool
+    {
+        return $authUser->getOwnerId() === $vehicle->owner->user_id;
+    }
 }

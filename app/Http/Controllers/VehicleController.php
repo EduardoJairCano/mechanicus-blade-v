@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SaveVehicleRequest;
+use App\Http\Requests\UpdatedVehicleRequest;
 use App\Models\Customer;
 use App\Models\Vehicle;
 use App\User;
@@ -124,26 +125,65 @@ class VehicleController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified vehicle.
      *
-     * @param  int  $id
-     * @return Response
+     * @param Vehicle $vehicle
+     * @return Application|Factory|RedirectResponse|View
      */
-    public function edit($id)
+    public function edit(Vehicle $vehicle)
     {
-        //
+        try {
+            // Validation for user logged and role type
+            $this->authorize('editAndUpdateVehicle', $vehicle);
+
+            return view('vehicles.edit', compact('vehicle'));
+
+        } catch (AuthorizationException $e) {
+
+            return redirect()->route('customer.index');
+        }
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified vehicle in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return Response
+     * @param UpdatedVehicleRequest $request
+     * @param Vehicle $vehicle
+     * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(UpdatedVehicleRequest $request, Vehicle $vehicle): ?RedirectResponse
     {
-        //
+        try {
+            // Validation for user logged and role type
+            $this->authorize('editAndUpdateVehicle', $vehicle);
+
+            // Fields validations
+            $fields = $request->validated();
+
+            // Update vehicle info
+            $vehicle->update([
+                'plate'             => $fields['plate'],
+                'serial_number'     => $fields['serial_number'],
+                'make'              => $fields['make'],
+                'model'             => $fields['model'],
+                'year'              => $fields['year'],
+                'engine'            => $fields['engine'],
+                'cylinder_count'    => $fields['cylinder_count'],
+                'transmission'      => $fields['transmission'],
+                'drivetrain'        => $fields['drivetrain'],
+                'fuel'              => $fields['fuel'],
+                'color'             => $fields['color'],
+            ]);
+
+            // Update Slug
+            $vehicle->createSlug();
+
+            return redirect()->route('vehicle.show', $vehicle);
+
+        } catch (AuthorizationException $e) {
+
+            return redirect()->route('vehicle.index');
+        }
     }
 
     /**
