@@ -128,7 +128,7 @@ class UserPolicy
     }
 
 
-    /* ---- Customer actions ------------------------------------------------------------------- */
+    /* ---- Vehicle actions ------------------------------------------------------------------- */
     /**
      * Validation to know if the vehicle belongs to some customer of the user logged.
      *
@@ -141,8 +141,6 @@ class UserPolicy
         return $authUser->getOwnerId() === $vehicle->owner->user_id;
     }
 
-
-    /* ---- Vehicle actions -------------------------------------------------------------------- */
     /**
      * Validation for users to edit and update their own vehicles.
      *
@@ -153,5 +151,17 @@ class UserPolicy
     public function editAndUpdateVehicle(User $authUser, Vehicle $vehicle): bool
     {
         return $authUser->getOwnerId() === $vehicle->owner->user_id;
+    }
+
+    /**
+     * Validation for owner users to delete the vehicles of their own customers.
+     *
+     * @param User $authUser
+     * @param Vehicle $vehicle
+     * @return bool
+     */
+    public function deleteVehicle(User $authUser, Vehicle $vehicle): bool
+    {
+        return $authUser->id === $vehicle->owner->user_id && $authUser->isOwner();
     }
 }

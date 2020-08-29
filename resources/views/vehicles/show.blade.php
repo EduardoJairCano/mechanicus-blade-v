@@ -24,19 +24,19 @@
                 Editar
             </a>
         </div>
-        {{--@can('deleteCustomer', $customer)
+        @can('deleteVehicle', $vehicle)
             <div class="col-md-2">
-                <a href="#" onclick="document.getElementById('delete-customer').submit()" class="btn btn-danger">
+                <a href="#" onclick="document.getElementById('delete-vehicle').submit()" class="btn btn-danger">
                     Eliminar
                 </a>
-                <form id="delete-customer"
+                <form id="delete-vehicle"
                       method="POST"
-                      action="{{ route('customer.destroy', $customer) }}"
+                      action="{{ route('vehicle.destroy', $vehicle) }}"
                       class="d-none">
                     @csrf @method('DELETE')
                 </form>
             </div>
-        @endcan--}}
+        @endcan
     </div>
 
     <hr>

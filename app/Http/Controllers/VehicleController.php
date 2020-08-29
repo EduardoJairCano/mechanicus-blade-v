@@ -6,7 +6,7 @@ use App\Http\Requests\SaveVehicleRequest;
 use App\Http\Requests\UpdatedVehicleRequest;
 use App\Models\Customer;
 use App\Models\Vehicle;
-use App\User;
+use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -189,11 +189,23 @@ class VehicleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return Response
+     * @param Vehicle $vehicle
+     * @return RedirectResponse
+     * @throws Exception
      */
-    public function destroy($id)
+    public function destroy(Vehicle $vehicle): ?RedirectResponse
     {
-        //
+        try {
+            // Owner user validation
+            $this->authorize('deleteVehicle', $vehicle);
+
+            $vehicle->delete();
+
+            return redirect()->route('vehicle.index');
+
+        } catch (AuthorizationException $e) {
+
+            return redirect()->route('vehicle.index');
+        }
     }
 }

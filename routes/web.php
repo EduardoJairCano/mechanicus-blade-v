@@ -52,6 +52,7 @@ Route::get('/vehicle/create', 'VehicleController@create')->name('vehicle.create'
 Route::post('/vehicle', 'VehicleController@store')->name('vehicle.store');
 Route::get('/vehicle/{vehicle}/edit', 'VehicleController@edit')->name('vehicle.edit');
 Route::patch('/vehicle/{vehicle}', 'VehicleController@update')->name('vehicle.update');
+Route::delete('/vehicle/{vehicle}', 'VehicleController@destroy')->name('vehicle.destroy');
 
 
 /* ---- Employee --------------------------------------------------------------------------------------------------- */
