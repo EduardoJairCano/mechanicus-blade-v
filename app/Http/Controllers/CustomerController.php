@@ -117,7 +117,9 @@ class CustomerController extends Controller
             // Validation for user logged and role type
             $this->authorize('showCustomer', $customer);
 
-            return view('customers.show', compact('customer'));
+            $vehicles = $customer->vehicles;
+
+            return view('customers.show', compact(['customer', 'vehicles']));
 
         } catch (AuthorizationException $e) {
 

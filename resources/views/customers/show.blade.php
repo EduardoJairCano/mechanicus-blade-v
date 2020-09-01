@@ -44,6 +44,11 @@
     {{-- Customer info section --}}
     @include('customers.partials.show_customer_info', $customer)
 
+    <hr>
+
+    {{-- Vehicles list section --}}
+    @include('customers.partials.in_list_vehicles', $vehicles)
+
     {{-- Return button --}}
     <div class="row">
         <div class="col-md-1 offset-10">
