@@ -1,3 +1,11 @@
+// Container
+$container-max-widths: (
+        sm: 620px,
+        md: 800px,
+        lg: 1040px,
+        xl: 1360px
+) !default;
+
 // Body
 $body-bg: #f8fafc;
 
