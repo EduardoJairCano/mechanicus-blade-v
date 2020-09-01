@@ -5,6 +5,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
+                {{-- Card section --}}
                 <div class="card shadow border-0">
                     <div class="card-header border-0">
                         <span class="font-weight-bold">
@@ -22,24 +23,18 @@
                             <div class="col-md-3 col-sm-4 d-flex justify-content-end">
                                 @include('helpers.html-elements.buttons.aHref',
                                     [
-                                        'route' => 'userInfo.index',
-                                        'title' => 'Regresar a Panel de Usuario',
-                                        'message' => 'Regresar'
+                                        'route'     => 'userInfo.index',
+                                        'title'     => 'Regresar a Panel de Usuario',
+                                        'message'   => 'Regresar'
                                     ]
                                 )
                             </div>
                         </div>
 
                         <hr>
-
-                        {{-- Create form --}}
+                        {{-- Create userInfo form --}}
                         <form method="POST" action="{{ route('userInfo.store') }}">
-                            {{-- Create userInfo form --}}
-                            @include('userInfo.partials._form',
-                                [
-                                    'btnText' => 'Guardar'
-                                ]
-                            )
+                            @include('userInfo.partials._form', ['btnText' => 'Guardar'])
                         </form>
                     </div>
                 </div>

@@ -5,6 +5,7 @@
 @section('card-title', 'Información del Usuario')
 
 @section('content')
+
     {{-- Header & Action section --}}
     <div class="row align-items-center">
         <div class="col-md-8 col-sm-8">
@@ -22,11 +23,11 @@
         <div class="col-md-3 col-sm-4 d-flex justify-content-end">
             @include('helpers.html-elements.buttons.aHref',
                 [
-                    'route' => 'userInfo.edit',
-                    'obj' => $user,
-                    'classForButton' => 'btn btn-primary',
-                    'title' => 'Editar Usuario',
-                    'message' => 'Editar'
+                    'route'             => 'userInfo.edit',
+                    'obj'               => $user,
+                    'classForButton'    => 'btn btn-primary',
+                    'title'             => 'Editar Usuario',
+                    'message'           => 'Editar'
                 ]
             )
         </div>
@@ -49,9 +50,9 @@
         <div class="col-md-1 offset-10 d-flex justify-content-end">
             @include('helpers.html-elements.buttons.aHref',
                 [
-                    'route' => 'home',
-                    'title' => 'Regresar a página principal',
-                    'message' => 'Regresar'
+                    'route'     => 'home',
+                    'title'     => 'Regresar a página principal',
+                    'message'   => 'Regresar'
                 ]
             )
         </div>

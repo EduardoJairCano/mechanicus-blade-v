@@ -5,6 +5,7 @@
 @section('card-title', 'Panel del Usuario')
 
 @section('content')
+
     {{-- Header & Action section --}}
     <div class="d-flex justify-content-end align-content-center">
 
@@ -33,9 +34,9 @@
             <div class="row justify-content-center">
                 @include('helpers.html-elements.buttons.aHref',
                     [
-                        'route' => 'userInfo.create',
-                        'classForButton' => 'btn btn-primary',
-                        'message' => 'Completar información'
+                        'route'             => 'userInfo.create',
+                        'classForButton'    => 'btn btn-primary',
+                        'message'           => 'Completar información'
                     ]
                 )
             </div>
