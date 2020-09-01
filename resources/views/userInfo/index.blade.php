@@ -31,11 +31,13 @@
             </div>
 
             <div class="row justify-content-center">
-                <a href="{{ route('userInfo.create') }}" class="btn btn-primary">
-                    <span class="">
-                        Completar información
-                    </span>
-                </a>
+                @include('helpers.html-elements.buttons.aHref',
+                    [
+                        'route' => 'userInfo.create',
+                        'classForButton' => 'btn btn-primary',
+                        'message' => 'Completar información'
+                    ]
+                )
             </div>
         @endif
     </div>

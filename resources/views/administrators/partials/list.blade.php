@@ -21,10 +21,14 @@
             <td>{{ $administrator->role->display_name }}</td>
             <td>
                 <div class="btn-group-sm" role="group">
-                    <a href="{{ route('administrator.edit', $administrator) }}" class="btn btn-primary">
+                    <a href="{{ route('administrator.edit', $administrator) }}"
+                       class="btn btn-primary"
+                       title="Editar Administrador">
                         <i class="fas fa-user-edit"></i>
                     </a>
-                    <a href="#" onclick="document.getElementById('delete-administrator').submit()" class="btn btn-danger">
+                    <a href="#" onclick="document.getElementById('delete-administrator').submit()"
+                       class="btn btn-danger"
+                       title="Eliminar Administrador">
                         <i class="fa fa-close"></i>
                     </a>
                     <form id="delete-administrator"

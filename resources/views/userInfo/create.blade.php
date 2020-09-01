@@ -11,17 +11,35 @@
                             Información General del Usuario
                         </span>
                     </div>
-
                     <div class="card-body text-black-50">
-                        <form method="POST" action="{{ route('userInfo.store') }}">
+                        {{-- Header & Action section --}}
+                        <div class="row align-items-center">
+                            <h3 class="col-md-8 col-sm-8">
+                                <span class="font-weight-bold">
+                                    Información Principal
+                                </span>
+                            </h3>
+                            <div class="col-md-3 col-sm-4 d-flex justify-content-end">
+                                @include('helpers.html-elements.buttons.aHref',
+                                    [
+                                        'route' => 'userInfo.index',
+                                        'title' => 'Regresar a Panel de Usuario',
+                                        'message' => 'Regresar'
+                                    ]
+                                )
+                            </div>
+                        </div>
 
-                            {{-- Create/Edit userInfo form --}}
+                        <hr>
+
+                        {{-- Create form --}}
+                        <form method="POST" action="{{ route('userInfo.store') }}">
+                            {{-- Create userInfo form --}}
                             @include('userInfo.partials._form',
                                 [
                                     'btnText' => 'Guardar'
                                 ]
                             )
-
                         </form>
                     </div>
                 </div>

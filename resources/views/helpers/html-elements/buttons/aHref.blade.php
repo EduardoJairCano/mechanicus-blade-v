@@ -1,5 +1,6 @@
 <a href="{!! route($route, $obj ?? null) !!}"
-   class="{!! $classForButton ?? '' !!}">
+   class="{!! $classForButton ?? '' !!}"
+   title="{!! $title ?? '' !!}">
     <span class="{!! $classForText ?? '' !!}">
         {!! $message ?? '' !!}
     </span>
