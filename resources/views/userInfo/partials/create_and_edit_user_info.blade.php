@@ -5,7 +5,7 @@
         <input type="text"
                id="first_name"
                name="first_name"
-               title="Nombre(s) del Usuario"
+               title="Nombre(s) del {{ $type ?? 'Usuario' }}"
                class="form-control bg-light shadow-sm @error('first_name') is-invalid @else border-0 @enderror"
                value="{{ old('first_name', $userInfo->first_name ?? '') }}">
         @error('first_name')
@@ -23,7 +23,7 @@
         <input type="text"
                id="last_name"
                name="last_name"
-               title="Apellio(s) del Usuario"
+               title="Apellio(s) del {{ $type ?? 'Usuario' }}"
                class="form-control bg-light shadow-sm @error('last_name') is-invalid @else border-0 @enderror"
                value="{{ old('last_name', $userInfo->last_name ?? '') }}">
         @error('last_name')
@@ -41,7 +41,7 @@
         <input type="text"
                id="rfc"
                name="rfc"
-               title="RFC del Usuario"
+               title="RFC del {{ $type ?? 'Usuario' }}"
                class="form-control bg-light shadow-sm @error('rfc') is-invalid @else border-0 @enderror"
                value="{{ old('rfc', $userInfo->rfc ?? '') }}">
         @error('rfc')
@@ -59,7 +59,7 @@
         <input type="text"
                id="cell_phone_number"
                name="cell_phone_number"
-               title="Número de Teléfono Móvil del Usuario"
+               title="Número de Teléfono Móvil del {{ $type ?? 'Usuario' }}"
                class="form-control bg-light shadow-sm @error('cell_phone_number') is-invalid @else border-0 @enderror"
                value="{{ old('cell_phone_number', $userInfo->cell_phone_number ?? '') }}">
         @error('cell_phone_number')

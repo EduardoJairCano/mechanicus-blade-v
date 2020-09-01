@@ -5,27 +5,36 @@
 @section('card-title', 'Información del Administrador')
 
 @section('content')
+
     {{-- Header & Action section --}}
     <div class="row align-items-center">
-        <div class="col-md-7 offset-1">
-            <div class="row col-md-12">
+        <div class="col-md-8 col-sm-7">
+            <div class="row col-12">
                 <h3 class="font-weight-bold text-primary">
                     {{ $administrator->userInfo->first_name . ' ' . $administrator->userInfo->last_name }}
                 </h3>
             </div>
-            <div class="row col-md-12">
+            <div class="row col-12">
                 <span>
                     {{ $administrator->email }}
                 </span>
             </div>
         </div>
-        <div class="col-md-2 d-flex justify-content-end">
-            <a href="{{ route('administrator.edit', $administrator) }}" class="btn btn-primary">
-                Editar
-            </a>
+        <div class="col-md-2 col-sm-2 d-flex justify-content-end">
+            @include('helpers.html-elements.buttons.aHref',
+                [
+                    'route' => 'administrator.edit',
+                    'obj' => $administrator,
+                    'classForButton' => 'btn btn-primary',
+                    'title' => 'Editar Administrador',
+                    'message' => 'Editar'
+                ]
+            )
         </div>
-        <div class="col-md-2">
-            <a href="#" onclick="document.getElementById('delete-administrator').submit()" class="btn btn-danger">
+        <div class="col-md-2 col-sm-2">
+            <a href="#" onclick="document.getElementById('delete-administrator').submit()"
+               class="btn btn-danger"
+               title="Eliminar Administrador">
                 Eliminar
             </a>
             <form id="delete-administrator"
@@ -44,12 +53,14 @@
 
     {{-- Return button --}}
     <div class="row pb-2">
-        <div class="col-md-1 offset-10">
-            <a href="{{ route('userInfo.index') }}" class="d-flex justify-content-end">
-                <span>
-                    Regresar
-                </span>
-            </a>
+        <div class="col-md-1 offset-10 d-flex justify-content-end">
+            @include('helpers.html-elements.buttons.aHref',
+                [
+                    'route' => 'userInfo.index',
+                    'title' => 'Regresar a Panel de Usuario',
+                    'message' => 'Regresar'
+                ]
+            )
         </div>
     </div>
 

@@ -16,6 +16,7 @@
         <input type="text"
                id="street_address"
                name="street_address"
+               title="Calle del Domicilio"
                class="form-control bg-light shadow-sm @error('street_address') is-invalid @else border-0 @enderror"
                value="{{ old('street_address', $address->street_address ?? '') }}">
         @error('street_address')
@@ -33,6 +34,7 @@
         <input type="text"
                id="outdoor_number"
                name="outdoor_number"
+               title="Número Exterior del Domicilio"
                class="form-control bg-light shadow-sm @error('outdoor_number') is-invalid @else border-0 @enderror"
                value="{{ old('outdoor_number', $address->outdoor_number ?? '') }}">
         @error('outdoor_number')
@@ -47,6 +49,7 @@
         <input type="text"
                id="interior_number"
                name="interior_number"
+               title="Número Interior del Domicilio"
                class="form-control bg-light shadow-sm border-0"
                value="{{ old('interior_number', $address->interior_number ?? '') }}">
     </div>
@@ -59,6 +62,7 @@
         <input type="text"
                id="colony"
                name="colony"
+               title="Colonia del Domicilio"
                class="form-control bg-light shadow-sm @error('colony') is-invalid @else border-0 @enderror"
                value="{{ old('colony', $address->colony ?? '') }}">
         @error('colony')
@@ -73,6 +77,7 @@
         <input type="text"
                id="postal_code"
                name="postal_code"
+               title="Código Postal del Domicilio"
                class="form-control bg-light shadow-sm @error('postal_code') is-invalid @else border-0 @enderror"
                value="{{ old('postal_code', $address->postal_code ?? '') }}">
         @error('postal_code')
@@ -90,6 +95,7 @@
         <input type="text"
                id="city"
                name="city"
+               title="Ciudad del Domicilio"
                class="form-control bg-light shadow-sm @error('city') is-invalid @else border-0 @enderror"
                value="{{ old('city', $address->city ?? '') }}">
         @error('city')
@@ -107,6 +113,7 @@
         <input type="text"
                id="state"
                name="state"
+               title="Estado del Domicilio"
                class="form-control bg-light shadow-sm @error('state') is-invalid @else border-0 @enderror"
                value="{{ old('state', $address->state ?? '') }}">
         @error('state')
@@ -121,6 +128,7 @@
         <input type="text"
                id="country"
                name="country"
+               title="Páis del Domicilio"
                class="form-control bg-light shadow-sm @error('country') is-invalid @else border-0 @enderror"
                value="{{ old('country', $address->country ?? '') }}">
         @error('country')
@@ -138,6 +146,7 @@
         <input type="text"
                id="phone_number"
                name="phone_number"
+               title="Número de Teléfono Local del {{ $type ?? 'Usuario' }}"
                class="form-control bg-light shadow-sm border-0 "
                value="{{ old('phone_number', $address->phone_number ?? '') }}">
     </div>
@@ -147,6 +156,7 @@
         <input type="text"
                id="fax_number"
                name="fax_number"
+               title="Número de Fax del {{ $type ?? 'Usuario' }}"
                class="form-control bg-light shadow-sm border-0"
                value="{{ old('fax_number', $address->fax_number ?? '') }}">
     </div>
