@@ -1,5 +1,6 @@
 @csrf
 
+{{-- Administrator info --}}
 <div class="pb-3">
     {{-- Email --}}
     @if (is_null($administrator->email))

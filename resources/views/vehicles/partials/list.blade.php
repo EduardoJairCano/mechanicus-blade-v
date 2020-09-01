@@ -13,7 +13,8 @@
     @foreach($vehicles as $vehicle)
         <tr>
             <td>
-                <a href="{{ route('vehicle.show', $vehicle) }}">
+                <a href="{{ route('vehicle.show', $vehicle) }}"
+                   title="Ver Vehículo a detalle">
                     {{ $vehicle->plate }}
                 </a>
             </td>
@@ -23,11 +24,15 @@
             <td>{!! $vehicle->owner ? $vehicle->owner->first_name . ' ' . $vehicle->owner->last_name : '' !!}</td>
             <td>
                 <div class="btn-group-sm" role="group">
-                    <a href="{{ route('vehicle.edit', $vehicle) }}" class="btn btn-primary">
+                    <a href="{{ route('vehicle.edit', $vehicle) }}"
+                       title="Editar Vehículo"
+                       class="btn btn-primary">
                         <i class="fas fa-user-edit"></i>
                     </a>
                     @can('deleteVehicle', $vehicle)
-                        <a href="#" onclick="document.getElementById('delete-vehicle').submit()" class="btn btn-danger">
+                        <a href="#" onclick="document.getElementById('delete-vehicle').submit()"
+                           title="Eliminar Vehículo"
+                           class="btn btn-danger">
                             <i class="fa fa-close"></i>
                         </a>
                         <form id="delete-vehicle"
