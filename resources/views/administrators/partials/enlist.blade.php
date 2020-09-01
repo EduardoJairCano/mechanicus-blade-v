@@ -15,10 +15,10 @@
     <div class="col-md-3 col-sm-4 d-flex justify-content-end">
         @include('helpers.html-elements.buttons.aHref',
                 [
-                    'route' => 'administrator.create',
-                    'classForButton' => 'btn btn-primary',
-                    'title' => 'Agregar nuevo Administrador',
-                    'message' => 'Agregar'
+                    'route'             => 'administrator.create',
+                    'classForButton'    => 'btn btn-primary',
+                    'title'             => 'Agregar nuevo Administrador',
+                    'message'           => 'Agregar'
                 ]
             )
     </div>

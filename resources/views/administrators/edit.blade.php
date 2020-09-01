@@ -26,15 +26,10 @@
 
     <hr>
 
-    {{-- Edit form --}}
+    {{-- Edit userInfo form --}}
     <form method="POST" action="{{ route('administrator.update', $administrator) }}">
         @method('PATCH')
-        {{-- Edit userInfo form --}}
-        @include('administrators.partials._form',
-            [
-                'btnText' => 'Actualizar'
-            ]
-        )
+        @include('administrators.partials._form', ['btnText' => 'Actualizar'])
     </form>
 
 @endsection

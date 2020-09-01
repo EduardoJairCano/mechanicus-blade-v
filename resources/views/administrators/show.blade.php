@@ -23,11 +23,11 @@
         <div class="col-md-2 col-sm-2 d-flex justify-content-end">
             @include('helpers.html-elements.buttons.aHref',
                 [
-                    'route' => 'administrator.edit',
-                    'obj' => $administrator,
-                    'classForButton' => 'btn btn-primary',
-                    'title' => 'Editar Administrador',
-                    'message' => 'Editar'
+                    'route'             => 'administrator.edit',
+                    'obj'               => $administrator,
+                    'classForButton'    => 'btn btn-primary',
+                    'title'             => 'Editar Administrador',
+                    'message'           => 'Editar'
                 ]
             )
         </div>
@@ -56,9 +56,9 @@
         <div class="col-md-1 offset-10 d-flex justify-content-end">
             @include('helpers.html-elements.buttons.aHref',
                 [
-                    'route' => 'userInfo.index',
-                    'title' => 'Regresar a Panel de Usuario',
-                    'message' => 'Regresar'
+                    'route'     => 'userInfo.index',
+                    'title'     => 'Regresar a Panel de Usuario',
+                    'message'   => 'Regresar'
                 ]
             )
         </div>

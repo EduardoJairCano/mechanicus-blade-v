@@ -26,14 +26,9 @@
 
     <hr>
 
-    {{-- Create form --}}
+    {{-- Create userInfo form --}}
     <form method="POST" action="{{ route('administrator.store') }}">
-        {{-- Create userInfo form --}}
-        @include('administrators.partials._form',
-            [
-                'btnText' => 'Guardar'
-            ]
-        )
+        @include('administrators.partials._form', ['btnText' => 'Guardar'])
     </form>
 
 @endsection
