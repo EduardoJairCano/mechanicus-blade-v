@@ -36,7 +36,9 @@
     <hr>
 
     {{-- User Info section --}}
-    @include('userInfo.partials.show_user_info', compact('user'))
+    <div>
+        @include('userInfo.partials.show_user_info', compact('user'))
+    </div>
 
     {{-- Administrators list section --}}
     @if (auth()->user()->isOwner())
