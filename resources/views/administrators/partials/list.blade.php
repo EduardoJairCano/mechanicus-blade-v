@@ -1,4 +1,4 @@
-<table class="table text-black-50 text-center">
+<table class="table text-black-50 text-center" style="font-size: small">
     <thead>
         <tr>
             <th>Nombre</th>
@@ -12,7 +12,8 @@
     @foreach($administrators as $administrator)
         <tr>
             <td>
-                <a href="{{ route('administrator.show', $administrator) }}">
+                <a href="{{ route('administrator.show', $administrator) }}"
+                   title="Ver Administrador a detalle">
                     {!! $administrator->getFullName() !!}
                 </a>
             </td>
@@ -22,13 +23,13 @@
             <td>
                 <div class="btn-group-sm" role="group">
                     <a href="{{ route('administrator.edit', $administrator) }}"
-                       class="btn btn-primary"
-                       title="Editar Administrador">
+                       title="Editar Administrador"
+                       class="btn btn-primary">
                         <i class="fas fa-user-edit"></i>
                     </a>
                     <a href="#" onclick="document.getElementById('delete-administrator').submit()"
-                       class="btn btn-danger"
-                       title="Eliminar Administrador">
+                       title="Eliminar Administrador"
+                       class="btn btn-danger">
                         <i class="fa fa-close"></i>
                     </a>
                     <form id="delete-administrator"

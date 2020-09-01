@@ -36,11 +36,11 @@
     <hr>
 
     {{-- User Info section --}}
-    @include('userInfo.partials.show_user_info', compact($user))
+    @include('userInfo.partials.show_user_info', compact('user'))
 
     {{-- Administrators list section --}}
     @if (auth()->user()->isOwner())
-        <hr class="pb-4">
+        <hr class="pb-2">
 
         @include('administrators.partials.enlist', compact('subUsers'))
     @endif
