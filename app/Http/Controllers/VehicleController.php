@@ -49,14 +49,15 @@ class VehicleController extends Controller
     /**
      * Show the form for creating a new vehicle.
      *
+     * @param Customer|null $customer
      * @return Application|Factory|Response|View
      */
-    public function create()
+    public function create(Customer $customer = null)
     {
         $vehicle = new Vehicle();
         $customers = \auth()->user()->getUserCustomers();
 
-        return view('vehicles.create', compact(['vehicle', 'customers']));
+        return view('vehicles.create', compact(['vehicle', 'customer', 'customers']));
     }
 
     /**

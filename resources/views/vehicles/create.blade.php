@@ -6,17 +6,16 @@
 
 @section('content')
 
+    {{-- Create vehicle form --}}
     <form method="POST" action="{{ route('vehicle.store') }}">
-
-        {{-- Create/Edit vehicle form --}}
         @include('vehicles.partials._form',
             [
-                'customers' => $customers,
+                'customer'      => $customer,
+                'customers'     => $customers,
                 'routeToReturn' => 'vehicle.index',
-                'btnText' => 'Guardar'
+                'btnText'       => 'Guardar'
             ]
         )
-
     </form>
 
 @endsection

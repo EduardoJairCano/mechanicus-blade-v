@@ -58,7 +58,7 @@
     <hr class="pb-2">
 
     {{-- Vehicles list section --}}
-    @include('customers.partials.enlist_vehicles', compact('vehicles'))
+    @include('customers.partials.enlist_vehicles', compact(['customer', 'vehicles']))
 
     {{-- Return button --}}
     <div class="row">

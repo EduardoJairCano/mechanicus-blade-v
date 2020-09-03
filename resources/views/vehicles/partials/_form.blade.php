@@ -5,7 +5,8 @@
     <div>
         @include('vehicles.partials.select_or_create_customer',
             [
-                'customers' => $customers,
+                'customer_id'   => $customer->id,
+                'customers'     => $customers,
                 'routeToReturn' => 'vehicle.index',
             ]
         )
