@@ -67,7 +67,7 @@ class VehicleController extends Controller
 
         } catch (AuthorizationException $e) {
 
-            return redirect()->route('home');
+            return redirect()->route('vehicle.index');
         }
     }
 
@@ -75,21 +75,18 @@ class VehicleController extends Controller
      * Store a newly created vehicle in storage.
      *
      * @param SaveVehicleRequest $request
+     * @param Customer $customer
      * @return Application|Factory|RedirectResponse|View
      */
-    public function store(SaveVehicleRequest $request)
+    public function store(SaveVehicleRequest $request, Customer $customer)
     {
-        // Fields validations
-        $fields = $request->validated();
+        try {
+            // Validate for user logged to be owner of the customer
+            $this->authorize('createVehicle', $customer);
 
-        // Validation for existing user and role type to get the owner id
-        $user = Auth::user();
-        $ownerId = $user->getOwnerId();
+            // Fields validations
+            $fields = $request->validated();
 
-        // Validate if the customer belongs to the owner
-        $customer = Customer::find((int) $fields['customer_id']);
-
-        if (isset($ownerId, $customer) && $ownerId === $customer->user_id) {
             // Create new vehicle row
             $vehicle = Vehicle::create([
                 'plate'             => $fields['plate'],
@@ -111,9 +108,11 @@ class VehicleController extends Controller
             $vehicle->createSlug();
 
             return view('vehicles.show', ['vehicle' => $vehicle]);
-        }
 
-        return redirect()->route('vehicle.index');
+        } catch (AuthorizationException $e) {
+
+            return redirect()->route('vehicle.index');
+        }
     }
 
     /**

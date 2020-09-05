@@ -7,7 +7,7 @@
 @section('content')
 
     {{-- Create vehicle form --}}
-    <form method="POST" action="{{ route('vehicle.store') }}">
+    <form method="POST" action="{{ route('vehicle.store', $customer) }}">
         @include('vehicles.partials._form',
             [
                 'customer'      => $customer,

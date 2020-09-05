@@ -49,7 +49,7 @@ Route::delete('/customer/{customer}', 'CustomerController@destroy')->name('custo
 Route::get('/vehicle','VehicleController@index')->name('vehicle.index');
 Route::get('/vehicle/{vehicle}/show','VehicleController@show')->name('vehicle.show');
 Route::get('/vehicle/create/{customer?}', 'VehicleController@create')->name('vehicle.create');
-Route::post('/vehicle', 'VehicleController@store')->name('vehicle.store');
+Route::post('/vehicle/{customer?}', 'VehicleController@store')->name('vehicle.store');
 Route::get('/vehicle/{vehicle}/edit', 'VehicleController@edit')->name('vehicle.edit');
 Route::patch('/vehicle/{vehicle}', 'VehicleController@update')->name('vehicle.update');
 Route::delete('/vehicle/{vehicle}', 'VehicleController@destroy')->name('vehicle.destroy');
