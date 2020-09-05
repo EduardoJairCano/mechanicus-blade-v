@@ -53,7 +53,7 @@
             @include('helpers.html-elements.buttons.aHref',
                 [
                     'route'     => 'home',
-                    'title'     => 'Regresar a página principal',
+                    'title'     => 'Regresar a Página Principal',
                     'message'   => 'Regresar'
                 ]
             )

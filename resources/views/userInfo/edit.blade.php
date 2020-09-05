@@ -15,15 +15,15 @@
         </h3>
 
         @if (isset($user->userInfo))
-        <div class="col-md-3 col-sm-4 d-flex justify-content-end">
-            @include('helpers.html-elements.buttons.aHref',
-                [
-                    'route'     => 'userInfo.index',
-                    'title'     => 'Regresar a Panel de Usuario',
-                    'message'   => 'Regresar'
-                ]
-            )
-        </div>
+            <div class="col-md-3 col-sm-4 d-flex justify-content-end">
+                @include('helpers.html-elements.buttons.aHref',
+                    [
+                        'route'     => 'userInfo.index',
+                        'title'     => 'Regresar a Panel de Usuario',
+                        'message'   => 'Regresar'
+                    ]
+                )
+            </div>
         @endif
     </div>
 
