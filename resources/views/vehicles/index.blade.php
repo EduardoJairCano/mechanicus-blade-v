@@ -5,9 +5,10 @@
 @section('card-title', 'Vehículos')
 
 @section('content')
+
     {{-- Header & Action section --}}
     <div class="row align-items-center pb-4">
-        <div class="col-md-6 offset-1">
+        <div class="col-md-8 col-sm-8">
             <div class="row col-md-12">
                 <h4 class="font-weight-bold text-primary">
                     Vehículos
@@ -19,7 +20,7 @@
                 </span>
             </div>
         </div>
-        <div class="col-md-4 d-flex justify-content-end align-content-center">
+        <div class="col-md-3 col-sm-4 d-flex justify-content-end">
             @include('helpers.html-elements.buttons.aHref',
                 [
                     'route'             => 'vehicle.create',

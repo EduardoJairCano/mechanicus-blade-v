@@ -1,18 +1,5 @@
 @csrf
 
-{{-- Select or Create Customer section --}}
-@if (isset($customers))
-    <div>
-        @include('vehicles.partials.select_or_create_customer',
-            [
-                'customer_id'   => isset($customer) ? $customer->id : null,
-                'customers'     => $customers,
-                'routeToReturn' => 'vehicle.index',
-            ]
-        )
-    </div>
-@endif
-
 {{-- New vehicle info inputs --}}
 <div>
     {{-- Header --}}

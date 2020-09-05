@@ -18,8 +18,8 @@
                 'route'             => 'vehicle.create',
                 'obj'               => $customer,
                 'classForButton'    => 'btn btn-primary',
-                'title'             => 'Agregar nuevo vehículo',
-                'message'           => 'Agregar vehículo'
+                'title'             => 'Agregar nuevo Vehículo',
+                'message'           => 'Agregar'
             ]
         )
     </div>
