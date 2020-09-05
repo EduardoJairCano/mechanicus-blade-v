@@ -130,6 +130,18 @@ class UserPolicy
 
     /* ---- Vehicle actions ------------------------------------------------------------------- */
     /**
+     * Validation to know if the customer belongs to the user logged.
+     *
+     * @param User $authUser
+     * @param Customer $customer
+     * @return bool
+     */
+    public function createVehicle(User $authUser, Customer $customer): bool
+    {
+        return $authUser->getOwnerId() === $customer->user_id;
+    }
+
+    /**
      * Validation to know if the vehicle belongs to some customer of the user logged.
      *
      * @param User $authUser

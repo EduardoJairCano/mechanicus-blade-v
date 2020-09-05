@@ -50,14 +50,25 @@ class VehicleController extends Controller
      * Show the form for creating a new vehicle.
      *
      * @param Customer|null $customer
-     * @return Application|Factory|Response|View
+     * @return Application|Factory|RedirectResponse|View
      */
     public function create(Customer $customer = null)
     {
-        $vehicle = new Vehicle();
-        $customers = \auth()->user()->getUserCustomers();
+        try {
+            if ($customer) {
+                // Validate for user logged to be owner of the customer
+                $this->authorize('createVehicle', $customer);
+            }
 
-        return view('vehicles.create', compact(['vehicle', 'customer', 'customers']));
+            $vehicle = new Vehicle();
+            $customers = \auth()->user()->getUserCustomers();
+
+            return view('vehicles.create', compact(['vehicle', 'customer', 'customers']));
+
+        } catch (AuthorizationException $e) {
+
+            return redirect()->route('home');
+        }
     }
 
     /**
