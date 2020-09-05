@@ -16,18 +16,23 @@
 {{-- New vehicle info inputs --}}
 <div>
     {{-- Header --}}
-    <div class="form-group row align-items-center">
-        <h4 class="col-md-7">
+    <div class="row align-items-center">
+        <h4 class="col-md-8 col-sm-8">
             <span class="font-weight-bold">
                 Información del Vehículo
             </span>
         </h4>
         @if (isset($vehicle->id))
-            <a href="{{ route('vehicle.show', $vehicle) }}" class="col-md-4 d-flex justify-content-end">
-                <span>
-                    Regresar
-                </span>
-            </a>
+            <div class="col-md-3 col-sm-4 d-flex justify-content-end">
+                @include('helpers.html-elements.buttons.aHref',
+                [
+                    'route'             => 'vehicle.show',
+                    'obj'               => $vehicle,
+                    'title'             => 'Regresar a Información de Vehículo',
+                    'message'           => 'Regresar'
+                ]
+            )
+            </div>
         @endif
     </div>
 

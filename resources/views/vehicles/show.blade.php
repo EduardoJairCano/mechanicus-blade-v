@@ -5,9 +5,10 @@
 @section('card-title', 'Información del Vehículo')
 
 @section('content')
+
     {{-- Header & Action section --}}
     <div class="row align-items-center">
-        <div class="col-md-6 offset-1">
+        <div class="col-md-8 col-sm-7">
             <div class="row col-md-12">
                 <h3 class="font-weight-bold text-primary">
                     {{ $vehicle->make . ' ' . $vehicle->model . ' ' . $vehicle->year }}
@@ -19,14 +20,16 @@
                 </span>
             </div>
         </div>
-        <div class="col-md-2 d-flex justify-content-end">
+        <div class="col-md-2 col-sm-2 d-flex justify-content-end">
             <a href="{{ route('vehicle.edit', $vehicle) }}" class="btn btn-primary">
                 Editar
             </a>
         </div>
         @can('deleteVehicle', $vehicle)
-            <div class="col-md-2">
-                <a href="#" onclick="document.getElementById('delete-vehicle').submit()" class="btn btn-danger">
+            <div class="col-md-2 col-sm-2">
+                <a href="#" onclick="document.getElementById('delete-vehicle').submit()"
+                   title="Eliminar Vehículo"
+                   class="btn btn-danger">
                     Eliminar
                 </a>
                 <form id="delete-vehicle"
@@ -42,16 +45,21 @@
     <hr>
 
     {{-- Vehicle info section --}}
-    @include('vehicles.partials.show_vehicle_info', $vehicle)
+    <div>
+        @include('vehicles.partials.show_vehicle_info', compact('vehicle'))
+    </div>
 
     {{-- Return button --}}
     <div class="row">
-        <div class="col-md-1 offset-10">
-            <a href="{{ route('vehicle.index') }}" class="d-flex justify-content-end">
-                <span>
-                    Regresar
-                </span>
-            </a>
+        <div class="col-md-1 offset-10 d-flex justify-content-end">
+            @include('helpers.html-elements.buttons.aHref',
+                [
+                    'route'             => 'customer.show',
+                    'obj'               => $vehicle->owner,
+                    'title'             => 'Regresar a Información de Cliente',
+                    'message'           => 'Regresar'
+                ]
+            )
         </div>
     </div>
 

@@ -20,11 +20,14 @@
             </div>
         </div>
         <div class="col-md-4 d-flex justify-content-end align-content-center">
-            <a href="{{ route('vehicle.create') }}" class="btn btn-primary">
-                <span class="">
-                    Agregar nuevo vehiculo
-                </span>
-            </a>
+            @include('helpers.html-elements.buttons.aHref',
+                [
+                    'route'             => 'vehicle.create',
+                    'classForButton'    => 'btn btn-primary',
+                    'title'             => 'Agregar nuevo Vehículo',
+                    'message'           => 'Agregar'
+                ]
+            )
         </div>
     </div>
 
@@ -32,7 +35,7 @@
     @if (count($vehicles) > 0)
         <div class="row align-items-center pb-2">
             <div class="col-md-12">
-                @include('vehicles.partials.list', $vehicles)
+                @include('vehicles.partials.list', compact('vehicles'))
             </div>
         </div>
     @else
