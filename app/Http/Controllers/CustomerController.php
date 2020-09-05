@@ -117,7 +117,7 @@ class CustomerController extends Controller
             // Validation for user logged and role type
             $this->authorize('showCustomer', $customer);
 
-            $vehicles = $customer->vehicles;
+            $vehicles = $customer->vehicles ?? null;
 
             return view('customers.show', compact(['customer', 'vehicles']));
 
