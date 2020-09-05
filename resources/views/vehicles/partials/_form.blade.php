@@ -5,7 +5,7 @@
     <div>
         @include('vehicles.partials.select_or_create_customer',
             [
-                'customer_id'   => $customer->id,
+                'customer_id'   => isset($customer) ? $customer->id : null,
                 'customers'     => $customers,
                 'routeToReturn' => 'vehicle.index',
             ]
@@ -227,8 +227,12 @@
 </div>
 
 {{-- Button section --}}
-<div class="col-md-3 offset-md-8">
-    <button type="submit" class="btn btn-primary btn-block">
-        {{ $btnText }}
-    </button>
+<div class="form-group row mb-0">
+    <div class="col-md-3 offset-md-8">
+        <button type="submit"
+                class="btn btn-primary btn-block"
+                title="{{ $btnText ?? 'Guardar' }} información">
+            {{ $btnText ?? 'Guardar' }}
+        </button>
+    </div>
 </div>

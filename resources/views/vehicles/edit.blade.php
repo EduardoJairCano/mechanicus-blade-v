@@ -6,18 +6,15 @@
 
 @section('content')
 
+    {{-- Edit vehicle form --}}
     <form method="POST" action="{{ route('vehicle.update', $vehicle) }}">
-
         @method('PATCH')
-
-        {{-- Create/Edit vehicle form --}}
         @include('vehicles.partials._form',
             [
                 'routeToReturn' => 'vehicle.index',
-                'btnText' => 'Actualizar'
+                'btnText'       => 'Actualizar'
             ]
         )
-
     </form>
 
 @endsection

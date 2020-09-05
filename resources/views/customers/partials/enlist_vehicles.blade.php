@@ -13,15 +13,15 @@
         </div>
     </div>
     <div class="col-md-3 col-sm-4 d-flex justify-content-end align-content-center">
-        <form method="POST" action="{{ route('vehicle.create', $customer) }}">
-            @method('PATCH')
-            @csrf
-            <button type="submit"
-                    title="Agregar nuevo vehículo"
-                    class="btn btn-primary">
-                Agregar vehículo
-            </button>
-        </form>
+        @include('helpers.html-elements.buttons.aHref',
+            [
+                'route'             => 'vehicle.create',
+                'obj'               => $customer,
+                'classForButton'    => 'btn btn-primary',
+                'title'             => 'Agregar nuevo vehículo',
+                'message'           => 'Agregar vehículo'
+            ]
+        )
     </div>
 </div>
 

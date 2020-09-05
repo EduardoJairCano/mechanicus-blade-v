@@ -13,7 +13,6 @@
                 'customer'      => $customer,
                 'customers'     => $customers,
                 'routeToReturn' => 'vehicle.index',
-                'btnText'       => 'Guardar'
             ]
         )
     </form>
