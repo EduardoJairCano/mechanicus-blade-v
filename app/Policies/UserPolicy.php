@@ -128,6 +128,20 @@ class UserPolicy
     }
 
 
+    /* ---- Company actions ------------------------------------------------------------------- */
+    /**
+     * Validation to know if the customer belongs to the user logged.
+     *
+     * @param User $authUser
+     * @param Customer $customer
+     * @return bool
+     */
+    public function createCompany(User $authUser, Customer $customer): bool
+    {
+        return $authUser->getOwnerId() === $customer->user_id;
+    }
+
+
     /* ---- Vehicle actions ------------------------------------------------------------------- */
     /**
      * Validation to know if the customer belongs to the user logged.
