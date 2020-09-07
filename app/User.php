@@ -153,7 +153,7 @@ class User extends Authenticatable
         return $this->userInfo ?
             sprintf("%s %s %s",
                 substr($this->userInfo->cell_phone_number, 0, 2),
-                substr($this->userInfo->cell_phone_number, 3, 4),
+                substr($this->userInfo->cell_phone_number, 2, 4),
                 substr($this->userInfo->cell_phone_number, 6)) : '-';
     }
 
