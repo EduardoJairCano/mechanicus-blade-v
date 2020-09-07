@@ -25,7 +25,7 @@
     </div>
 </div>
 
-{{-- List of vehicles --}}
+{{-- Vehicles list --}}
 @if (count($vehicles) > 0)
     <div class="row align-items-center pb-2">
         <div class="col-md-12">

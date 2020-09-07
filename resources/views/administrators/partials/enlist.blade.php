@@ -25,6 +25,13 @@
 </div>
 
 {{-- Administrators list --}}
-<div class="row align-items-center p-2">
-    @include('administrators.partials.list', ['administrators' => $subUsers])
-</div>
+@if (count($subUsers) > 0)
+    <div class="row align-items-center p-2">
+        @include('administrators.partials.list', ['administrators' => $subUsers])
+    </div>
+@else
+    <hr>
+    <div class="row-cols-md-12 d-flex justify-content-center pb-2">
+        <span class="text-center text-black-50">No hay administradores registrados aún</span>
+    </div>
+@endif
