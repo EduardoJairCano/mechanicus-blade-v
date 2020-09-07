@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SaveCompanyRequest;
 use App\Http\Requests\UpdateCompanyRequest;
+use Exception;
 use App\Models\Address;
 use App\Models\Company;
 use App\Models\Customer;
@@ -199,13 +200,25 @@ class CompanyController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified company from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Company $company
+     * @return RedirectResponse
+     * @throws Exception
      */
-    public function destroy($id)
+    public function destroy(Company $company): ?RedirectResponse
     {
-        //
+        try {
+            // Owner user validation
+            $this->authorize('deleteCompany', $company);
+
+            $company->delete();
+
+            return redirect()->route('customer.index');
+
+        } catch (AuthorizationException $e) {
+
+            return redirect()->route('customer.index');
+        }
     }
 }

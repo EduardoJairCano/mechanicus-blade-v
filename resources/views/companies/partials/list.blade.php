@@ -23,7 +23,7 @@
                        class="btn btn-primary">
                         <i class="fas fa-user-edit"></i>
                     </a>
-                    {{--@can('deleteCompany', $company)
+                    @can('deleteCompany', $company)
                         <a href="#" onclick="document.getElementById('delete-company').submit()"
                            title="Eliminar Compañia"
                            class="btn btn-danger">
@@ -35,7 +35,7 @@
                               class="d-none">
                             @csrf @method('DELETE')
                         </form>
-                    @endcan--}}
+                    @endcan
                 </div>
             </td>
         </tr>

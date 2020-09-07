@@ -31,7 +31,7 @@
                 ]
             )
         </div>
-       {{-- @can('deleteCompany', $company)
+        @can('deleteCompany', $company)
             <div class="col-md-2 col-sm-2">
                 <a href="#" onclick="document.getElementById('delete-company').submit()"
                    title="Eliminar Compañia"
@@ -45,7 +45,7 @@
                     @csrf @method('DELETE')
                 </form>
             </div>
-        @endcan--}}
+        @endcan
     </div>
 
     <hr>

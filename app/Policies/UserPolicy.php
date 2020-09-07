@@ -166,6 +166,19 @@ class UserPolicy
         return $authUser->getOwnerId() === $company->customer->user_id;
     }
 
+    /**
+     * Validation for owner users to delete the companies of their own customers.
+     *
+     * @param User $authUser
+     * @param Company $company
+     * @return bool
+     */
+    public function deleteCompany(User $authUser, Company $company): bool
+    {
+        return $authUser->id === $company->customer->user_id && $authUser->isOwner();
+    }
+
+
     /* ---- Vehicle actions ------------------------------------------------------------------- */
     /**
      * Validation to know if the customer belongs to the user logged.

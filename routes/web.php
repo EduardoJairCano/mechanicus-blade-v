@@ -51,6 +51,7 @@ Route::get('/company/create/{customer?}', 'CompanyController@create')->name('com
 Route::post('/company/{customer?}', 'CompanyController@store')->name('company.store');
 Route::get('/company/{company}/edit', 'CompanyController@edit')->name('company.edit');
 Route::patch('/company/{company}', 'CompanyController@update')->name('company.update');
+Route::delete('/company/{company}', 'CompanyController@destroy')->name('company.destroy');
 
 
 /* ---- Vehicle ---------------------------------------------------------------------------------------------------- */
