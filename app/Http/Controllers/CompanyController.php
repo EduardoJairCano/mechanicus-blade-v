@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SaveCompanyRequest;
+use App\Http\Requests\UpdateCompanyRequest;
 use App\Models\Address;
 use App\Models\Company;
 use App\Models\Customer;
@@ -131,7 +132,7 @@ class CompanyController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified company.
      *
      * @param Company $company
      * @return Application|Factory|RedirectResponse|View
@@ -152,15 +153,49 @@ class CompanyController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified company in storage.
      *
-     * @param Request $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param UpdateCompanyRequest $request
+     * @param Company $company
+     * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCompanyRequest $request, Company $company): RedirectResponse
     {
-        //
+        try {
+            // Validation for user logged and role type
+            $this->authorize('editAndUpdateCompany', $company);
+
+            // Fields validations
+            $fields = $request->validated();
+
+            // Update company info
+            $company->update([
+                'name'              => $fields['name'],
+            ]);
+
+            // Slug creation
+            $company->createSlug();
+
+            // Update new address info
+            $company->address->update([
+                'street_address'    => $fields['street_address'],
+                'outdoor_number'    => $fields['outdoor_number'],
+                'interior_number'   => $fields['interior_number'],
+                'colony'            => $fields['colony'],
+                'postal_code'       => $fields['postal_code'],
+                'city'              => $fields['city'],
+                'state'             => $fields['state'],
+                'country'           => $fields['country'],
+                'phone_number'      => $fields['phone_number'],
+                'fax_number'        => $fields['fax_number'],
+            ]);
+
+            return redirect()->route('company.show', $company);
+
+        } catch (AuthorizationException $e) {
+
+            return redirect()->route('customer.index');
+        }
     }
 
     /**
