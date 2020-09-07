@@ -1,8 +1,8 @@
 @extends('home')
 
-@section('title', 'Agregar Compañia')
+@section('title', 'Editar Compañia')
 
-@section('card-title', 'Agregar Compañia')
+@section('card-title', 'Editar Compañia')
 
 @section('content')
 
@@ -16,9 +16,9 @@
         <div class="col-md-3 col-sm-4 d-flex justify-content-end">
             @include('helpers.html-elements.buttons.aHref',
                 [
-                    'route'             => 'customer.show',
-                    'obj'               => $customer,
-                    'title'             => 'Regresar a Información de Cliente',
+                    'route'             => 'company.show',
+                    'obj'               => $company,
+                    'title'             => 'Regresar a Información de Compañia',
                     'message'           => 'Regresar'
                 ]
             )
@@ -27,8 +27,9 @@
 
     <hr>
 
-    {{-- Create company form --}}
-    <form method="POST" action="{{ route('company.store', $customer) }}">
+    {{-- Edit company form --}}
+    <form method="POST" action="{{ route('company.update', $company) }}">
+        @method('PATCH')
         {{-- Select or Create Customer section --}}
         {{--@if (isset($customers))
             <div>
@@ -43,7 +44,7 @@
         @endif--}}
 
         {{-- Company info form --}}
-        @include('companies.partials._form')
+        @include('companies.partials._form', ['btnText' => 'Actualizar'])
     </form>
 
 @endsection

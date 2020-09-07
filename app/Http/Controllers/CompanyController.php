@@ -133,12 +133,22 @@ class CompanyController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Company $company
+     * @return Application|Factory|RedirectResponse|View
      */
-    public function edit($id)
+    public function edit(Company $company)
     {
-        //
+        try {
+            // Validation for user logged and role type
+            $this->authorize('editAndUpdateCompany', $company);
+            $customer = $company->customer;
+
+            return view('companies.edit', compact(['company', 'customer']));
+
+        } catch (AuthorizationException $e) {
+
+            return redirect()->route('customer.index');
+        }
     }
 
     /**

@@ -154,6 +154,17 @@ class UserPolicy
         return $authUser->getOwnerId() === $company->customer->user_id;
     }
 
+    /**
+     * Validation for users to edit and update companies of their own customers.
+     *
+     * @param User $authUser
+     * @param Company $company
+     * @return bool
+     */
+    public function editAndUpdateCompany(User $authUser, Company $company): bool
+    {
+        return $authUser->getOwnerId() === $company->customer->user_id;
+    }
 
     /* ---- Vehicle actions ------------------------------------------------------------------- */
     /**

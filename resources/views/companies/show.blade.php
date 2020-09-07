@@ -21,9 +21,15 @@
             </div>
         </div>
         <div class="col-md-2 col-sm-2 d-flex justify-content-end">
-            <a href="{{--{{ route('vehicle.edit', $vehicle) }}--}}" class="btn btn-primary">
-                Editar
-            </a>
+            @include('helpers.html-elements.buttons.aHref',
+                [
+                    'route'             => 'company.edit',
+                    'obj'               => $company,
+                    'classForButton'    => 'btn btn-primary',
+                    'title'             => 'Editar Compañia',
+                    'message'           => 'Editar'
+                ]
+            )
         </div>
        {{-- @can('deleteCompany', $company)
             <div class="col-md-2 col-sm-2">

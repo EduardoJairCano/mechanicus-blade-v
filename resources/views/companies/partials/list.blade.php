@@ -17,13 +17,13 @@
             </td>
             <td>{{ $company->address->street_address . ' ' . $company->address->outdoor_number . ' ' . $company->address->interior_number }}</td>
             <td>
-                {{--<div class="btn-group-sm" role="group">
+                <div class="btn-group-sm" role="group">
                     <a href="{{ route('company.edit', $company) }}"
                        title="Editar Compañia"
                        class="btn btn-primary">
                         <i class="fas fa-user-edit"></i>
                     </a>
-                    @can('deleteCompany', $company)
+                    {{--@can('deleteCompany', $company)
                         <a href="#" onclick="document.getElementById('delete-company').submit()"
                            title="Eliminar Compañia"
                            class="btn btn-danger">
@@ -35,8 +35,8 @@
                               class="d-none">
                             @csrf @method('DELETE')
                         </form>
-                    @endcan
-                </div>--}}
+                    @endcan--}}
+                </div>
             </td>
         </tr>
     @endforeach
