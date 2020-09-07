@@ -52,6 +52,16 @@ class Vehicle extends Model
     }
 
     /**
+     * Get the company that owns the vehicle.
+     *
+     * @return BelongsTo
+     */
+    public function company(): BelongsTo
+    {
+        return $this->belongsTo(Company::class, 'company_id', 'id');
+    }
+
+    /**
      * Get the services for the vehicle.
      *
      * @return HasMany

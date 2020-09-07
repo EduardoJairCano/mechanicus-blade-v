@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class Company extends Model
@@ -44,6 +45,16 @@ class Company extends Model
     public function customer(): BelongsTo
     {
         return $this->belongsTo(Customer::class, 'customer_id', 'id');
+    }
+
+    /**
+     * Get the vehicles for the company.
+     *
+     * @return HasMany
+     */
+    public function vehicles(): HasMany
+    {
+        return $this->hasMany(Vehicle::class, 'company_id', 'id');
     }
 
 
