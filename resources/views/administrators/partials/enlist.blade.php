@@ -1,5 +1,5 @@
 {{-- Header & Action section --}}
-<div class="row align-items-center pb-4">
+<div class="row align-items-center pb-2">
     <div class="col-md-8 col-sm-8">
         <div class="row col-12">
             <h4 class="font-weight-bold text-primary">

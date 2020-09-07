@@ -42,9 +42,10 @@
 
     {{-- Administrators list section --}}
     @if (auth()->user()->isOwner())
-        <hr class="pb-2">
-
-        @include('administrators.partials.enlist', compact('subUsers'))
+        <div>
+            <hr class="pb-2">
+            @include('administrators.partials.enlist', compact('subUsers'))
+        </div>
     @endif
 
     {{-- Return button --}}

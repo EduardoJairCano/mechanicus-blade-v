@@ -49,7 +49,9 @@
     <hr>
 
     {{-- User Info section --}}
-    @include('userInfo.partials.show_user_info', ['user' => $administrator])
+    <div>
+        @include('userInfo.partials.show_user_info', ['user' => $administrator])
+    </div>
 
     {{-- Return button --}}
     <div class="row pb-2">
