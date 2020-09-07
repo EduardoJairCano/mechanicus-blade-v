@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Company;
 use App\Models\Customer;
 use App\Models\Vehicle;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -20,6 +21,7 @@ class AuthServiceProvider extends ServiceProvider
         User::class     => UserPolicy::class,
         Customer::class => UserPolicy::class,
         Vehicle::class  => UserPolicy::class,
+        Company::class  => UserPolicy::class,
     ];
 
     /**

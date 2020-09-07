@@ -59,13 +59,13 @@ class Customer extends Model
     }
 
     /**
-     * Get the company record associated with the customer.
+     * Get the companies of the customer.
      *
-     * @return HasOne
+     * @return hasMany
      */
-    public function company(): HasOne
+    public function companies(): hasMany
     {
-        return $this->hasOne(Company::class, 'customer_id', 'id');
+        return $this->hasMany(Company::class, 'customer_id', 'id');
     }
 
     /**

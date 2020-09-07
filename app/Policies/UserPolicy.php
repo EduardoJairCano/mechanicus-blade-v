@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Models\Company;
 use App\Models\Customer;
 use App\Models\Vehicle;
 use App\User;
@@ -139,6 +140,18 @@ class UserPolicy
     public function createCompany(User $authUser, Customer $customer): bool
     {
         return $authUser->getOwnerId() === $customer->user_id;
+    }
+
+    /**
+     * Validation to know if the company belongs to some customer of the user logged.
+     *
+     * @param User $authUser
+     * @param Company $company
+     * @return bool
+     */
+    public function showCompany(User $authUser, Company $company): bool
+    {
+        return $authUser->getOwnerId() === $company->customer->user_id;
     }
 
 

@@ -46,6 +46,7 @@ Route::delete('/customer/{customer}', 'CustomerController@destroy')->name('custo
 
 
 /* ---- Company ---------------------------------------------------------------------------------------------------- */
+Route::get('/company/{company}/show','CompanyController@show')->name('company.show');
 Route::get('/company/create/{customer?}', 'CompanyController@create')->name('company.create');
 Route::post('/company/{customer?}', 'CompanyController@store')->name('company.store');
 

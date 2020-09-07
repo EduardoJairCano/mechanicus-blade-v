@@ -24,7 +24,7 @@
 @if (isset($companies) && count($companies) > 0)
     <div class="row align-items-center pb-2 py-4">
         <div class="col-md-12">
-            {{--@include('companies.partials.list', $companies)--}}
+            @include('companies.partials.list', $companies)
         </div>
     </div>
 @else
