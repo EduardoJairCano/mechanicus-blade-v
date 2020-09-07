@@ -24,6 +24,10 @@ class CreateServicesTable extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+
+        Schema::table('services', function (Blueprint $table) {
+            $table->foreign('vehicle_id','service_vehicle_id_fk')->references('id')->on('vehicles');
+        });
     }
 
     /**
@@ -33,6 +37,10 @@ class CreateServicesTable extends Migration
      */
     public function down()
     {
+        Schema::table('services', function (Blueprint $table) {
+            $table->dropForeign('service_vehicle_id_fk');
+        });
+
         Schema::dropIfExists('services');
     }
 }

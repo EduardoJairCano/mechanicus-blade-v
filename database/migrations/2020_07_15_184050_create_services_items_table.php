@@ -24,6 +24,10 @@ class CreateServicesItemsTable extends Migration
             $table->foreignId('service_id');
             $table->timestamps();
         });
+
+        Schema::table('services_items', function (Blueprint $table) {
+            $table->foreign('service_id','service_id_fk')->references('id')->on('services');
+        });
     }
 
     /**
@@ -33,6 +37,10 @@ class CreateServicesItemsTable extends Migration
      */
     public function down()
     {
+        Schema::table('services_items', function (Blueprint $table) {
+            $table->dropForeign('service_id_fk');
+        });
+
         Schema::dropIfExists('services_items');
     }
 }

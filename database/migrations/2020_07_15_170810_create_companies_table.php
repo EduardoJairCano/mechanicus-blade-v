@@ -24,6 +24,10 @@ class CreateCompaniesTable extends Migration
 
             $table->index('name');
         });
+
+        Schema::table('companies', function (Blueprint $table) {
+            $table->foreign('customer_id','company_customer_id_fk')->references('id')->on('customers');
+        });
     }
 
     /**
@@ -33,6 +37,10 @@ class CreateCompaniesTable extends Migration
      */
     public function down()
     {
+        Schema::table('companies', function (Blueprint $table) {
+            $table->dropForeign('company_customer_id_fk');
+        });
+
         Schema::dropIfExists('companies');
     }
 }

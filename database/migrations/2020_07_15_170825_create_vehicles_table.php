@@ -28,10 +28,19 @@ class CreateVehiclesTable extends Migration
             $table->string('color',40)->nullable();
             $table->string('slug')->unique();
             $table->foreignId('customer_id');
+            $table->foreignId('company_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
             $table->index('plate');
+        });
+
+        Schema::table('vehicles', function (Blueprint $table) {
+            $table->foreign('customer_id','vehicle_customer_id_fk')->references('id')->on('customers');
+        });
+
+        Schema::table('vehicles', function (Blueprint $table) {
+            $table->foreign('company_id','vehicle_company_id_fk')->references('id')->on('companies');
         });
     }
 
@@ -42,6 +51,11 @@ class CreateVehiclesTable extends Migration
      */
     public function down()
     {
+        Schema::table('vehicles', function (Blueprint $table) {
+            $table->dropForeign('vehicle_customer_id_fk');
+            $table->dropForeign('vehicle_company_id_fk');
+        });
+
         Schema::dropIfExists('vehicles');
     }
 }

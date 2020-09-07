@@ -23,6 +23,10 @@ class CreateUsersInfoTable extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+
+        Schema::table('users_info', function (Blueprint $table) {
+            $table->foreign('user_id', 'user_info_id_fk')->references('id')->on('users')->onDelete('cascade');
+        });
     }
 
     /**
@@ -32,6 +36,10 @@ class CreateUsersInfoTable extends Migration
      */
     public function down(): void
     {
+        Schema::table('users_info', function (Blueprint $table) {
+            $table->dropForeign('user_info_id_fk');
+        });
+
         Schema::dropIfExists('users_info');
     }
 }

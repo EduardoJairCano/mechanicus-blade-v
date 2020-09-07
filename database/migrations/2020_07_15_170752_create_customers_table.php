@@ -28,6 +28,10 @@ class CreateCustomersTable extends Migration
             $table->index('rfc');
             $table->index('email');
         });
+
+        Schema::table('customers', function (Blueprint $table) {
+            $table->foreign('user_id', 'customer_user_id_fk')->references('id')->on('users');
+        });
     }
 
     /**
@@ -37,6 +41,10 @@ class CreateCustomersTable extends Migration
      */
     public function down()
     {
+        Schema::table('customers', function (Blueprint $table) {
+            $table->dropForeign('customer_user_id_fk');
+        });
+
         Schema::dropIfExists('customers');
     }
 }
