@@ -62,12 +62,29 @@ class Company extends Model
     /* ----- Company functions ----------------------------------------------------------------- */
     /**
      * Get the slug for friendly url.
-     * This value is the concat of
-     *      user_id . customer_id . - . name
+     *
      * @return string
      */
     public function getRouteKeyName(): string
     {
         return 'slug';
+    }
+
+    /**
+     * Creating the slug for friendly url.
+     * This value is the concat of
+     *      user_id . customer_id . id . - . name
+     *
+     * @return bool
+     */
+    public function createSlug(): bool
+    {
+        $this->slug = $this->customer->user->id .
+            $this->customer->id .
+            $this->id . '-' .
+        $this->slug = str_replace(' ', '-', $this->slug);
+        $this->save();
+
+        return $this->slug !== '';
     }
 }
