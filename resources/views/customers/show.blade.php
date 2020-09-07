@@ -57,8 +57,8 @@
 
     <hr class="pb-4">
 
-    {{-- Company section --}}
-    @include('companies.show')
+    {{-- Companies list section --}}
+    @include('companies.partials.enlist_companies', compact('customer'))
 
     <hr class="pb-4">
 
