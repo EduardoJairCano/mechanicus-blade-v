@@ -55,10 +55,20 @@
         @include('customers.partials.show_customer_info', compact('customer'))
     </div>
 
-    <hr class="pb-2">
+    <hr class="pb-4">
+
+    {{-- Company section --}}
+    @include('companies.show')
+
+    <hr class="pb-4">
 
     {{-- Vehicles list section --}}
-    @include('customers.partials.enlist_vehicles', compact(['customer', 'vehicles']))
+    @include('customers.partials.enlist_vehicles',
+        [
+            'customer' => $customer,
+            'vehicles' => $vehicles ?? null,
+        ]
+    )
 
     {{-- Return button --}}
     <div class="row">

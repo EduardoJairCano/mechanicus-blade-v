@@ -7,7 +7,7 @@
 @section('content')
 
     {{-- Header & Action section --}}
-    <div class="row align-items-center pb-4">
+    <div class="row align-items-center pb-2">
         <div class="col-md-8 col-sm-8">
             <div class="row col-12">
                 <h4 class="font-weight-bold text-primary">
@@ -34,7 +34,7 @@
 
     {{-- Customers list section --}}
     @if (count($customers) > 0)
-        <div class="row align-items-center p-2">
+        <div class="row align-items-center p-2 py-4">
             @include('customers.partials.list', $customers)
         </div>
     @else
