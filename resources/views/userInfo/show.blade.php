@@ -43,7 +43,7 @@
     {{-- Administrators list section --}}
     @if (auth()->user()->isOwner())
         <div>
-            <hr class="pb-2">
+            <hr class="pb-4">
             @include('administrators.partials.enlist', compact('subUsers'))
         </div>
     @endif

@@ -26,7 +26,7 @@
 
 {{-- Administrators list --}}
 @if (count($subUsers) > 0)
-    <div class="row align-items-center p-2">
+    <div class="row align-items-center p-2 py-4">
         @include('administrators.partials.list', ['administrators' => $subUsers])
     </div>
 @else
