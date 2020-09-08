@@ -6,9 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Company extends Model
 {
+    use SoftDeletes;
+
     /**
      * The table name that belongs this model.
      *
@@ -22,7 +25,10 @@ class Company extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'active', 'slug', 'customer_id'
+        'name',
+        'active',
+        'slug',
+        'customer_id'
     ];
 
 
@@ -82,6 +88,7 @@ class Company extends Model
         $this->slug = $this->customer->user->id .
             $this->customer->id .
             $this->id . '-' .
+            $this->name;
         $this->slug = str_replace(' ', '-', $this->slug);
         $this->save();
 

@@ -52,9 +52,11 @@ class CompanyController extends Controller
             if ($customer) {
                 // Validate for user logged to be owner of the customer
                 $this->authorize('createCompany', $customer);
+
+                $company = new Company();
             }
 
-            return view('companies.create', compact('customer'));
+            return view('companies.create', compact(['customer', 'company']));
 
         } catch (AuthorizationException $e) {
 
