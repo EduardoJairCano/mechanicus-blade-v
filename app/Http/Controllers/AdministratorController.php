@@ -204,7 +204,7 @@ class AdministratorController extends Controller
                 'fax_number'        => $fields['fax_number'],
             ]);
 
-            return redirect()->route('administrator.show', [$administrator]);
+            return redirect()->route('administrator.show', compact('administrator'));
 
         } catch (AuthorizationException $e) {
 

@@ -106,7 +106,7 @@ class CompanyController extends Controller
                 'addressable_type'  => Company::class,
             ]);
 
-            return view('companies.show', compact('company'));
+            return redirect()->route('companies.show', compact('company'));
 
         } catch (AuthorizationException $e) {
 
@@ -193,7 +193,7 @@ class CompanyController extends Controller
                 'fax_number'        => $fields['fax_number'],
             ]);
 
-            return redirect()->route('company.show', $company);
+            return redirect()->route('company.show', compact('company'));
 
         } catch (AuthorizationException $e) {
 

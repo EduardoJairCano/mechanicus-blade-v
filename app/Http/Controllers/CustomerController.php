@@ -99,7 +99,7 @@ class CustomerController extends Controller
                 'addressable_type'  => Customer::class,
             ]);
 
-            return view('customers.show', ['customer' => $customer]);
+            return redirect()->route('customer.show', compact('customer'));
         }
 
         return redirect()->route('customer.index');
@@ -191,7 +191,7 @@ class CustomerController extends Controller
                 'fax_number'        => $fields['fax_number'],
             ]);
 
-            return redirect()->route('customer.show', $customer);
+            return redirect()->route('customer.show', compact('customer'));
 
         } catch (AuthorizationException $e) {
 

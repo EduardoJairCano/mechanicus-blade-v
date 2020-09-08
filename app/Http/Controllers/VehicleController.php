@@ -107,7 +107,7 @@ class VehicleController extends Controller
             // Slug creation
             $vehicle->createSlug();
 
-            return view('vehicles.show', ['vehicle' => $vehicle]);
+            return redirect()->route('vehicles.show', compact('vehicle'));
 
         } catch (AuthorizationException $e) {
 
@@ -189,7 +189,7 @@ class VehicleController extends Controller
             // Update Slug
             $vehicle->createSlug();
 
-            return redirect()->route('vehicle.show', $vehicle);
+            return redirect()->route('vehicle.show', compact('vehicle'));
 
         } catch (AuthorizationException $e) {
 
