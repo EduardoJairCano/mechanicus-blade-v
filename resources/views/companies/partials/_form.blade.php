@@ -1,5 +1,16 @@
 @csrf
 
+{{-- Header & Action section --}}
+<div class="row align-items-center">
+    <h3 class="col-md-8 col-sm-8">
+        <span class="font-weight-bold">
+            Información de la Compañia
+        </span>
+    </h3>
+</div>
+
+<hr>
+
 {{-- New company info inputs --}}
 <div class="pb-2">
     {{-- Name --}}
@@ -9,6 +20,7 @@
             <input type="text"
                    id="name"
                    name="name"
+                   title="Nombre de la Compañia"
                    class="form-control bg-light shadow-sm @error('name') is-invalid @else border-0 @enderror"
                    value="{{ old('name', $company->name) }}">
             @error('name')

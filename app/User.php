@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Models\Address;
+use App\Models\Company;
 use App\Models\Customer;
 use App\Models\Role;
 use App\Models\UserInfo;
@@ -195,7 +196,7 @@ class User extends Authenticatable
         return $this->isOwner() ? $this->id : $this->owner[0]->id;
     }
 
-    /* ----- Vehicles functions ---------------------------------------------------------------- */
+    /* ----- Customers functions --------------------------------------------------------------- */
     /**
      * Get the Customers records associated with the owner user.
      *
@@ -204,6 +205,22 @@ class User extends Authenticatable
     public function getUserCustomers()
     {
         return $this->isOwner() ? $this->customers : $this->owner[0]->customers;
+    }
+
+    /* ----- Companies functions --------------------------------------------------------------- */
+    /**
+     * Get the Companies records associated with the owner user.
+     *
+     * @return Builder[]|Collection
+     */
+    public function getUserCompanies()
+    {
+        $user_id = $this->getOwnerId();
+
+        return Company::with('customer')
+            ->whereHas('customer', static function ($query) use ($user_id) {
+                $query->where('user_id', $user_id);
+            })->get();
     }
 
     /* ----- Vehicles functions ---------------------------------------------------------------- */

@@ -1,18 +1,18 @@
 {{-- Header & Action section --}}
 <div class="row align-items-center">
     <div class="col-md-8 col-sm-8">
-        <h4>
+        <h3>
             <span class="font-weight-bold">
                 Seleccionar Cliente
             </span>
-        </h4>
+        </h3>
     </div>
     <div class="col-md-3 col-sm-4 d-flex justify-content-end">
         @include('helpers.html-elements.buttons.aHref',
             [
                 'route'     => $routeToReturn,
                 'obj'       => $customer ?? null,
-                'title'     => isset($customer) ? 'Regresar a Información de Cliente' : 'Regresar a Panel de Vehículos',
+                'title'     => isset($customer) ? 'Regresar a Información de Cliente' : 'Regresar a Panel de Compañias',
                 'message'   => 'Regresar'
             ]
         )

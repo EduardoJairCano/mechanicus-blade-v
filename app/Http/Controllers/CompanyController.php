@@ -13,6 +13,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\View\View;
 
 class CompanyController extends Controller
@@ -31,13 +32,16 @@ class CompanyController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of the companies.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|Response|View
      */
     public function index()
     {
-        //
+        // Get all companies for owner user
+        $companies = auth()->user()->getUserCompanies();
+
+        return view('companies.index', compact('companies'));
     }
 
     /**
@@ -52,11 +56,12 @@ class CompanyController extends Controller
             if ($customer) {
                 // Validate for user logged to be owner of the customer
                 $this->authorize('createCompany', $customer);
-
-                $company = new Company();
             }
 
-            return view('companies.create', compact(['customer', 'company']));
+            $company = new Company();
+            $customers = \auth()->user()->getUserCustomers();
+
+            return view('companies.create', compact(['customer', 'company', 'customers']));
 
         } catch (AuthorizationException $e) {
 
