@@ -64,6 +64,15 @@
                 </a>
             </li>
         @endauth
+        @guest
+            <li class="list-group-item border-0 mb-2 shadow-sm">
+                <a href="{{--{{ route('about') }}--}}" class="text-secondary">
+                    <span class="font-weight-bold">
+                        Contáctanos
+                    </span>
+                </a>
+            </li>
+        @endguest
         <li class="list-group-item border-0 mb-2 shadow-sm">
             <a href="{{ route('about') }}" class="text-secondary">
                 <span class="font-weight-bold">
