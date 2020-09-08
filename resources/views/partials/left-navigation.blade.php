@@ -56,6 +56,13 @@
                     </a>
                 </li>
             @endif
+            <li class="list-group-item border-0 mb-2 shadow-sm">
+                <a href="{{--{{ route('employee.index') }}--}}" class="text-secondary">
+                    <span class="font-weight-bold">
+                        Configuración
+                    </span>
+                </a>
+            </li>
         @endauth
         <li class="list-group-item border-0 mb-2 shadow-sm">
             <a href="{{ route('about') }}" class="text-secondary">

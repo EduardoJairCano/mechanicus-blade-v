@@ -158,6 +158,7 @@ class User extends Authenticatable
                 substr($this->userInfo->cell_phone_number, 6)) : '-';
     }
 
+
     /* ----- Roles functions ------------------------------------------------------------------- */
     /**
      * Check if the User has a certain Role.
@@ -196,6 +197,7 @@ class User extends Authenticatable
         return $this->isOwner() ? $this->id : $this->owner[0]->id;
     }
 
+
     /* ----- Customers functions --------------------------------------------------------------- */
     /**
      * Get the Customers records associated with the owner user.
@@ -206,6 +208,7 @@ class User extends Authenticatable
     {
         return $this->isOwner() ? $this->customers : $this->owner[0]->customers;
     }
+
 
     /* ----- Companies functions --------------------------------------------------------------- */
     /**
@@ -222,6 +225,7 @@ class User extends Authenticatable
                 $query->where('user_id', $user_id);
             })->get();
     }
+
 
     /* ----- Vehicles functions ---------------------------------------------------------------- */
     /**
