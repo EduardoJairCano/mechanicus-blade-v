@@ -106,7 +106,7 @@ class CompanyController extends Controller
                 'addressable_type'  => Company::class,
             ]);
 
-            return redirect()->route('companies.show', compact('company'));
+            return redirect()->route('company.show', compact('company'));
 
         } catch (AuthorizationException $e) {
 
