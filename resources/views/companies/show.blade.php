@@ -50,9 +50,9 @@
 
     <hr>
 
-    {{-- Company info section --}}
+    {{-- Address info section --}}
     <div>
-        @include('companies.partials.show_company_info', compact('company'))
+        @include('addresses.partials.show_address_info', ['address' => $company->address])
     </div>
 
     {{-- Return button --}}
