@@ -12,11 +12,11 @@
 <hr>
 
 {{-- New company info inputs --}}
-<div class="pb-2">
+<div class="pb-4">
     {{-- Name --}}
     <div class="form-group row align-items-center">
-        <label for="name" class="col-md-4 col-form-label text-md-right"> Nombre de la Compañia </label>
-        <div class="col-md-7">
+        <label for="name" class="col-3 col-form-label text-md-right"> Nombre de la Compañia </label>
+        <div class="col-8">
             <input type="text"
                    id="name"
                    name="name"
@@ -33,7 +33,7 @@
 </div>
 
 {{-- Address info section --}}
-<div class="pb-2">
+<div class="pb-4">
     @include('addresses.partials._form',
         [
             'address'   => $company->address,

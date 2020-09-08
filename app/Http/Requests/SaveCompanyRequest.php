@@ -24,6 +24,8 @@ class SaveCompanyRequest extends FormRequest
     public function rules()
     {
         return [
+            // Customer
+            'customer_id'       => 'required',
             // Company
             'name'              => 'required',
             // Address
@@ -47,6 +49,11 @@ class SaveCompanyRequest extends FormRequest
      */
     public function messages(): array
     {
-        return [];
+        return [
+            // Customer
+            'customer_id.required'      => 'Seleccione un cliente.',
+            // Company
+            'name.required'             => 'El campo nombre de compañia es obligatorio.'
+        ];
     }
 }

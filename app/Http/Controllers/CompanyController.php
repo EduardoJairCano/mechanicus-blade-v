@@ -87,9 +87,9 @@ class CompanyController extends Controller
 
             // Create new vehicle row
             $company = Company::create([
-                'name'          => $fields['name'],
-                'slug'          => 'slug-space',
-                'customer_id'   => $customer->id,
+                'name'              => $fields['name'],
+                'slug'              => 'slug-space',
+                'customer_id'       => $fields['customer_id'],
             ]);
 
             // Slug creation

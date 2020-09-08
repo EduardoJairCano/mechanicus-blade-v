@@ -50,11 +50,11 @@ class SaveVehicleRequest extends FormRequest
     {
         return [
             // Customer
-            'customer_id.required'      => 'Seleccione un cliente',
+            'customer_id.required'      => 'Seleccione un cliente.',
             // Vehicle
-            'transmission.required'     => 'Seleccione un tipo de transmisión',
-            'cylinder_count.required'   => 'Seleccione un número de cilindros',
-            'fuel.required'             => 'Seleccione un tipo de combustible',
+            'transmission.required'     => 'Seleccione un tipo de transmisión.',
+            'cylinder_count.required'   => 'Seleccione un número de cilindros.',
+            'fuel.required'             => 'Seleccione un tipo de combustible.',
         ];
     }
 }
