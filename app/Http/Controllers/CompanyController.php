@@ -150,6 +150,7 @@ class CompanyController extends Controller
         try {
             // Validation for user logged and role type
             $this->authorize('editAndUpdateCompany', $company);
+
             $customer = $company->customer;
 
             return view('companies.edit', compact(['company', 'customer']));

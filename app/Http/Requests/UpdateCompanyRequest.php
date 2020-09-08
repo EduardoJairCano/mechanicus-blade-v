@@ -47,6 +47,9 @@ class UpdateCompanyRequest extends FormRequest
      */
     public function messages(): array
     {
-        return [];
+        return [
+            // Company
+            'name.required'             => 'El campo nombre de compañia es obligatorio.'
+        ];
     }
 }
