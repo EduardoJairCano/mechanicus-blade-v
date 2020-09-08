@@ -44,6 +44,20 @@
         <div class="row-cols-md-12 d-flex justify-content-center">
             <span class="text-center text-black-50">No hay vehículos registrados aún</span>
         </div>
+        <hr class="pb-4">
     @endif
+
+    {{-- Return button --}}
+    <div class="row pb-2">
+        <div class="col-md-1 offset-10 d-flex justify-content-end">
+            @include('helpers.html-elements.buttons.aHref',
+                [
+                    'route'     => 'home',
+                    'title'     => 'Regresar a Página Principal',
+                    'message'   => 'Regresar'
+                ]
+            )
+        </div>
+    </div>
 
 @endsection

@@ -60,8 +60,6 @@
     {{-- Companies list section --}}
     @include('companies.partials.enlist_companies', compact(['customer', 'companies']))
 
-    <hr class="pb-4">
-
     {{-- Vehicles list section --}}
     @include('customers.partials.enlist_vehicles',
         [

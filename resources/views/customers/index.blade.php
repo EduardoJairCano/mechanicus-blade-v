@@ -44,6 +44,7 @@
                 No hay clientes registrados aún
             </span>
         </div>
+        <hr class="pb-4">
     @endif
 
     {{-- Return button --}}

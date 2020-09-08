@@ -32,4 +32,5 @@
     <div class="row-cols-md-12 d-flex justify-content-center pb-2">
         <span class="text-center text-black-50">No hay compañias registradas aún</span>
     </div>
+    <hr class="pb-4">
 @endif
