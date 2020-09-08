@@ -1,10 +1,10 @@
 {{-- Header --}}
 <div class="row">
-    <h3 class="col-md-6">
+    <h4 class="col-md-6">
         <span class="font-weight-bold">
             Domicilio
         </span>
-    </h3>
+    </h4>
 </div>
 
 <hr>

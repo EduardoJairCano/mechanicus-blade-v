@@ -22,7 +22,7 @@
         </div>
     @endif
 
-    {{-- UserInfo create/edit sectiion --}}
+    {{-- UserInfo sectiion --}}
     @include('userInfo.partials.create_and_edit_user_info',
         [
             'userInfo'  => $administrator->userInfo,
@@ -31,7 +31,7 @@
     )
 </div>
 
-{{-- Address info --}}
+{{-- Address info section --}}
 <div class="pb-3">
     @include('addresses.partials._form',
         [
@@ -41,7 +41,7 @@
     )
 </div>
 
-{{-- Save button --}}
+{{-- Button button --}}
 <div class="form-group row mb-0">
     <div class="col-md-3 offset-md-8">
         <button type="submit"

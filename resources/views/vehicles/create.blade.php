@@ -6,12 +6,12 @@
 
 @section('content')
 
-    {{-- Create vehicle form --}}
+    {{-- Create Vehicle form --}}
     <form method="POST" action="{{ route('vehicle.store', $customer) }}">
         {{-- Select or Create Customer section --}}
         @if (isset($customers))
-            <div>
-                @include('vehicles.partials.select_or_create_customer',
+            <div class="pb-4">
+                @include('customers.partials.select_or_create_customer',
                     [
                         'customer_id'   => isset($customer) ? $customer->id : null,
                         'customers'     => $customers,

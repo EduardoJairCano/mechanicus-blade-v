@@ -1,8 +1,8 @@
 @csrf
 
-{{-- New vehicle info inputs --}}
-<div>
-    {{-- Header --}}
+{{-- Vehicle info --}}
+<div class="pb-3">
+    {{-- Header & Action section --}}
     <div class="row align-items-center">
         <h4 class="col-md-8 col-sm-8">
             <span class="font-weight-bold">
@@ -23,7 +23,7 @@
         @endif
     </div>
 
-    <hr class="pb-2">
+    <hr>
 
     {{-- PLate & Serial Number(optional) --}}
     <div class="form-group row align-items-center">

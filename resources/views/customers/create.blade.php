@@ -8,11 +8,11 @@
 
     {{-- Header & Action section --}}
     <div class="row align-items-center">
-        <h3 class="col-md-8 col-sm-8">
+        <h4 class="col-md-8 col-sm-8">
             <span class="font-weight-bold">
                 Información Principal
             </span>
-        </h3>
+        </h4>
         <div class="col-md-3 col-sm-4 d-flex justify-content-end">
             @include('helpers.html-elements.buttons.aHref',
                 [
@@ -26,7 +26,7 @@
 
     <hr>
 
-    {{-- Create customer form --}}
+    {{-- Create Customer info form --}}
     <form method="POST" action="{{ route('customer.store') }}">
         @include('customers.partials._form', ['btnText' => 'Guardar'])
     </form>

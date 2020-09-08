@@ -1,12 +1,10 @@
 {{-- Header & Action section --}}
 <div class="row align-items-center">
-    <div class="col-md-8 col-sm-8">
-        <h3>
-            <span class="font-weight-bold">
-                Seleccionar Cliente
-            </span>
-        </h3>
-    </div>
+    <h4 class="col-md-8 col-sm-8">
+        <span class="font-weight-bold">
+            Seleccionar Cliente
+        </span>
+    </h4>
     <div class="col-md-3 col-sm-4 d-flex justify-content-end">
         @include('helpers.html-elements.buttons.aHref',
             [
@@ -21,8 +19,8 @@
 
 <hr class="pb-2">
 
-{{-- Dropdown of Customers Selection --}}
-<div class="row pb-4">
+{{-- Dropdown of customers selection / Create customer --}}
+<div class="row pb-3">
     <label for="customer_id" class="col-2 col-form-label text-md-right "> Cliente </label>
     <div class="col-6">
         <select id="customer_id"
@@ -42,7 +40,6 @@
         </span>
         @enderror
     </div>
-
     <div class="col-4">
         @include('helpers.html-elements.buttons.aHref',
             [

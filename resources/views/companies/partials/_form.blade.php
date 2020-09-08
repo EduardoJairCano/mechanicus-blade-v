@@ -1,18 +1,18 @@
 @csrf
 
-{{-- Header & Action section --}}
-<div class="row align-items-center">
-    <h3 class="col-md-8 col-sm-8">
-        <span class="font-weight-bold">
-            Información de la Compañia
-        </span>
-    </h3>
-</div>
+{{-- Company info --}}
+<div class="pb-3">
+    {{-- Header & Action section --}}
+    <div class="row align-items-center">
+        <h4 class="col-md-8 col-sm-8">
+            <span class="font-weight-bold">
+                Información de la Compañia
+            </span>
+        </h4>
+    </div>
 
-<hr>
+    <hr>
 
-{{-- New company info inputs --}}
-<div class="pb-4">
     {{-- Name --}}
     <div class="form-group row align-items-center">
         <label for="name" class="col-3 col-form-label text-md-right"> Nombre de la Compañia </label>
@@ -25,15 +25,15 @@
                    value="{{ old('name', $company->name) }}">
             @error('name')
             <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
+            <strong>{{ $message }}</strong>
+        </span>
             @enderror
         </div>
     </div>
 </div>
 
 {{-- Address info section --}}
-<div class="pb-4">
+<div class="pb-3">
     @include('addresses.partials._form',
         [
             'address'   => $company->address,

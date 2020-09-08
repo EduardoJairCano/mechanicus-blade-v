@@ -1,6 +1,6 @@
 @csrf
 
-{{-- Customer info --}}
+{{-- Customer info section --}}
 <div class="pb-3">
     {{-- First Name --}}
     <div class="form-group row">
@@ -93,8 +93,8 @@
     </div>
 </div>
 
-{{-- Address info --}}
-<div class="pb-2">
+{{-- Address info section --}}
+<div class="pb-3">
     @include('addresses.partials._form',
         [
             'address'   => $customer->address,
