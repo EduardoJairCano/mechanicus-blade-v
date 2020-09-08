@@ -27,6 +27,7 @@ Route::patch('/userInfo/{user}', 'UserInfoController@update')->name('userInfo.up
 
 
 /* ---- Administrator ---------------------------------------------------------------------------------------------- */
+Route::get('/administrator', 'AdministratorController@index')->name('administrator.index');
 Route::get('/administrator/{administrator}/show', 'AdministratorController@show')->name('administrator.show');
 Route::get('/administrator/create', 'AdministratorController@create')->name('administrator.create');
 Route::post('/administrator', 'AdministratorController@store')->name('administrator.store');

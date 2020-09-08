@@ -12,11 +12,20 @@
         @auth
             <li class="list-group-item border-0 mb-2 shadow-sm">
                 <a href="{{ route('userInfo.index') }}" class="text-secondary">
-                <span class="font-weight-bold">
-                    Panel de Usuario
-                </span>
+                    <span class="font-weight-bold">
+                        Panel de Usuario
+                    </span>
                 </a>
             </li>
+            @if (auth()->user()->isOwner())
+                <li class="list-group-item border-0 mb-2 shadow-sm">
+                    <a href="{{ route('administrator.index') }}" class="text-secondary">
+                        <span class="font-weight-bold">
+                            Administradores
+                        </span>
+                    </a>
+                </li>
+            @endif
             <li class="list-group-item border-0 mb-2 shadow-sm">
                 <a href="{{ route('customer.index') }}" class="text-secondary">
                     <span class="font-weight-bold">

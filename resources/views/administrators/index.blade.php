@@ -11,7 +11,7 @@
         <div class="col-md-8 col-sm-8">
             <div class="row col-12">
                 <h4 class="font-weight-bold text-primary">
-                    Compañias
+                    Administradores
                 </h4>
             </div>
             <div class="row col-12">
@@ -23,25 +23,25 @@
         <div class="col-md-3 col-sm-4 d-flex justify-content-end">
             @include('helpers.html-elements.buttons.aHref',
                 [
-                    'route'             => 'company.create',
+                    'route'             => 'administrator.create',
                     'classForButton'    => 'btn btn-primary',
-                    'title'             => 'Agregar nueva Compañia',
+                    'title'             => 'Agregar nuevo Administrador',
                     'message'           => 'Agregar'
                 ]
             )
         </div>
     </div>
 
-    {{-- Customers list section --}}
-    @if (count($companies) > 0)
+    {{-- Administrator list section --}}
+    @if (count($administrators) > 0)
         <div class="row align-items-center p-2 py-4">
-            @include('companies.partials.list', $companies)
+            @include('administrators.partials.list', $administrators)
         </div>
     @else
         <hr>
         <div class="row d-flex justify-content-center pb-2">
             <span class="text-center text-black-50">
-                No hay compañias registradas aún
+                No hay administradores registrados aún
             </span>
         </div>
         <hr class="pb-4">
